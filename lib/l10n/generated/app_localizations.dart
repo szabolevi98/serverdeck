@@ -427,6 +427,306 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Ezt a kulcstípust a ServerDeck nem ismeri. Ed25519, RSA vagy ECDSA kulcs kell.'**
   String get keyErrorUnsupported;
+
+  /// No description provided for @sessionOnline.
+  ///
+  /// In hu, this message translates to:
+  /// **'online'**
+  String get sessionOnline;
+
+  /// No description provided for @sessionConnecting.
+  ///
+  /// In hu, this message translates to:
+  /// **'kapcsolódás'**
+  String get sessionConnecting;
+
+  /// No description provided for @sessionReconnect.
+  ///
+  /// In hu, this message translates to:
+  /// **'Újrakapcsolódás'**
+  String get sessionReconnect;
+
+  /// No description provided for @sessionConnectingTo.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kapcsolódás…'**
+  String get sessionConnectingTo;
+
+  /// No description provided for @problemUnreachableTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'A szerver nem érhető el'**
+  String get problemUnreachableTitle;
+
+  /// No description provided for @problemUnreachable.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem sikerült kapcsolatot nyitni: {host}, {port}-es port. Ellenőrizd a címet, a portot és a telefon internetkapcsolatát.'**
+  String problemUnreachable(String host, int port);
+
+  /// No description provided for @problemTimeoutTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem válaszolt időben'**
+  String get problemTimeoutTitle;
+
+  /// No description provided for @problemTimeout.
+  ///
+  /// In hu, this message translates to:
+  /// **'A szerver nem válaszolt 12 másodpercen belül. Lehet, hogy túlterhelt, vagy tűzfal nyeli el a kapcsolatot.'**
+  String get problemTimeout;
+
+  /// No description provided for @problemAuthTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sikertelen bejelentkezés'**
+  String get problemAuthTitle;
+
+  /// No description provided for @problemAuthKey.
+  ///
+  /// In hu, this message translates to:
+  /// **'A szerver nem fogadta el a kulcsot {user} felhasználóként. Tedd a kulcs nyilvános felét a szerveren a ~/.ssh/authorized_keys fájlba.'**
+  String problemAuthKey(String user);
+
+  /// No description provided for @problemAuthPassword.
+  ///
+  /// In hu, this message translates to:
+  /// **'A szerver nem fogadta el a jelszót {user} felhasználóként.'**
+  String problemAuthPassword(String user);
+
+  /// No description provided for @problemHostKeyChangedTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megváltozott a szerver kulcsa'**
+  String get problemHostKeyChangedTitle;
+
+  /// No description provided for @problemHostKeyChanged.
+  ///
+  /// In hu, this message translates to:
+  /// **'A szerver más azonosító kulcsot mutatott, mint amit korábban elfogadtál. Ez lehet egy újratelepítés, de az is, hogy valaki beékelődött közétek. A ServerDeck ezért nem kapcsolódott.'**
+  String get problemHostKeyChanged;
+
+  /// No description provided for @problemHostKeyRefusedTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elutasítottad a kulcsot'**
+  String get problemHostKeyRefusedTitle;
+
+  /// No description provided for @problemHostKeyRefused.
+  ///
+  /// In hu, this message translates to:
+  /// **'A szerver kulcsát nem fogadtad el, ezért nem történt bejelentkezés.'**
+  String get problemHostKeyRefused;
+
+  /// No description provided for @problemMissingTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hiányzik a bejelentkezési adat'**
+  String get problemMissingTitle;
+
+  /// No description provided for @problemMissing.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ehhez a szerverhez nincs kulcs vagy jelszó beállítva. Szerkeszd a szervert, és adj meg egyet.'**
+  String get problemMissing;
+
+  /// No description provided for @problemDisconnectedTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megszakadt a kapcsolat'**
+  String get problemDisconnectedTitle;
+
+  /// No description provided for @problemDisconnected.
+  ///
+  /// In hu, this message translates to:
+  /// **'A kapcsolat bontva: hálózatváltás, a szerver újraindult, vagy a telefon elaludt.'**
+  String get problemDisconnected;
+
+  /// No description provided for @problemOtherTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem sikerült kapcsolódni'**
+  String get problemOtherTitle;
+
+  /// No description provided for @hostKeyNewTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új szerver'**
+  String get hostKeyNewTitle;
+
+  /// No description provided for @hostKeyNew.
+  ///
+  /// In hu, this message translates to:
+  /// **'Most kapcsolódsz először ide: {host}. Ez a szerver azonosító kulcsa:'**
+  String hostKeyNew(String host);
+
+  /// No description provided for @hostKeyCheck.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ha biztosra akarsz menni, a szerveren ez a parancs ugyanezt az ujjlenyomatot írja ki:'**
+  String get hostKeyCheck;
+
+  /// No description provided for @hostKeyAccept.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elfogadom'**
+  String get hostKeyAccept;
+
+  /// No description provided for @hostKeyReject.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elutasítom'**
+  String get hostKeyReject;
+
+  /// No description provided for @hostKeyKnown.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elfogadott'**
+  String get hostKeyKnown;
+
+  /// No description provided for @hostKeyNow.
+  ///
+  /// In hu, this message translates to:
+  /// **'Most'**
+  String get hostKeyNow;
+
+  /// No description provided for @hostKeyForget.
+  ///
+  /// In hu, this message translates to:
+  /// **'Régi kulcs elfelejtése'**
+  String get hostKeyForget;
+
+  /// No description provided for @hostKeyForgetTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Elfelejted a régi kulcsot?'**
+  String get hostKeyForgetTitle;
+
+  /// No description provided for @hostKeyForgetMessage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csak akkor tedd, ha tudod, miért változott a kulcs, például mert újratelepítetted a szervert. Utána a ServerDeck megkérdezi az új kulcsot.'**
+  String get hostKeyForgetMessage;
+
+  /// No description provided for @statsFailedTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem sikerült lekérdezni'**
+  String get statsFailedTitle;
+
+  /// No description provided for @statsFailed.
+  ///
+  /// In hu, this message translates to:
+  /// **'A szerver nem adott értelmezhető választ. A statisztikákhoz Linux kell (/proc).'**
+  String get statsFailed;
+
+  /// No description provided for @statsStale.
+  ///
+  /// In hu, this message translates to:
+  /// **'A legutóbbi frissítés nem sikerült. A fenti adatok korábbiak.'**
+  String get statsStale;
+
+  /// No description provided for @statCpu.
+  ///
+  /// In hu, this message translates to:
+  /// **'CPU'**
+  String get statCpu;
+
+  /// No description provided for @statMemory.
+  ///
+  /// In hu, this message translates to:
+  /// **'Memória'**
+  String get statMemory;
+
+  /// No description provided for @statDisk.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lemez'**
+  String get statDisk;
+
+  /// No description provided for @statCores.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} mag'**
+  String statCores(int count);
+
+  /// No description provided for @statHistory.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az utolsó 3 perc'**
+  String get statHistory;
+
+  /// No description provided for @statHistoryHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'3 másodpercenként frissül, amíg ez a képernyő nyitva van.'**
+  String get statHistoryHint;
+
+  /// No description provided for @statNetIn.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bejövő'**
+  String get statNetIn;
+
+  /// No description provided for @statNetOut.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kimenő'**
+  String get statNetOut;
+
+  /// No description provided for @statLoad.
+  ///
+  /// In hu, this message translates to:
+  /// **'Terhelés'**
+  String get statLoad;
+
+  /// No description provided for @statLoad1.
+  ///
+  /// In hu, this message translates to:
+  /// **'1 perc'**
+  String get statLoad1;
+
+  /// No description provided for @statLoad5.
+  ///
+  /// In hu, this message translates to:
+  /// **'5 perc'**
+  String get statLoad5;
+
+  /// No description provided for @statLoad15.
+  ///
+  /// In hu, this message translates to:
+  /// **'15 perc'**
+  String get statLoad15;
+
+  /// No description provided for @statDisks.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lemezek'**
+  String get statDisks;
+
+  /// No description provided for @statSwap.
+  ///
+  /// In hu, this message translates to:
+  /// **'Swap'**
+  String get statSwap;
+
+  /// No description provided for @statUptime.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fut'**
+  String get statUptime;
+
+  /// No description provided for @uptimeDays.
+  ///
+  /// In hu, this message translates to:
+  /// **'{days} nap {hours} óra'**
+  String uptimeDays(int days, int hours);
+
+  /// No description provided for @uptimeHours.
+  ///
+  /// In hu, this message translates to:
+  /// **'{hours} óra {minutes} perc'**
+  String uptimeHours(int hours, int minutes);
 }
 
 class _AppLocalizationsDelegate

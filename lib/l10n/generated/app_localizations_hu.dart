@@ -188,4 +188,178 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get keyErrorUnsupported =>
       'Ezt a kulcstípust a ServerDeck nem ismeri. Ed25519, RSA vagy ECDSA kulcs kell.';
+
+  @override
+  String get sessionOnline => 'online';
+
+  @override
+  String get sessionConnecting => 'kapcsolódás';
+
+  @override
+  String get sessionReconnect => 'Újrakapcsolódás';
+
+  @override
+  String get sessionConnectingTo => 'Kapcsolódás…';
+
+  @override
+  String get problemUnreachableTitle => 'A szerver nem érhető el';
+
+  @override
+  String problemUnreachable(String host, int port) {
+    return 'Nem sikerült kapcsolatot nyitni: $host, $port-es port. Ellenőrizd a címet, a portot és a telefon internetkapcsolatát.';
+  }
+
+  @override
+  String get problemTimeoutTitle => 'Nem válaszolt időben';
+
+  @override
+  String get problemTimeout =>
+      'A szerver nem válaszolt 12 másodpercen belül. Lehet, hogy túlterhelt, vagy tűzfal nyeli el a kapcsolatot.';
+
+  @override
+  String get problemAuthTitle => 'Sikertelen bejelentkezés';
+
+  @override
+  String problemAuthKey(String user) {
+    return 'A szerver nem fogadta el a kulcsot $user felhasználóként. Tedd a kulcs nyilvános felét a szerveren a ~/.ssh/authorized_keys fájlba.';
+  }
+
+  @override
+  String problemAuthPassword(String user) {
+    return 'A szerver nem fogadta el a jelszót $user felhasználóként.';
+  }
+
+  @override
+  String get problemHostKeyChangedTitle => 'Megváltozott a szerver kulcsa';
+
+  @override
+  String get problemHostKeyChanged =>
+      'A szerver más azonosító kulcsot mutatott, mint amit korábban elfogadtál. Ez lehet egy újratelepítés, de az is, hogy valaki beékelődött közétek. A ServerDeck ezért nem kapcsolódott.';
+
+  @override
+  String get problemHostKeyRefusedTitle => 'Elutasítottad a kulcsot';
+
+  @override
+  String get problemHostKeyRefused =>
+      'A szerver kulcsát nem fogadtad el, ezért nem történt bejelentkezés.';
+
+  @override
+  String get problemMissingTitle => 'Hiányzik a bejelentkezési adat';
+
+  @override
+  String get problemMissing =>
+      'Ehhez a szerverhez nincs kulcs vagy jelszó beállítva. Szerkeszd a szervert, és adj meg egyet.';
+
+  @override
+  String get problemDisconnectedTitle => 'Megszakadt a kapcsolat';
+
+  @override
+  String get problemDisconnected =>
+      'A kapcsolat bontva: hálózatváltás, a szerver újraindult, vagy a telefon elaludt.';
+
+  @override
+  String get problemOtherTitle => 'Nem sikerült kapcsolódni';
+
+  @override
+  String get hostKeyNewTitle => 'Új szerver';
+
+  @override
+  String hostKeyNew(String host) {
+    return 'Most kapcsolódsz először ide: $host. Ez a szerver azonosító kulcsa:';
+  }
+
+  @override
+  String get hostKeyCheck =>
+      'Ha biztosra akarsz menni, a szerveren ez a parancs ugyanezt az ujjlenyomatot írja ki:';
+
+  @override
+  String get hostKeyAccept => 'Elfogadom';
+
+  @override
+  String get hostKeyReject => 'Elutasítom';
+
+  @override
+  String get hostKeyKnown => 'Elfogadott';
+
+  @override
+  String get hostKeyNow => 'Most';
+
+  @override
+  String get hostKeyForget => 'Régi kulcs elfelejtése';
+
+  @override
+  String get hostKeyForgetTitle => 'Elfelejted a régi kulcsot?';
+
+  @override
+  String get hostKeyForgetMessage =>
+      'Csak akkor tedd, ha tudod, miért változott a kulcs, például mert újratelepítetted a szervert. Utána a ServerDeck megkérdezi az új kulcsot.';
+
+  @override
+  String get statsFailedTitle => 'Nem sikerült lekérdezni';
+
+  @override
+  String get statsFailed =>
+      'A szerver nem adott értelmezhető választ. A statisztikákhoz Linux kell (/proc).';
+
+  @override
+  String get statsStale =>
+      'A legutóbbi frissítés nem sikerült. A fenti adatok korábbiak.';
+
+  @override
+  String get statCpu => 'CPU';
+
+  @override
+  String get statMemory => 'Memória';
+
+  @override
+  String get statDisk => 'Lemez';
+
+  @override
+  String statCores(int count) {
+    return '$count mag';
+  }
+
+  @override
+  String get statHistory => 'Az utolsó 3 perc';
+
+  @override
+  String get statHistoryHint =>
+      '3 másodpercenként frissül, amíg ez a képernyő nyitva van.';
+
+  @override
+  String get statNetIn => 'Bejövő';
+
+  @override
+  String get statNetOut => 'Kimenő';
+
+  @override
+  String get statLoad => 'Terhelés';
+
+  @override
+  String get statLoad1 => '1 perc';
+
+  @override
+  String get statLoad5 => '5 perc';
+
+  @override
+  String get statLoad15 => '15 perc';
+
+  @override
+  String get statDisks => 'Lemezek';
+
+  @override
+  String get statSwap => 'Swap';
+
+  @override
+  String get statUptime => 'Fut';
+
+  @override
+  String uptimeDays(int days, int hours) {
+    return '$days nap $hours óra';
+  }
+
+  @override
+  String uptimeHours(int hours, int minutes) {
+    return '$hours óra $minutes perc';
+  }
 }

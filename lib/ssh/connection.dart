@@ -56,8 +56,11 @@ class RunningCommand {
 }
 
 /// Decides about a host key seen for the first time: true accepts it.
-typedef HostKeyPrompt =
-    Future<bool> Function(String host, String type, String fingerprint);
+typedef HostKeyPrompt = Future<bool> Function(
+  String host,
+  String type,
+  String fingerprint,
+);
 
 /// One signed-in SSH connection to one server.
 class ServerConnection {
@@ -97,7 +100,22 @@ class ServerConnection {
       server.port,
       timeout: timeout,
     );
-    final client = SSHClient(
+
+    // The handshake has its own deadline, which stops while the user reads a
+    // new host key: dartssh2's would run on and drop the connection under
+    // someone checking the fingerprint on the server.
+    late final SSHClient client;
+    Timer? deadline;
+    var timedOut = false;
+    void arm() {
+      deadline?.cancel();
+      deadline = Timer(timeout, () {
+        timedOut = true;
+        client.close();
+      });
+    }
+
+    client = SSHClient(
       socket,
       username: server.username,
       identities: identities,
@@ -106,7 +124,6 @@ class ServerConnection {
           : null,
       ident: 'ServerDeck_1.0',
       keepAliveInterval: const Duration(seconds: 15),
-      handshakeTimeout: timeout,
       authTimeout: timeout,
       onVerifyHostKey: (type, fingerprintBytes) async {
         final fingerprint = utf8.decode(fingerprintBytes);
@@ -117,19 +134,28 @@ class ServerConnection {
           changed = HostKeyChanged(known, type, fingerprint);
           return false;
         }
-        if (!await prompt(server.hostKeyId, type, fingerprint)) return false;
-        await onTrust(type, fingerprint);
-        return true;
+        deadline?.cancel();
+        try {
+          if (!await prompt(server.hostKeyId, type, fingerprint)) return false;
+          await onTrust(type, fingerprint);
+          return true;
+        } finally {
+          arm();
+        }
       },
     );
+    arm();
 
     try {
       await client.authenticated;
     } catch (e) {
       client.close();
       if (changed != null) throw changed!;
+      if (timedOut) throw TimeoutException('SSH handshake', timeout);
       if (e is SSHHostkeyError) throw const HostKeyRefused();
       rethrow;
+    } finally {
+      deadline?.cancel();
     }
     return ServerConnection._(server, client);
   }
@@ -190,6 +216,7 @@ enum ConnectionProblem {
   hostKeyChanged,
   hostKeyRefused,
   missingCredentials,
+  disconnected,
   other,
 }
 
@@ -197,7 +224,10 @@ ConnectionProblem classify(Object error) => switch (error) {
   HostKeyChanged() => ConnectionProblem.hostKeyChanged,
   HostKeyRefused() => ConnectionProblem.hostKeyRefused,
   MissingCredentials() => ConnectionProblem.missingCredentials,
-  SSHAuthError() => ConnectionProblem.authFailed,
+  SSHAuthFailError() => ConnectionProblem.authFailed,
+  // Closed before signing in: the server hung up, or the network did.
+  SSHAuthAbortError() => ConnectionProblem.disconnected,
+  SSHHandshakeError() => ConnectionProblem.unreachable,
   TimeoutException() => ConnectionProblem.timeout,
   SocketException(:final message) when message.contains('timed out') =>
     ConnectionProblem.timeout,

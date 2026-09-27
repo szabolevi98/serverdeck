@@ -1,7 +1,6 @@
 {
   "@@locale": "hu",
   "appTitle": "ServerDeck",
-
   "ok": "OK",
   "cancel": "Mégse",
   "save": "Mentés",
@@ -10,14 +9,19 @@
   "rename": "Átnevezés",
   "paste": "Beillesztés",
   "fieldRequired": "Kötelező",
-
   "serversTitle": "Szerverek",
   "serversEmptyTitle": "Még nincs szerver",
   "serversEmpty": "Adj hozzá egy szervert a címével és a felhasználóneveddel. A ServerDeck SSH-n kapcsolódik, a szerverre semmit nem kell telepíteni.",
   "serverAdd": "Új szerver",
   "serverEditTitle": "Szerver szerkesztése",
   "serverDeleteTitle": "Törlöd: {name}?",
-  "@serverDeleteTitle": {"placeholders": {"name": {"type": "String"}}},
+  "@serverDeleteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "serverDeleteMessage": "A szerver mentett jelszava, parancsai és naplóforrásai is törlődnek. A kulcsok megmaradnak.",
   "serverSectionConnection": "Kapcsolat",
   "serverSectionAuth": "Bejelentkezés",
@@ -27,17 +31,14 @@
   "serverPortInvalid": "1–65535",
   "serverName": "Név",
   "serverNameHint": "Ha üres, a cím lesz",
-
   "statusChecking": "…",
   "statusDown": "offline",
-
   "authKey": "Kulcs",
   "authPassword": "Jelszó",
   "authKeyPick": "SSH-kulcs",
   "authKeyMissing": "Válassz kulcsot",
   "authKeyNone": "Még nincs kulcsod. Generálj egyet, és a nyilvános felét tedd a szerver ~/.ssh/authorized_keys fájljába.",
   "authPasswordKept": "Mentve. Hagyd üresen, ha nem változik.",
-
   "keysTitle": "SSH-kulcsok",
   "keysEmptyTitle": "Még nincs kulcs",
   "keysEmpty": "Generálj egy új Ed25519-kulcsot, vagy importálj egy meglévőt. A privát kulcs a telefon titkosított tárolójában marad.",
@@ -55,12 +56,132 @@
   "keyCopy": "Nyilvános kulcs másolása",
   "keyCopied": "A nyilvános kulcs a vágólapon",
   "keyDeleteTitle": "Törlöd: {name}?",
-  "@keyDeleteTitle": {"placeholders": {"name": {"type": "String"}}},
+  "@keyDeleteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "keyDeleteMessage": "A privát kulcs végleg törlődik a telefonról.",
   "keyDeleteUsed": "A privát kulcs végleg törlődik a telefonról. Ezek a szerverek használják, ezekhez új kulcs kell majd: {servers}",
-  "@keyDeleteUsed": {"placeholders": {"servers": {"type": "String"}}},
+  "@keyDeleteUsed": {
+    "placeholders": {
+      "servers": {
+        "type": "String"
+      }
+    }
+  },
   "keyErrorNotAKey": "Ez nem privát kulcs. A -----BEGIN kezdetű teljes szöveg kell.",
   "keyErrorNeedsPassphrase": "Ez a kulcs jelszóval védett. Add meg a jelszavát.",
   "keyErrorWrongPassphrase": "Hibás jelszó.",
-  "keyErrorUnsupported": "Ezt a kulcstípust a ServerDeck nem ismeri. Ed25519, RSA vagy ECDSA kulcs kell."
+  "keyErrorUnsupported": "Ezt a kulcstípust a ServerDeck nem ismeri. Ed25519, RSA vagy ECDSA kulcs kell.",
+  "sessionOnline": "online",
+  "sessionConnecting": "kapcsolódás",
+  "sessionReconnect": "Újrakapcsolódás",
+  "sessionConnectingTo": "Kapcsolódás…",
+  "problemUnreachableTitle": "A szerver nem érhető el",
+  "problemUnreachable": "Nem sikerült kapcsolatot nyitni: {host}, {port}-es port. Ellenőrizd a címet, a portot és a telefon internetkapcsolatát.",
+  "problemTimeoutTitle": "Nem válaszolt időben",
+  "problemTimeout": "A szerver nem válaszolt 12 másodpercen belül. Lehet, hogy túlterhelt, vagy tűzfal nyeli el a kapcsolatot.",
+  "problemAuthTitle": "Sikertelen bejelentkezés",
+  "problemAuthKey": "A szerver nem fogadta el a kulcsot {user} felhasználóként. Tedd a kulcs nyilvános felét a szerveren a ~/.ssh/authorized_keys fájlba.",
+  "problemAuthPassword": "A szerver nem fogadta el a jelszót {user} felhasználóként.",
+  "problemHostKeyChangedTitle": "Megváltozott a szerver kulcsa",
+  "problemHostKeyChanged": "A szerver más azonosító kulcsot mutatott, mint amit korábban elfogadtál. Ez lehet egy újratelepítés, de az is, hogy valaki beékelődött közétek. A ServerDeck ezért nem kapcsolódott.",
+  "problemHostKeyRefusedTitle": "Elutasítottad a kulcsot",
+  "problemHostKeyRefused": "A szerver kulcsát nem fogadtad el, ezért nem történt bejelentkezés.",
+  "problemMissingTitle": "Hiányzik a bejelentkezési adat",
+  "problemMissing": "Ehhez a szerverhez nincs kulcs vagy jelszó beállítva. Szerkeszd a szervert, és adj meg egyet.",
+  "problemDisconnectedTitle": "Megszakadt a kapcsolat",
+  "problemDisconnected": "A kapcsolat bontva: hálózatváltás, a szerver újraindult, vagy a telefon elaludt.",
+  "problemOtherTitle": "Nem sikerült kapcsolódni",
+  "hostKeyNewTitle": "Új szerver",
+  "hostKeyNew": "Most kapcsolódsz először ide: {host}. Ez a szerver azonosító kulcsa:",
+  "hostKeyCheck": "Ha biztosra akarsz menni, a szerveren ez a parancs ugyanezt az ujjlenyomatot írja ki:",
+  "hostKeyAccept": "Elfogadom",
+  "hostKeyReject": "Elutasítom",
+  "hostKeyKnown": "Elfogadott",
+  "hostKeyNow": "Most",
+  "hostKeyForget": "Régi kulcs elfelejtése",
+  "hostKeyForgetTitle": "Elfelejted a régi kulcsot?",
+  "hostKeyForgetMessage": "Csak akkor tedd, ha tudod, miért változott a kulcs, például mert újratelepítetted a szervert. Utána a ServerDeck megkérdezi az új kulcsot.",
+  "statsFailedTitle": "Nem sikerült lekérdezni",
+  "statsFailed": "A szerver nem adott értelmezhető választ. A statisztikákhoz Linux kell (/proc).",
+  "statsStale": "A legutóbbi frissítés nem sikerült. A fenti adatok korábbiak.",
+  "statCpu": "CPU",
+  "statMemory": "Memória",
+  "statDisk": "Lemez",
+  "statCores": "{count} mag",
+  "statHistory": "Az utolsó 3 perc",
+  "statHistoryHint": "3 másodpercenként frissül, amíg ez a képernyő nyitva van.",
+  "statNetIn": "Bejövő",
+  "statNetOut": "Kimenő",
+  "statLoad": "Terhelés",
+  "statLoad1": "1 perc",
+  "statLoad5": "5 perc",
+  "statLoad15": "15 perc",
+  "statDisks": "Lemezek",
+  "statSwap": "Swap",
+  "statUptime": "Fut",
+  "uptimeDays": "{days} nap {hours} óra",
+  "uptimeHours": "{hours} óra {minutes} perc",
+  "@problemUnreachable": {
+    "placeholders": {
+      "host": {
+        "type": "String"
+      },
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@problemAuthKey": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "@problemAuthPassword": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "@hostKeyNew": {
+    "placeholders": {
+      "host": {
+        "type": "String"
+      }
+    }
+  },
+  "@statCores": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@uptimeDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      },
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "@uptimeHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  }
 }

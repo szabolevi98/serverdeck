@@ -188,4 +188,190 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get keyErrorUnsupported =>
       'ServerDeck does not know this key type. Use an Ed25519, RSA or ECDSA key.';
+
+  @override
+  String get sessionOnline => 'online';
+
+  @override
+  String get sessionConnecting => 'connecting';
+
+  @override
+  String get sessionReconnect => 'Reconnect';
+
+  @override
+  String get sessionConnectingTo => 'Connecting…';
+
+  @override
+  String get problemUnreachableTitle => 'Server unreachable';
+
+  @override
+  String problemUnreachable(String host, int port) {
+    return 'Couldn\'t open a connection to $host on port $port. Check the address, the port and the phone\'s connection.';
+  }
+
+  @override
+  String get problemTimeoutTitle => 'No answer in time';
+
+  @override
+  String get problemTimeout =>
+      'The server didn\'t answer within 12 seconds. It may be overloaded, or a firewall is dropping the connection.';
+
+  @override
+  String get problemAuthTitle => 'Sign-in failed';
+
+  @override
+  String problemAuthKey(String user) {
+    return 'The server didn\'t accept the key for $user. Put the key\'s public half into ~/.ssh/authorized_keys on the server.';
+  }
+
+  @override
+  String problemAuthPassword(String user) {
+    return 'The server didn\'t accept the password for $user.';
+  }
+
+  @override
+  String get problemHostKeyChangedTitle => 'The server\'s key changed';
+
+  @override
+  String get problemHostKeyChanged =>
+      'The server showed a different identity key from the one you accepted before. That can be a reinstall, or someone in between. ServerDeck didn\'t connect.';
+
+  @override
+  String get problemHostKeyRefusedTitle => 'Key refused';
+
+  @override
+  String get problemHostKeyRefused =>
+      'You didn\'t accept the server\'s key, so ServerDeck didn\'t sign in.';
+
+  @override
+  String get problemMissingTitle => 'No sign-in details';
+
+  @override
+  String get problemMissing =>
+      'This server has no key or password set. Edit the server and add one.';
+
+  @override
+  String get problemDisconnectedTitle => 'Connection lost';
+
+  @override
+  String get problemDisconnected =>
+      'The connection dropped: a network change, a server restart, or the phone went to sleep.';
+
+  @override
+  String get problemOtherTitle => 'Couldn\'t connect';
+
+  @override
+  String get hostKeyNewTitle => 'New server';
+
+  @override
+  String hostKeyNew(String host) {
+    return 'This is the first time you connect to $host. This is the server\'s identity key:';
+  }
+
+  @override
+  String get hostKeyCheck =>
+      'To be sure, this command on the server prints the same fingerprint:';
+
+  @override
+  String get hostKeyAccept => 'Accept';
+
+  @override
+  String get hostKeyReject => 'Reject';
+
+  @override
+  String get hostKeyKnown => 'Accepted';
+
+  @override
+  String get hostKeyNow => 'Now';
+
+  @override
+  String get hostKeyForget => 'Forget the old key';
+
+  @override
+  String get hostKeyForgetTitle => 'Forget the old key?';
+
+  @override
+  String get hostKeyForgetMessage =>
+      'Only do this if you know why the key changed, for example because you reinstalled the server. ServerDeck will then ask about the new key.';
+
+  @override
+  String get statsFailedTitle => 'Couldn\'t read the server';
+
+  @override
+  String get statsFailed =>
+      'The server\'s answer made no sense. Stats need Linux (/proc).';
+
+  @override
+  String get statsStale =>
+      'The last refresh failed. The figures above are older.';
+
+  @override
+  String get statCpu => 'CPU';
+
+  @override
+  String get statMemory => 'Memory';
+
+  @override
+  String get statDisk => 'Disk';
+
+  @override
+  String statCores(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count cores',
+      one: '1 core',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get statHistory => 'Last 3 minutes';
+
+  @override
+  String get statHistoryHint =>
+      'Refreshes every 3 seconds while this screen is open.';
+
+  @override
+  String get statNetIn => 'In';
+
+  @override
+  String get statNetOut => 'Out';
+
+  @override
+  String get statLoad => 'Load';
+
+  @override
+  String get statLoad1 => '1 min';
+
+  @override
+  String get statLoad5 => '5 min';
+
+  @override
+  String get statLoad15 => '15 min';
+
+  @override
+  String get statDisks => 'Disks';
+
+  @override
+  String get statSwap => 'Swap';
+
+  @override
+  String get statUptime => 'Up';
+
+  @override
+  String uptimeDays(int days, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days',
+      one: '1 day',
+    );
+    return '$_temp0, $hours h';
+  }
+
+  @override
+  String uptimeHours(int hours, int minutes) {
+    return '$hours h $minutes min';
+  }
 }

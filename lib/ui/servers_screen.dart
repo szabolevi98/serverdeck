@@ -6,6 +6,7 @@ import '../data/models.dart';
 import '../ssh/reach.dart';
 import 'keys_screen.dart';
 import 'server_edit_screen.dart';
+import 'server_screen.dart';
 import 'theme.dart';
 import 'widgets.dart';
 
@@ -77,7 +78,12 @@ class ServersScreen extends ConsumerWidget {
                   separatorBuilder: (_, _) => const SizedBox(height: 12),
                   itemBuilder: (context, i) => _ServerCard(
                     server: servers[i],
-                    onOpen: () => _edit(context, servers[i]),
+                    onOpen: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ServerScreen(serverId: servers[i].id),
+                      ),
+                    ),
                     onEdit: () => _edit(context, servers[i]),
                     onDelete: () => _delete(context, ref, servers[i]),
                   ),

@@ -1,0 +1,79 @@
+0.00 0.00 0.00 1/224 592586
+@@SD@@
+4067150.94 16094059.20
+@@SD@@
+cpu  3898486 97019 2799067 1609405921 978890 0 608934 0 0 0
+@@SD@@
+MemTotal:        8131776 kB
+MemFree:         6888312 kB
+MemAvailable:    7177672 kB
+Buffers:            8004 kB
+Cached:           350328 kB
+SwapCached:            0 kB
+Active:           669832 kB
+Inactive:          70696 kB
+Active(anon):     428820 kB
+Inactive(anon):        0 kB
+Active(file):     241012 kB
+Inactive(file):    70696 kB
+Unevictable:       27320 kB
+Mlocked:           27320 kB
+SwapTotal:       8388604 kB
+SwapFree:        8388604 kB
+Zswap:                 0 kB
+Zswapped:              0 kB
+Dirty:               552 kB
+Writeback:             0 kB
+AnonPages:        409572 kB
+Mapped:           267276 kB
+Shmem:             37864 kB
+KReclaimable:     283280 kB
+Slab:             381432 kB
+SReclaimable:     283280 kB
+SUnreclaim:        98152 kB
+KernelStack:        3708 kB
+PageTables:         9164 kB
+SecPageTables:         0 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    12454492 kB
+Committed_AS:    2923908 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:       15400 kB
+VmallocChunk:          0 kB
+Percpu:             3344 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+Unaccepted:            0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      108392 kB
+DirectMap2M:     7231488 kB
+DirectMap1G:     3145728 kB
+@@SD@@
+Filesystem     1024-blocks     Used Available Capacity Mounted on
+/dev/sda1        100476656 23549848  76910424      24% /
+/dev/sda16          901520   119344    719048      15% /boot
+/dev/sda15          106832     6250    100582       6% /boot/efi
+@@SD@@
+web-1
+@@SD@@
+Ubuntu 24.04.4 LTS
+@@SD@@
+4
+@@SD@@
+6.8.0-137-generic
+@@SD@@
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    lo: 56554627796 14068526    0    0    0     0          0         0 56554627796 14068526    0    0    0     0       0          0
+  eth0: 21963162506 34859058    0    0    0     0          0         0 90900737532 27462903    0    0    0     0       0          0

@@ -29,6 +29,16 @@ class StatusColors extends ThemeExtension<StatusColors> {
   Color forLoad(double fraction, {double warnAt = 0.75, double badAt = 0.9}) =>
       fraction >= badAt ? bad : (fraction >= warnAt ? warn : ok);
 
+  /// [normal] until [warnAt], then amber, then red from [badAt].
+  Color tone(
+    double fraction,
+    Color normal, {
+    double warnAt = 0.8,
+    double badAt = 0.95,
+  }) => fraction >= warnAt
+      ? forLoad(fraction, warnAt: warnAt, badAt: badAt)
+      : normal;
+
   @override
   StatusColors copyWith() => this;
 
