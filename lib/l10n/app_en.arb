@@ -1,0 +1,6 @@
+{
+  "@@locale": "en",
+  "appTitle": "ServerDeck",
+  "serversTitle": "Servers",
+  "serversEmpty": "No servers yet. Add one with the + button."
+}

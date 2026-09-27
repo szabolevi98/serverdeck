@@ -1,0 +1,6 @@
+{
+  "@@locale": "hu",
+  "appTitle": "ServerDeck",
+  "serversTitle": "Szerverek",
+  "serversEmpty": "Még nincs szerver. Adj hozzá egyet a + gombbal."
+}
