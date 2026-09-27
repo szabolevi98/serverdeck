@@ -540,4 +540,93 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get logsDeleteMessage =>
       'Only the saved source goes, not the log on the server.';
+
+  @override
+  String get tabCommands => 'Commands';
+
+  @override
+  String get commandAdd => 'New command';
+
+  @override
+  String get commandEdit => 'Edit command';
+
+  @override
+  String get commandQuick => 'One-off command…';
+
+  @override
+  String get commandRun => 'Run';
+
+  @override
+  String commandRunTitle(String name) {
+    return 'Run $name?';
+  }
+
+  @override
+  String get commandSaved => 'Saved commands';
+
+  @override
+  String get commandTemplates => 'To start with';
+
+  @override
+  String get commandTemplatesHint =>
+      'Tap one to add it to your saved commands. They only read.';
+
+  @override
+  String get commandLabel => 'Command';
+
+  @override
+  String get commandEverywhere => 'On every server';
+
+  @override
+  String get commandEverywhereHint => 'Shows up for all your servers';
+
+  @override
+  String get commandConfirm => 'Ask before running';
+
+  @override
+  String get commandCopy => 'Copy output';
+
+  @override
+  String get commandCopied => 'Output copied';
+
+  @override
+  String get commandError => 'error';
+
+  @override
+  String get commandStopped => 'stopped';
+
+  @override
+  String commandExit(int code) {
+    return 'exit $code';
+  }
+
+  @override
+  String get commandRunning => 'running';
+
+  @override
+  String get commandNoOutput => 'No output.';
+
+  @override
+  String get tplDisk => 'Disk usage';
+
+  @override
+  String get tplFolders => 'Biggest folders';
+
+  @override
+  String get tplUpdates => 'Pending updates';
+
+  @override
+  String get tplWho => 'Who is logged in';
+
+  @override
+  String get tplApache => 'Apache config test';
+
+  @override
+  String get tplNginx => 'Nginx config test';
+
+  @override
+  String get tplTop => 'Top CPU';
+
+  @override
+  String get tplPorts => 'Listening ports';
 }

@@ -522,4 +522,93 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get logsDeleteMessage =>
       'Csak a mentett forrás törlődik, a szerveren lévő napló nem.';
+
+  @override
+  String get tabCommands => 'Parancsok';
+
+  @override
+  String get commandAdd => 'Új parancs';
+
+  @override
+  String get commandEdit => 'Parancs szerkesztése';
+
+  @override
+  String get commandQuick => 'Egyszeri parancs…';
+
+  @override
+  String get commandRun => 'Futtatás';
+
+  @override
+  String commandRunTitle(String name) {
+    return 'Futtatod: $name?';
+  }
+
+  @override
+  String get commandSaved => 'Mentett parancsok';
+
+  @override
+  String get commandTemplates => 'Kezdésnek';
+
+  @override
+  String get commandTemplatesHint =>
+      'Koppints egyre, és bekerül a mentett parancsok közé. Mindegyik csak olvas.';
+
+  @override
+  String get commandLabel => 'Parancs';
+
+  @override
+  String get commandEverywhere => 'Minden szerveren';
+
+  @override
+  String get commandEverywhereHint => 'Az összes szervernél megjelenik';
+
+  @override
+  String get commandConfirm => 'Kérdezzen futtatás előtt';
+
+  @override
+  String get commandCopy => 'Kimenet másolása';
+
+  @override
+  String get commandCopied => 'A kimenet a vágólapon';
+
+  @override
+  String get commandError => 'hiba';
+
+  @override
+  String get commandStopped => 'leállítva';
+
+  @override
+  String commandExit(int code) {
+    return 'kilépési kód: $code';
+  }
+
+  @override
+  String get commandRunning => 'fut';
+
+  @override
+  String get commandNoOutput => 'Nem írt ki semmit.';
+
+  @override
+  String get tplDisk => 'Lemezhasználat';
+
+  @override
+  String get tplFolders => 'Legnagyobb mappák';
+
+  @override
+  String get tplUpdates => 'Frissítések';
+
+  @override
+  String get tplWho => 'Ki van belépve';
+
+  @override
+  String get tplApache => 'Apache configtest';
+
+  @override
+  String get tplNginx => 'Nginx configtest';
+
+  @override
+  String get tplTop => 'Legtöbb CPU';
+
+  @override
+  String get tplPorts => 'Nyitott portok';
 }

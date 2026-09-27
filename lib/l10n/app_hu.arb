@@ -308,5 +308,47 @@
         "type": "String"
       }
     }
+  },
+  "tabCommands": "Parancsok",
+  "commandAdd": "Új parancs",
+  "commandEdit": "Parancs szerkesztése",
+  "commandQuick": "Egyszeri parancs…",
+  "commandRun": "Futtatás",
+  "commandRunTitle": "Futtatod: {name}?",
+  "commandSaved": "Mentett parancsok",
+  "commandTemplates": "Kezdésnek",
+  "commandTemplatesHint": "Koppints egyre, és bekerül a mentett parancsok közé. Mindegyik csak olvas.",
+  "commandLabel": "Parancs",
+  "commandEverywhere": "Minden szerveren",
+  "commandEverywhereHint": "Az összes szervernél megjelenik",
+  "commandConfirm": "Kérdezzen futtatás előtt",
+  "commandCopy": "Kimenet másolása",
+  "commandCopied": "A kimenet a vágólapon",
+  "commandError": "hiba",
+  "commandStopped": "leállítva",
+  "commandExit": "kilépési kód: {code}",
+  "commandRunning": "fut",
+  "commandNoOutput": "Nem írt ki semmit.",
+  "tplDisk": "Lemezhasználat",
+  "tplFolders": "Legnagyobb mappák",
+  "tplUpdates": "Frissítések",
+  "tplWho": "Ki van belépve",
+  "tplApache": "Apache configtest",
+  "tplNginx": "Nginx configtest",
+  "tplTop": "Legtöbb CPU",
+  "tplPorts": "Nyitott portok",
+  "@commandRunTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@commandExit": {
+    "placeholders": {
+      "code": {
+        "type": "int"
+      }
+    }
   }
 }

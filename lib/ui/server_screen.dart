@@ -5,6 +5,7 @@ import '../data/app_data.dart';
 import '../data/models.dart';
 import '../ssh/connection.dart';
 import '../ssh/session.dart';
+import 'commands_tab.dart';
 import 'logs_tab.dart';
 import 'overview_tab.dart';
 import 'server_edit_screen.dart';
@@ -141,6 +142,9 @@ class _ServerScreenState extends ConsumerState<ServerScreen> {
               _tab == 2 || _visited.contains(2)
                   ? LogsTab(serverId: widget.serverId, active: _tab == 2)
                   : const SizedBox(),
+              _tab == 3 || _visited.contains(3)
+                  ? CommandsTab(serverId: widget.serverId)
+                  : const SizedBox(),
             ],
           ),
         },
@@ -169,6 +173,11 @@ class _ServerScreenState extends ConsumerState<ServerScreen> {
                   icon: const Icon(Icons.receipt_long_outlined),
                   selectedIcon: const Icon(Icons.receipt_long_rounded),
                   label: context.l.tabLogs,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.bolt_outlined),
+                  selectedIcon: const Icon(Icons.bolt_rounded),
+                  label: context.l.tabCommands,
                 ),
               ],
             )

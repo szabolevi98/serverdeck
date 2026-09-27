@@ -1003,6 +1003,174 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Csak a mentett forrás törlődik, a szerveren lévő napló nem.'**
   String get logsDeleteMessage;
+
+  /// No description provided for @tabCommands.
+  ///
+  /// In hu, this message translates to:
+  /// **'Parancsok'**
+  String get tabCommands;
+
+  /// No description provided for @commandAdd.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új parancs'**
+  String get commandAdd;
+
+  /// No description provided for @commandEdit.
+  ///
+  /// In hu, this message translates to:
+  /// **'Parancs szerkesztése'**
+  String get commandEdit;
+
+  /// No description provided for @commandQuick.
+  ///
+  /// In hu, this message translates to:
+  /// **'Egyszeri parancs…'**
+  String get commandQuick;
+
+  /// No description provided for @commandRun.
+  ///
+  /// In hu, this message translates to:
+  /// **'Futtatás'**
+  String get commandRun;
+
+  /// No description provided for @commandRunTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Futtatod: {name}?'**
+  String commandRunTitle(String name);
+
+  /// No description provided for @commandSaved.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mentett parancsok'**
+  String get commandSaved;
+
+  /// No description provided for @commandTemplates.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kezdésnek'**
+  String get commandTemplates;
+
+  /// No description provided for @commandTemplatesHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Koppints egyre, és bekerül a mentett parancsok közé. Mindegyik csak olvas.'**
+  String get commandTemplatesHint;
+
+  /// No description provided for @commandLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Parancs'**
+  String get commandLabel;
+
+  /// No description provided for @commandEverywhere.
+  ///
+  /// In hu, this message translates to:
+  /// **'Minden szerveren'**
+  String get commandEverywhere;
+
+  /// No description provided for @commandEverywhereHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az összes szervernél megjelenik'**
+  String get commandEverywhereHint;
+
+  /// No description provided for @commandConfirm.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kérdezzen futtatás előtt'**
+  String get commandConfirm;
+
+  /// No description provided for @commandCopy.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kimenet másolása'**
+  String get commandCopy;
+
+  /// No description provided for @commandCopied.
+  ///
+  /// In hu, this message translates to:
+  /// **'A kimenet a vágólapon'**
+  String get commandCopied;
+
+  /// No description provided for @commandError.
+  ///
+  /// In hu, this message translates to:
+  /// **'hiba'**
+  String get commandError;
+
+  /// No description provided for @commandStopped.
+  ///
+  /// In hu, this message translates to:
+  /// **'leállítva'**
+  String get commandStopped;
+
+  /// No description provided for @commandExit.
+  ///
+  /// In hu, this message translates to:
+  /// **'kilépési kód: {code}'**
+  String commandExit(int code);
+
+  /// No description provided for @commandRunning.
+  ///
+  /// In hu, this message translates to:
+  /// **'fut'**
+  String get commandRunning;
+
+  /// No description provided for @commandNoOutput.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem írt ki semmit.'**
+  String get commandNoOutput;
+
+  /// No description provided for @tplDisk.
+  ///
+  /// In hu, this message translates to:
+  /// **'Lemezhasználat'**
+  String get tplDisk;
+
+  /// No description provided for @tplFolders.
+  ///
+  /// In hu, this message translates to:
+  /// **'Legnagyobb mappák'**
+  String get tplFolders;
+
+  /// No description provided for @tplUpdates.
+  ///
+  /// In hu, this message translates to:
+  /// **'Frissítések'**
+  String get tplUpdates;
+
+  /// No description provided for @tplWho.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ki van belépve'**
+  String get tplWho;
+
+  /// No description provided for @tplApache.
+  ///
+  /// In hu, this message translates to:
+  /// **'Apache configtest'**
+  String get tplApache;
+
+  /// No description provided for @tplNginx.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nginx configtest'**
+  String get tplNginx;
+
+  /// No description provided for @tplTop.
+  ///
+  /// In hu, this message translates to:
+  /// **'Legtöbb CPU'**
+  String get tplTop;
+
+  /// No description provided for @tplPorts.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nyitott portok'**
+  String get tplPorts;
 }
 
 class _AppLocalizationsDelegate
