@@ -89,7 +89,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statusChecking => '…';
 
   @override
-  String get statusDown => 'unreachable';
+  String get statusDown => 'offline';
 
   @override
   String get authKey => 'Key';

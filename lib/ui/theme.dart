@@ -76,13 +76,13 @@ ThemeData buildTheme(Brightness brightness) {
   final dark = brightness == Brightness.dark;
 
   final accent = dark ? const Color(0xFF3DDC97) : const Color(0xFF0B9A67);
-  final background = dark ? const Color(0xFF0A0E13) : const Color(0xFFF4F6F9);
-  final surface = dark ? const Color(0xFF111821) : const Color(0xFFFFFFFF);
-  final raised = dark ? const Color(0xFF17202B) : const Color(0xFFF0F3F7);
-  final highest = dark ? const Color(0xFF1E2935) : const Color(0xFFE7ECF2);
-  final outline = dark ? const Color(0xFF263241) : const Color(0xFFDCE2EA);
+  final background = dark ? const Color(0xFF151B23) : const Color(0xFFF4F6F9);
+  final surface = dark ? const Color(0xFF1D2530) : const Color(0xFFFFFFFF);
+  final raised = dark ? const Color(0xFF252E3A) : const Color(0xFFF0F3F7);
+  final highest = dark ? const Color(0xFF2C3643) : const Color(0xFFE7ECF2);
+  final outline = dark ? const Color(0xFF344152) : const Color(0xFFDCE2EA);
   final onSurface = dark ? const Color(0xFFE6EDF3) : const Color(0xFF16202B);
-  final muted = dark ? const Color(0xFF8B98A7) : const Color(0xFF5E6B7A);
+  final muted = dark ? const Color(0xFF98A4B3) : const Color(0xFF5E6B7A);
 
   final scheme = ColorScheme.fromSeed(seedColor: accent, brightness: brightness)
       .copyWith(

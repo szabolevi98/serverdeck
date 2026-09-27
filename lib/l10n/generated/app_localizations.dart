@@ -251,7 +251,7 @@ abstract class AppLocalizations {
   /// No description provided for @statusDown.
   ///
   /// In hu, this message translates to:
-  /// **'nem elérhető'**
+  /// **'offline'**
   String get statusDown;
 
   /// No description provided for @authKey.
