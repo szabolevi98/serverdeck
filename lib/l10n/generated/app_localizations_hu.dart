@@ -663,4 +663,22 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get settingsAboutText =>
       'SSH-szerverkezelő. Nyílt forrású, MIT-licenc. Adatot nem gyűjt, minden a telefonon marad.';
+
+  @override
+  String get installKey => 'Kulcs telepítése jelszóval';
+
+  @override
+  String get installKeyAction => 'Telepítés';
+
+  @override
+  String installKeyHint(String user) {
+    return 'A ServerDeck egyszer bejelentkezik $user jelszavával, és hozzáadja a kulcs nyilvános felét a ~/.ssh/authorized_keys fájlhoz. A jelszót nem menti el.';
+  }
+
+  @override
+  String get installKeyDone =>
+      'A kulcs a szerveren van. Kapcsolódás a kulccsal…';
+
+  @override
+  String get sessionError => 'hiba';
 }

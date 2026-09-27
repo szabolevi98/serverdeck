@@ -77,4 +77,26 @@ void main() {
     expect(parseContainers('NODOCKER\n'), isNull);
     expect(parseContainers('DOCKER\n'), isEmpty);
   });
+
+  test('installing a key appends it once, into a private ~/.ssh', () async {
+    const key = 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJhn me@phone';
+    final home = await Directory.systemTemp.createTemp('sd-home');
+    try {
+      for (var i = 0; i < 2; i++) {
+        final r = await Process.run(
+          'sh',
+          ['-c', installKeyCommand(key)],
+          environment: {'HOME': home.path},
+        );
+        expect(r.exitCode, 0, reason: '${r.stderr}');
+      }
+      final lines = File('${home.path}/.ssh/authorized_keys')
+          .readAsLinesSync()
+          .where((l) => l.isNotEmpty)
+          .toList();
+      expect(lines, [key]);
+    } finally {
+      await home.delete(recursive: true);
+    }
+  });
 }

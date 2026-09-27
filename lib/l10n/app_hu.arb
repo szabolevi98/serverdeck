@@ -366,5 +366,17 @@
   "settingsKnownHostsEmpty": "Még nincs elfogadott szerverkulcs.",
   "settingsKnownHostsHint": "Az első kapcsolódáskor elfogadott azonosító kulcsok. Ha egy szerver kulcsa megváltozik, a ServerDeck nem kapcsolódik, amíg itt el nem felejted a régit.",
   "settingsAbout": "Névjegy",
-  "settingsAboutText": "SSH-szerverkezelő. Nyílt forrású, MIT-licenc. Adatot nem gyűjt, minden a telefonon marad."
+  "settingsAboutText": "SSH-szerverkezelő. Nyílt forrású, MIT-licenc. Adatot nem gyűjt, minden a telefonon marad.",
+  "installKey": "Kulcs telepítése jelszóval",
+  "installKeyAction": "Telepítés",
+  "installKeyHint": "A ServerDeck egyszer bejelentkezik {user} jelszavával, és hozzáadja a kulcs nyilvános felét a ~/.ssh/authorized_keys fájlhoz. A jelszót nem menti el.",
+  "installKeyDone": "A kulcs a szerveren van. Kapcsolódás a kulccsal…",
+  "@installKeyHint": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "sessionError": "hiba"
 }

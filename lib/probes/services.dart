@@ -204,3 +204,13 @@ String containerActionCommand(
 extension on String {
   String get characters12 => length > 12 ? substring(0, 12) : this;
 }
+
+/// Adds [publicKey] to the user's `authorized_keys` unless it is there
+/// already, creating `~/.ssh` with the modes sshd insists on.
+String installKeyCommand(String publicKey) {
+  final key = shellQuote(publicKey.trim());
+  return 'umask 077; mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && '
+      '(grep -qxF $key ~/.ssh/authorized_keys || '
+      'echo $key >> ~/.ssh/authorized_keys) && '
+      'chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys';
+}

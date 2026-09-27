@@ -681,4 +681,21 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settingsAboutText =>
       'SSH server manager. Open source, MIT license. Collects nothing; everything stays on the phone.';
+
+  @override
+  String get installKey => 'Install the key with a password';
+
+  @override
+  String get installKeyAction => 'Install';
+
+  @override
+  String installKeyHint(String user) {
+    return 'ServerDeck signs in once with the password of $user and adds the key\'s public half to ~/.ssh/authorized_keys. The password isn\'t kept.';
+  }
+
+  @override
+  String get installKeyDone => 'The key is on the server. Connecting with it…';
+
+  @override
+  String get sessionError => 'error';
 }

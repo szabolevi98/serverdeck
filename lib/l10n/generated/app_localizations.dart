@@ -1267,6 +1267,36 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'SSH-szerverkezelő. Nyílt forrású, MIT-licenc. Adatot nem gyűjt, minden a telefonon marad.'**
   String get settingsAboutText;
+
+  /// No description provided for @installKey.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kulcs telepítése jelszóval'**
+  String get installKey;
+
+  /// No description provided for @installKeyAction.
+  ///
+  /// In hu, this message translates to:
+  /// **'Telepítés'**
+  String get installKeyAction;
+
+  /// No description provided for @installKeyHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'A ServerDeck egyszer bejelentkezik {user} jelszavával, és hozzáadja a kulcs nyilvános felét a ~/.ssh/authorized_keys fájlhoz. A jelszót nem menti el.'**
+  String installKeyHint(String user);
+
+  /// No description provided for @installKeyDone.
+  ///
+  /// In hu, this message translates to:
+  /// **'A kulcs a szerveren van. Kapcsolódás a kulccsal…'**
+  String get installKeyDone;
+
+  /// No description provided for @sessionError.
+  ///
+  /// In hu, this message translates to:
+  /// **'hiba'**
+  String get sessionError;
 }
 
 class _AppLocalizationsDelegate

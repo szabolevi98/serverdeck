@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/app_data.dart';
 import '../data/models.dart';
+import '../probes/services.dart';
 import '../ssh/connection.dart';
 import '../ssh/session.dart';
 import 'commands_tab.dart';
@@ -53,6 +54,50 @@ class _ServerScreenState extends ConsumerState<ServerScreen> {
     return accepted ?? false;
   }
 
+  /// Signs in once with a password, adds the server's key to
+  /// authorized_keys, and connects again with the key. The password is used
+  /// for this one sign-in and not kept.
+  Future<void> _installKey(ServerProfile server) async {
+    final l = context.l;
+    final data = ref.read(appDataProvider).value;
+    final key = data?.key(server.keyId ?? '');
+    if (key == null) return;
+    final password = await showDialog<String>(
+      context: context,
+      builder: (_) => _PasswordDialog(server: server),
+    );
+    if (password == null || password.isEmpty || !mounted) return;
+
+    final store = ref.read(appDataProvider.notifier);
+    try {
+      final connection = await ServerConnection.open(
+        server: server.copyWith(auth: AuthMethod.password),
+        known: data!.knownHost(server.hostKeyId),
+        prompt: _askAboutHostKey,
+        onTrust: (type, fp) => store.trustHost(server.hostKeyId, type, fp),
+        password: password,
+      );
+      try {
+        final result = await connection.run(installKeyCommand(key.publicKey));
+        if (!result.ok) throw Exception(result.stderr.trim());
+      } finally {
+        connection.close();
+      }
+      if (!mounted) return;
+      showMessage(context, l.installKeyDone);
+      _connect();
+    } catch (e) {
+      if (!mounted) return;
+      showMessage(
+        context,
+        classify(e) == ConnectionProblem.authFailed
+            ? l.problemAuthPassword(server.username)
+            : e.toString(),
+        error: true,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final server = ref.watch(
@@ -88,7 +133,12 @@ class _ServerScreenState extends ConsumerState<ServerScreen> {
               label: switch (session) {
                 SessionReady() => context.l.sessionOnline,
                 SessionConnecting() => context.l.sessionConnecting,
-                SessionFailed() => context.l.statusDown,
+                SessionFailed(:final problem)
+                    when problem == ConnectionProblem.unreachable ||
+                        problem == ConnectionProblem.timeout ||
+                        problem == ConnectionProblem.disconnected =>
+                  context.l.statusDown,
+                SessionFailed() => context.l.sessionError,
               },
               color: dot,
               pulse: pulse,
@@ -131,6 +181,7 @@ class _ServerScreenState extends ConsumerState<ServerScreen> {
                   .forgetHostKey();
               _connect();
             },
+            onInstallKey: () => _installKey(server),
           ),
           SessionReady() => IndexedStack(
             key: const ValueKey('ready'),
@@ -226,12 +277,14 @@ class _Failed extends StatelessWidget {
     required this.state,
     required this.onRetry,
     required this.onForgetKey,
+    required this.onInstallKey,
   });
 
   final ServerProfile server;
   final SessionFailed state;
   final VoidCallback onRetry;
   final VoidCallback onForgetKey;
+  final VoidCallback onInstallKey;
 
   @override
   Widget build(BuildContext context) {
@@ -333,6 +386,16 @@ class _Failed extends StatelessWidget {
           icon: const Icon(Icons.refresh_rounded),
           label: Text(l.sessionReconnect),
         ),
+        if (problem == ConnectionProblem.authFailed &&
+            server.auth == AuthMethod.key &&
+            server.keyId != null) ...[
+          const SizedBox(height: 10),
+          OutlinedButton.icon(
+            onPressed: onInstallKey,
+            icon: const Icon(Icons.key_rounded),
+            label: Text(l.installKey),
+          ),
+        ],
         if (changed != null) ...[
           const SizedBox(height: 10),
           OutlinedButton(
@@ -456,6 +519,58 @@ class HostKeyDialog extends StatelessWidget {
           style: FilledButton.styleFrom(minimumSize: const Size(0, 44)),
           onPressed: () => Navigator.pop(context, true),
           child: Text(l.hostKeyAccept),
+        ),
+      ],
+    );
+  }
+}
+
+class _PasswordDialog extends StatefulWidget {
+  const _PasswordDialog({required this.server});
+  final ServerProfile server;
+
+  @override
+  State<_PasswordDialog> createState() => _PasswordDialogState();
+}
+
+class _PasswordDialogState extends State<_PasswordDialog> {
+  final _password = TextEditingController();
+
+  @override
+  void dispose() {
+    _password.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l;
+    return AlertDialog(
+      icon: Icon(Icons.key_rounded, color: context.colors.primary),
+      title: Text(l.installKey),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(l.installKeyHint(widget.server.username)),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _password,
+            obscureText: true,
+            autofocus: true,
+            decoration: InputDecoration(labelText: l.authPassword),
+            onSubmitted: (v) => Navigator.pop(context, v),
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l.cancel),
+        ),
+        FilledButton(
+          style: FilledButton.styleFrom(minimumSize: const Size(0, 44)),
+          onPressed: () => Navigator.pop(context, _password.text),
+          child: Text(l.installKeyAction),
         ),
       ],
     );
