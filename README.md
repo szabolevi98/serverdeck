@@ -133,18 +133,35 @@ are invented.
 
 ## Installing it
 
-1. Download the latest `serverdeck-*.apk` from the
-   [releases](https://github.com/szabolevi98/serverdeck/releases) page.
+### Android
+
+1. Download an APK from the
+   [releases](https://github.com/szabolevi98/serverdeck/releases) page:
+   `serverdeck-*-arm64.apk` for practically every phone of the last years
+   (smaller), or `serverdeck-*-universal.apk`, which runs on any of them.
 2. Install it on the phone. The first time, Android asks to allow apps from
    unknown sources.
 3. Add a server, generate a key, and put its public half on the server, by
    hand or with **Install the key with a password**.
 
-It needs **Android 7.0 (API 24)** or later. The server needs SSH and, for the
-overview, Linux; services need systemd, logs need `journalctl` or `tail`.
+It needs **Android 7.0 (API 24)** or later. Updates install over the old
+version; stay with the same kind of APK, arm64 or universal.
 
-On iOS the app builds (CI checks it on every push) but is not distributed:
-that needs a Mac to sign it and an Apple developer account.
+### iOS
+
+Each release also has `serverdeck-*-ios-unsigned.ipa`, built by GitHub Actions
+on a Mac runner. It is not signed, since that takes a paid Apple developer
+account, so it is for sideloading: AltStore, SideStore or Sideloadly sign it
+with your own Apple ID when they install it. With a free Apple ID the
+signature lasts 7 days and has to be renewed, and at most three such apps can
+be installed at a time. It needs **iOS 15** or later.
+
+The iOS build compiles on every push but has not been tried on an iPhone yet.
+
+### The server
+
+The server needs SSH and, for the overview, Linux; services need systemd,
+logs need `journalctl` or `tail`.
 
 ## Trying it without a server
 

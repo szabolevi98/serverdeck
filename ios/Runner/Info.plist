@@ -8,6 +8,11 @@
 		<true/>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
+		<key>CFBundleLocalizations</key>
+		<array>
+			<string>hu</string>
+			<string>en</string>
+		</array>
 		<key>CFBundleDisplayName</key>
 		<string>ServerDeck</string>
 		<key>CFBundleExecutable</key>

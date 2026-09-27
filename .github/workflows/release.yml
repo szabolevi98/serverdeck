@@ -1,0 +1,45 @@
+name: Release
+
+# The APKs are built and signed locally, since the release key stays off
+# GitHub; this adds the unsigned iOS build to the release they were put in.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to attach the IPA to (e.g. v1.0.0)
+        required: true
+
+env:
+  FLUTTER_VERSION: 3.47.5
+
+permissions:
+  contents: write
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter build ios --release --no-codesign
+      - name: Package the IPA
+        run: |
+          mkdir Payload
+          cp -R build/ios/iphoneos/Runner.app Payload/
+          zip -qr "serverdeck-${TAG#v}-ios-unsigned.ipa" Payload
+      - name: Attach it to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$TAG" "serverdeck-${TAG#v}-ios-unsigned.ipa" --clobber --repo "$GITHUB_REPOSITORY"
