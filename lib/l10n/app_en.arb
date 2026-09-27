@@ -178,5 +178,8 @@
   "tplApache": "Apache config test",
   "tplNginx": "Nginx config test",
   "tplTop": "Top CPU",
-  "tplPorts": "Listening ports"
+  "tplPorts": "Listening ports",
+  "tabTerminal": "Terminal",
+  "terminalClosed": "[shell closed]",
+  "terminalReopen": "New shell"
 }

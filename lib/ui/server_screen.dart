@@ -10,6 +10,7 @@ import 'logs_tab.dart';
 import 'overview_tab.dart';
 import 'server_edit_screen.dart';
 import 'services_tab.dart';
+import 'terminal_tab.dart';
 import 'theme.dart';
 import 'widgets.dart';
 
@@ -145,6 +146,9 @@ class _ServerScreenState extends ConsumerState<ServerScreen> {
               _tab == 3 || _visited.contains(3)
                   ? CommandsTab(serverId: widget.serverId)
                   : const SizedBox(),
+              _tab == 4 || _visited.contains(4)
+                  ? TerminalTab(serverId: widget.serverId)
+                  : const SizedBox(),
             ],
           ),
         },
@@ -178,6 +182,11 @@ class _ServerScreenState extends ConsumerState<ServerScreen> {
                   icon: const Icon(Icons.bolt_outlined),
                   selectedIcon: const Icon(Icons.bolt_rounded),
                   label: context.l.tabCommands,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.terminal_outlined),
+                  selectedIcon: const Icon(Icons.terminal_rounded),
+                  label: context.l.tabTerminal,
                 ),
               ],
             )

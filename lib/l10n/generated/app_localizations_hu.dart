@@ -611,4 +611,13 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get tplPorts => 'Nyitott portok';
+
+  @override
+  String get tabTerminal => 'Terminál';
+
+  @override
+  String get terminalClosed => '[a shell bezárult]';
+
+  @override
+  String get terminalReopen => 'Új shell';
 }

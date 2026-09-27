@@ -190,6 +190,8 @@ ThemeData buildTheme(Brightness brightness) {
       height: 68,
       labelTextStyle: WidgetStateProperty.resolveWith(
         (states) => base.textTheme.labelSmall?.copyWith(
+          fontSize: 11.5,
+          letterSpacing: -0.1,
           fontWeight: states.contains(WidgetState.selected)
               ? FontWeight.w700
               : FontWeight.w500,

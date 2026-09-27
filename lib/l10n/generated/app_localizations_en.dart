@@ -629,4 +629,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tplPorts => 'Listening ports';
+
+  @override
+  String get tabTerminal => 'Terminal';
+
+  @override
+  String get terminalClosed => '[shell closed]';
+
+  @override
+  String get terminalReopen => 'New shell';
 }

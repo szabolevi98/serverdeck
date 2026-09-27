@@ -350,5 +350,8 @@
         "type": "int"
       }
     }
-  }
+  },
+  "tabTerminal": "Terminál",
+  "terminalClosed": "[a shell bezárult]",
+  "terminalReopen": "Új shell"
 }

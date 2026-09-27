@@ -1171,6 +1171,24 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Nyitott portok'**
   String get tplPorts;
+
+  /// No description provided for @tabTerminal.
+  ///
+  /// In hu, this message translates to:
+  /// **'Terminál'**
+  String get tabTerminal;
+
+  /// No description provided for @terminalClosed.
+  ///
+  /// In hu, this message translates to:
+  /// **'[a shell bezárult]'**
+  String get terminalClosed;
+
+  /// No description provided for @terminalReopen.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új shell'**
+  String get terminalReopen;
 }
 
 class _AppLocalizationsDelegate
