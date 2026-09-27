@@ -31,6 +31,25 @@ android {
         versionName = flutter.versionName
     }
 
+    // Only the ABIs Flutter built for: a plugin's libraries for the others
+    // would let a phone install an APK it cannot run.
+    val flutterAbis = mapOf(
+        "android-arm" to "armeabi-v7a",
+        "android-arm64" to "arm64-v8a",
+        "android-x64" to "x86_64",
+    )
+    val targetAbis = (project.findProperty("target-platform") as String?)
+        ?.split(",")
+        ?.mapNotNull { flutterAbis[it.trim()] }
+        .orEmpty()
+    if (targetAbis.isNotEmpty()) {
+        packaging {
+            jniLibs {
+                (flutterAbis.values - targetAbis.toSet()).forEach { excludes += "lib/$it/**" }
+            }
+        }
+    }
+
     signingConfigs {
         if (keyProperties.containsKey("storeFile")) {
             create("release") {
