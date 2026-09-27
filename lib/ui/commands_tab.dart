@@ -387,7 +387,7 @@ class CommandRunScreen extends StatefulWidget {
     required this.command,
   });
 
-  final ServerConnection connection;
+  final Connection connection;
   final String title;
   final String command;
 

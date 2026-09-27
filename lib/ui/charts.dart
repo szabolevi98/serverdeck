@@ -112,6 +112,7 @@ class HistoryChart extends StatelessWidget {
     required this.colors,
     this.maxY,
     this.capacity = 60,
+    this.minPoints = 12,
     this.height = 150,
     this.grid = true,
   });
@@ -122,8 +123,11 @@ class HistoryChart extends StatelessWidget {
   /// Fixed top of the scale; null scales to the data.
   final double? maxY;
 
-  /// How many points fill the width; fewer start from the right.
+  /// The most points shown. Fewer than [minPoints] start from the left and
+  /// leave room; between that and [capacity] they stretch to fill the width,
+  /// and past it the oldest scroll off.
   final int capacity;
+  final int minPoints;
   final double height;
   final bool grid;
 
@@ -132,13 +136,15 @@ class HistoryChart extends StatelessWidget {
     final top =
         maxY ?? max(1.0, series.expand((s) => s).fold<double>(0, max) * 1.2);
     final outline = context.colors.outline.withValues(alpha: 0.5);
+    final longest = series.fold<int>(0, (a, s) => max(a, s.length));
+    final span = max(minPoints, min(longest, capacity)) - 1;
 
     return SizedBox(
       height: height,
       child: LineChart(
         LineChartData(
           minX: 0,
-          maxX: (capacity - 1).toDouble(),
+          maxX: span.toDouble(),
           minY: 0,
           maxY: top,
           clipData: const FlClipData.all(),
@@ -157,8 +163,9 @@ class HistoryChart extends StatelessWidget {
               LineChartBarData(
                 spots: [
                   for (var j = 0; j < series[i].length; j++)
+                    // Series of different lengths end together, on the right.
                     FlSpot(
-                      (capacity - series[i].length + j).toDouble(),
+                      (longest - series[i].length + j).toDouble(),
                       series[i][j],
                     ),
                 ],

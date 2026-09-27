@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartssh2/dartssh2.dart';
 
@@ -38,22 +39,76 @@ class ExecResult {
 
 /// A command that is still running: its output as it comes, line by line.
 class RunningCommand {
-  RunningCommand._(this._session, this.lines);
-  final SSHSession _session;
+  RunningCommand({
+    required this.lines,
+    required this.done,
+    required this._exitCode,
+    required this._stop,
+  });
 
   /// stdout and stderr, merged, split into lines.
   final Stream<String> lines;
+  final Future<void> done;
+  final int? Function() _exitCode;
+  final void Function() _stop;
 
-  Future<void> get done => _session.done;
-  int? get exitCode => _session.exitCode;
-
-  void stop() {
-    try {
-      _session.kill(SSHSignal.INT);
-    } catch (_) {}
-    _session.close();
-  }
+  int? get exitCode => _exitCode();
+  void stop() => _stop();
 }
+
+/// An interactive shell: bytes out of the terminal, keystrokes into it.
+class ShellChannel {
+  ShellChannel({
+    required this.output,
+    required this.done,
+    required this._write,
+    required this._resize,
+    required this._close,
+  });
+
+  /// stdout and stderr of the pty, in the order they came.
+  final Stream<Uint8List> output;
+  final Future<void> done;
+  final void Function(Uint8List) _write;
+  final void Function(int, int, int, int) _resize;
+  final void Function() _close;
+
+  void write(Uint8List data) => _write(data);
+  void resize(int columns, int rows, int width, int height) =>
+      _resize(columns, rows, width, height);
+  void close() => _close();
+}
+
+/// What the screens need from a signed-in server. [ServerConnection] is the
+/// real one; the demo build has one that makes things up.
+abstract interface class Connection {
+  bool get isClosed;
+  Future<void> get done;
+
+  /// Runs [command] to the end and collects what it printed.
+  Future<ExecResult> run(
+    String command, {
+    Duration timeout = const Duration(seconds: 30),
+  });
+
+  /// Starts [command] and hands its output over while it runs.
+  Future<RunningCommand> start(String command);
+
+  /// An interactive shell on a pseudo-terminal of the given size.
+  Future<ShellChannel> shell({required int columns, required int rows});
+
+  void close();
+}
+
+/// Opens a [Connection]; [ServerConnection.open] unless the demo swaps it.
+typedef Connector = Future<Connection> Function({
+  required ServerProfile server,
+  required KnownHost? known,
+  required HostKeyPrompt prompt,
+  required Future<void> Function(String type, String fingerprint) onTrust,
+  String? privateKeyPem,
+  String? password,
+});
 
 /// Decides about a host key seen for the first time: true accepts it.
 typedef HostKeyPrompt = Future<bool> Function(
@@ -63,13 +118,15 @@ typedef HostKeyPrompt = Future<bool> Function(
 );
 
 /// One signed-in SSH connection to one server.
-class ServerConnection {
+class ServerConnection implements Connection {
   ServerConnection._(this.server, this._client);
 
   final ServerProfile server;
   final SSHClient _client;
 
+  @override
   bool get isClosed => _client.isClosed;
+  @override
   Future<void> get done => _client.done;
 
   /// Connects and signs in.
@@ -160,7 +217,7 @@ class ServerConnection {
     return ServerConnection._(server, client);
   }
 
-  /// Runs [command] to the end and collects what it printed.
+  @override
   Future<ExecResult> run(
     String command, {
     Duration timeout = const Duration(seconds: 30),
@@ -178,6 +235,7 @@ class ServerConnection {
   /// Starts [command] and hands its output over line by line while it runs:
   /// `journalctl -f`, `tail -F`, a deploy script. [RunningCommand.stop]
   /// ends it on the server too, see [stoppable].
+  @override
   Future<RunningCommand> start(String command) async {
     final session = await _client.execute(stoppable(command));
     final controller = StreamController<String>();
@@ -197,15 +255,44 @@ class ServerConnection {
             onDone: closeOne,
           );
     }
-    return RunningCommand._(session, controller.stream);
+    return RunningCommand(
+      lines: controller.stream,
+      done: session.done,
+      exitCode: () => session.exitCode,
+      stop: () {
+        try {
+          session.kill(SSHSignal.INT);
+        } catch (_) {}
+        session.close();
+      },
+    );
   }
 
-  /// An interactive shell on a pseudo-terminal of the given size.
-  Future<SSHSession> shell({required int columns, required int rows}) =>
-      _client.shell(
-        pty: SSHPtyConfig(type: 'xterm-256color', width: columns, height: rows),
+  @override
+  Future<ShellChannel> shell({required int columns, required int rows}) async {
+    final session = await _client.shell(
+      pty: SSHPtyConfig(type: 'xterm-256color', width: columns, height: rows),
+    );
+    final output = StreamController<Uint8List>();
+    var open = 2;
+    for (final stream in [session.stdout, session.stderr]) {
+      stream.listen(
+        output.add,
+        onDone: () {
+          if (--open == 0) output.close();
+        },
       );
+    }
+    return ShellChannel(
+      output: output.stream,
+      done: session.done,
+      write: session.write,
+      resize: session.resizeTerminal,
+      close: session.close,
+    );
+  }
 
+  @override
   void close() => _client.close();
 }
 

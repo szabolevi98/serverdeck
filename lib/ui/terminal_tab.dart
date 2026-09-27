@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:dartssh2/dartssh2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:xterm/xterm.dart';
 
+import '../ssh/connection.dart';
 import '../ssh/session.dart';
 import 'theme.dart';
 import 'widgets.dart';
@@ -53,15 +53,15 @@ class _TerminalTabState extends ConsumerState<TerminalTab> {
   late final Terminal _terminal = Terminal(
     maxLines: 5000,
     onOutput: _send,
-    onResize: (w, h, pw, ph) => _shell?.resizeTerminal(w, h, pw, ph),
+    onResize: (w, h, pw, ph) => _shell?.resize(w, h, pw, ph),
   );
   final _controller = TerminalController();
   final _focus = FocusNode();
-  SSHSession? _shell;
+  ShellChannel? _shell;
   final _subscriptions = <StreamSubscription<Uint8List>>[];
   bool _closed = false;
   bool _ctrl = false;
-  double _fontSize = 12.5;
+  double _fontSize = 11.5;
 
   @override
   void initState() {
@@ -92,15 +92,11 @@ class _TerminalTabState extends ConsumerState<TerminalTab> {
         return;
       }
       _shell = shell;
-      for (final stream in [shell.stdout, shell.stderr]) {
-        final decoded = const Utf8Decoder(allowMalformed: true);
-        final sink = decoded.startChunkedConversion(
-          _TerminalSink(_terminal.write),
-        );
-        _subscriptions.add(
-          stream.listen(sink.add, onDone: sink.close, onError: (_) {}),
-        );
-      }
+      final sink = const Utf8Decoder(allowMalformed: true)
+          .startChunkedConversion(_TerminalSink(_terminal.write));
+      _subscriptions.add(
+        shell.output.listen(sink.add, onDone: sink.close, onError: (_) {}),
+      );
       unawaited(
         shell.done.whenComplete(() {
           if (!mounted || !identical(_shell, shell)) return;

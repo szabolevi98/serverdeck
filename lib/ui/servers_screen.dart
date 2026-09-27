@@ -15,7 +15,12 @@ import 'widgets.dart';
 /// on pull to refresh: fail2ban in its stricter modes counts connections
 /// closed before signing in, and coming back to the list must not add up.
 final reachabilityProvider = FutureProvider.family<Reachability, (String, int)>(
-  (ref, target) => knock(target.$1, target.$2),
+  (ref, target) => ref.read(knockProvider)(target.$1, target.$2),
+);
+
+/// How the list checks a port; the demo build answers without a network.
+final knockProvider = Provider<Future<Reachability> Function(String, int)>(
+  (ref) => knock,
 );
 
 class ServersScreen extends ConsumerWidget {

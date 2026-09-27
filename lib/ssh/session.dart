@@ -22,7 +22,7 @@ class SessionConnecting extends SessionState {
 
 class SessionReady extends SessionState {
   const SessionReady(this.connection);
-  final ServerConnection connection;
+  final Connection connection;
 }
 
 class SessionFailed extends SessionState {
@@ -33,6 +33,9 @@ class SessionFailed extends SessionState {
       error is Disconnected ? ConnectionProblem.disconnected : classify(error);
 }
 
+/// How connections are opened: over SSH, or made up in the demo build.
+final connectorProvider = Provider<Connector>((ref) => ServerConnection.open);
+
 /// The SSH connection of one open server screen. It lives as long as
 /// something watches it, and closes with the last watcher.
 final sessionProvider = NotifierProvider.autoDispose
@@ -42,7 +45,7 @@ class SessionNotifier extends Notifier<SessionState> {
   SessionNotifier(this.serverId);
   final String serverId;
 
-  ServerConnection? _connection;
+  Connection? _connection;
   int _attempt = 0;
 
   @override
@@ -72,7 +75,7 @@ class SessionNotifier extends Notifier<SessionState> {
       final store = ref.read(appDataProvider.notifier);
       final keyId = server.keyId;
 
-      final connection = await ServerConnection.open(
+      final connection = await ref.read(connectorProvider)(
         server: server,
         known: data.knownHost(server.hostKeyId),
         prompt: prompt,
@@ -102,7 +105,7 @@ class SessionNotifier extends Notifier<SessionState> {
     }
   }
 
-  void _dropped(ServerConnection connection, Object error) {
+  void _dropped(Connection connection, Object error) {
     if (!ref.mounted || !identical(connection, _connection)) return;
     _connection = null;
     state = SessionFailed(error is Disconnected ? error : const Disconnected());

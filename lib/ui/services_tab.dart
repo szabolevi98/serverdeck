@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/app_data.dart';
+import '../probes/logs.dart';
 import '../probes/services.dart';
 import '../ssh/connection.dart';
 import '../ssh/session.dart';
@@ -232,7 +233,7 @@ class _ServicesTabState extends ConsumerState<ServicesTab> {
     } catch (_) {}
   }
 
-  ServerConnection? get _connection {
+  Connection? get _connection {
     final s = ref.read(sessionProvider(widget.serverId));
     return s is SessionReady ? s.connection : null;
   }
@@ -576,7 +577,7 @@ class _DetailSheet extends StatefulWidget {
   final (Color, String) state;
   final List<String> chips;
   final String detailCommand;
-  final ServerConnection? connection;
+  final Connection? connection;
   final List<_SheetAction> actions;
   final Future<bool> Function(String action) onAction;
 
@@ -701,8 +702,25 @@ class _DetailSheetState extends State<_DetailSheet> {
                   )
                 : SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-                    child: SelectableText(
-                      _detail!.isEmpty ? '—' : _detail!,
+                    child: SelectableText.rich(
+                      TextSpan(
+                        children: [
+                          for (final (i, line)
+                              in (_detail!.isEmpty ? '—' : _detail!)
+                                  .split('\n')
+                                  .indexed)
+                            TextSpan(
+                              text: i == 0 ? line : '\n$line',
+                              style: TextStyle(
+                                color: switch (levelOf(line)) {
+                                  LineLevel.error => context.status.bad,
+                                  LineLevel.warning => context.status.warn,
+                                  LineLevel.normal => null,
+                                },
+                              ),
+                            ),
+                        ],
+                      ),
                       style: mono(size: 11, height: 1.45),
                     ),
                   ),

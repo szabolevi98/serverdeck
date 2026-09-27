@@ -70,7 +70,7 @@ class _ServerScreenState extends ConsumerState<ServerScreen> {
 
     final store = ref.read(appDataProvider.notifier);
     try {
-      final connection = await ServerConnection.open(
+      final connection = await ref.read(connectorProvider)(
         server: server.copyWith(auth: AuthMethod.password),
         known: data!.knownHost(server.hostKeyId),
         prompt: _askAboutHostKey,
