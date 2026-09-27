@@ -464,4 +464,62 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get actionNeedsSudo =>
       'Ehhez rendszergazdai jog kell. Lépj be rootként, vagy engedélyezd a sudo-t jelszó nélkül erre a parancsra.';
+
+  @override
+  String get tabLogs => 'Naplók';
+
+  @override
+  String get logsJournal => 'Rendszernapló';
+
+  @override
+  String get logsAdd => 'Forrás';
+
+  @override
+  String get logsAddTitle => 'Új naplóforrás';
+
+  @override
+  String get logsKindUnit => 'Szolgáltatás';
+
+  @override
+  String get logsKindFile => 'Fájl';
+
+  @override
+  String get logsUnitLabel => 'Szolgáltatás neve';
+
+  @override
+  String get logsFileLabel => 'Fájl elérési útja';
+
+  @override
+  String get logsFilter => 'Szűrés';
+
+  @override
+  String get logsErrorsOnly => 'Csak a hibák';
+
+  @override
+  String get logsPause => 'Szünet';
+
+  @override
+  String get logsResume => 'Folytatás';
+
+  @override
+  String get logsClear => 'Törlés a képernyőről';
+
+  @override
+  String logsNewLines(int count) {
+    return '$count új sor';
+  }
+
+  @override
+  String logsEnded(int code) {
+    return 'A napló követése leállt (kilépési kód: $code).';
+  }
+
+  @override
+  String logsDeleteTitle(String name) {
+    return 'Törlöd: $name?';
+  }
+
+  @override
+  String get logsDeleteMessage =>
+      'Csak a mentett forrás törlődik, a szerveren lévő napló nem.';
 }

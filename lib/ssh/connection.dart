@@ -176,9 +176,10 @@ class ServerConnection {
   }
 
   /// Starts [command] and hands its output over line by line while it runs:
-  /// `journalctl -f`, `tail -F`, a deploy script.
+  /// `journalctl -f`, `tail -F`, a deploy script. [RunningCommand.stop]
+  /// ends it on the server too, see [stoppable].
   Future<RunningCommand> start(String command) async {
-    final session = await _client.execute(command);
+    final session = await _client.execute(stoppable(command));
     final controller = StreamController<String>();
     var open = 2;
     void closeOne() {
@@ -206,6 +207,26 @@ class ServerConnection {
       );
 
   void close() => _client.close();
+}
+
+/// Wraps [command] so that it dies when the channel closes.
+///
+/// Without a terminal, sshd neither passes on signals nor hangs up a command
+/// whose channel was closed: a `journalctl -f` would run on until it next
+/// wrote to the broken pipe, which for a quiet log is never. So the command
+/// runs in the background while `cat` waits on the channel's input; when
+/// the phone closes the channel that input ends, and the command is killed.
+/// When the command ends on its own, the watcher goes and its status is
+/// passed on. A background job's input is /dev/null in a script, hence the
+/// channel's input kept on descriptor 3 for `cat`.
+String stoppable(String command) {
+  const script =
+      'exec 3<&0; '
+      '(%s) </dev/null & p=\$!; '
+      '(cat <&3 >/dev/null; kill \$p 2>/dev/null) & w=\$!; '
+      'wait \$p; s=\$?; kill \$w 2>/dev/null; exit \$s';
+  final inner = script.replaceFirst('%s', command);
+  return "sh -c '${inner.replaceAll("'", r"'\''")}'";
 }
 
 /// What went wrong, in a word the UI can turn into a sentence.

@@ -476,4 +476,68 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get actionNeedsSudo =>
       'This needs admin rights. Sign in as root, or allow sudo without a password for this command.';
+
+  @override
+  String get tabLogs => 'Logs';
+
+  @override
+  String get logsJournal => 'System journal';
+
+  @override
+  String get logsAdd => 'Source';
+
+  @override
+  String get logsAddTitle => 'New log source';
+
+  @override
+  String get logsKindUnit => 'Service';
+
+  @override
+  String get logsKindFile => 'File';
+
+  @override
+  String get logsUnitLabel => 'Service name';
+
+  @override
+  String get logsFileLabel => 'File path';
+
+  @override
+  String get logsFilter => 'Filter';
+
+  @override
+  String get logsErrorsOnly => 'Errors only';
+
+  @override
+  String get logsPause => 'Pause';
+
+  @override
+  String get logsResume => 'Resume';
+
+  @override
+  String get logsClear => 'Clear the screen';
+
+  @override
+  String logsNewLines(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new lines',
+      one: '1 new line',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String logsEnded(int code) {
+    return 'Following the log stopped (exit code $code).';
+  }
+
+  @override
+  String logsDeleteTitle(String name) {
+    return 'Delete $name?';
+  }
+
+  @override
+  String get logsDeleteMessage =>
+      'Only the saved source goes, not the log on the server.';
 }

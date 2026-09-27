@@ -133,5 +133,22 @@
   "actionConfirmMessage": "This runs on the server:\n{command}",
   "actionDone": "{action} done: {subject}",
   "actionFailed": "It didn't work (exit code {code}). {reason}",
-  "actionNeedsSudo": "This needs admin rights. Sign in as root, or allow sudo without a password for this command."
+  "actionNeedsSudo": "This needs admin rights. Sign in as root, or allow sudo without a password for this command.",
+  "tabLogs": "Logs",
+  "logsJournal": "System journal",
+  "logsAdd": "Source",
+  "logsAddTitle": "New log source",
+  "logsKindUnit": "Service",
+  "logsKindFile": "File",
+  "logsUnitLabel": "Service name",
+  "logsFileLabel": "File path",
+  "logsFilter": "Filter",
+  "logsErrorsOnly": "Errors only",
+  "logsPause": "Pause",
+  "logsResume": "Resume",
+  "logsClear": "Clear the screen",
+  "logsNewLines": "{count, plural, =1{1 new line} other{{count} new lines}}",
+  "logsEnded": "Following the log stopped (exit code {code}).",
+  "logsDeleteTitle": "Delete {name}?",
+  "logsDeleteMessage": "Only the saved source goes, not the log on the server."
 }

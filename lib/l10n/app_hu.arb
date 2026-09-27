@@ -270,5 +270,43 @@
         "type": "String"
       }
     }
+  },
+  "tabLogs": "Naplók",
+  "logsJournal": "Rendszernapló",
+  "logsAdd": "Forrás",
+  "logsAddTitle": "Új naplóforrás",
+  "logsKindUnit": "Szolgáltatás",
+  "logsKindFile": "Fájl",
+  "logsUnitLabel": "Szolgáltatás neve",
+  "logsFileLabel": "Fájl elérési útja",
+  "logsFilter": "Szűrés",
+  "logsErrorsOnly": "Csak a hibák",
+  "logsPause": "Szünet",
+  "logsResume": "Folytatás",
+  "logsClear": "Törlés a képernyőről",
+  "logsNewLines": "{count} új sor",
+  "logsEnded": "A napló követése leállt (kilépési kód: {code}).",
+  "logsDeleteTitle": "Törlöd: {name}?",
+  "logsDeleteMessage": "Csak a mentett forrás törlődik, a szerveren lévő napló nem.",
+  "@logsNewLines": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@logsEnded": {
+    "placeholders": {
+      "code": {
+        "type": "int"
+      }
+    }
+  },
+  "@logsDeleteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -901,6 +901,108 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Ehhez rendszergazdai jog kell. Lépj be rootként, vagy engedélyezd a sudo-t jelszó nélkül erre a parancsra.'**
   String get actionNeedsSudo;
+
+  /// No description provided for @tabLogs.
+  ///
+  /// In hu, this message translates to:
+  /// **'Naplók'**
+  String get tabLogs;
+
+  /// No description provided for @logsJournal.
+  ///
+  /// In hu, this message translates to:
+  /// **'Rendszernapló'**
+  String get logsJournal;
+
+  /// No description provided for @logsAdd.
+  ///
+  /// In hu, this message translates to:
+  /// **'Forrás'**
+  String get logsAdd;
+
+  /// No description provided for @logsAddTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Új naplóforrás'**
+  String get logsAddTitle;
+
+  /// No description provided for @logsKindUnit.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatás'**
+  String get logsKindUnit;
+
+  /// No description provided for @logsKindFile.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fájl'**
+  String get logsKindFile;
+
+  /// No description provided for @logsUnitLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatás neve'**
+  String get logsUnitLabel;
+
+  /// No description provided for @logsFileLabel.
+  ///
+  /// In hu, this message translates to:
+  /// **'Fájl elérési útja'**
+  String get logsFileLabel;
+
+  /// No description provided for @logsFilter.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szűrés'**
+  String get logsFilter;
+
+  /// No description provided for @logsErrorsOnly.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csak a hibák'**
+  String get logsErrorsOnly;
+
+  /// No description provided for @logsPause.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szünet'**
+  String get logsPause;
+
+  /// No description provided for @logsResume.
+  ///
+  /// In hu, this message translates to:
+  /// **'Folytatás'**
+  String get logsResume;
+
+  /// No description provided for @logsClear.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlés a képernyőről'**
+  String get logsClear;
+
+  /// No description provided for @logsNewLines.
+  ///
+  /// In hu, this message translates to:
+  /// **'{count} új sor'**
+  String logsNewLines(int count);
+
+  /// No description provided for @logsEnded.
+  ///
+  /// In hu, this message translates to:
+  /// **'A napló követése leállt (kilépési kód: {code}).'**
+  String logsEnded(int code);
+
+  /// No description provided for @logsDeleteTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd: {name}?'**
+  String logsDeleteTitle(String name);
+
+  /// No description provided for @logsDeleteMessage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csak a mentett forrás törlődik, a szerveren lévő napló nem.'**
+  String get logsDeleteMessage;
 }
 
 class _AppLocalizationsDelegate
