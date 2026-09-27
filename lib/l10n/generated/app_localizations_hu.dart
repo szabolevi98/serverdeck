@@ -620,4 +620,47 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get terminalReopen => 'Új shell';
+
+  @override
+  String get lockReason => 'ServerDeck feloldása';
+
+  @override
+  String get lockTitle => 'A ServerDeck zárolva van';
+
+  @override
+  String get lockUnlock => 'Feloldás';
+
+  @override
+  String get settingsTitle => 'Beállítások';
+
+  @override
+  String get settingsSecurity => 'Biztonság';
+
+  @override
+  String get settingsLock => 'Alkalmazászár';
+
+  @override
+  String get settingsLockHint =>
+      'Ujjlenyomat, arc vagy a telefon PIN-kódja kell indításkor és 1 perc háttérben töltött idő után.';
+
+  @override
+  String get settingsLockUnsupported =>
+      'Ehhez be kell állítani a telefonon képernyőzárat.';
+
+  @override
+  String get settingsKnownHosts => 'Ismert szerverkulcsok';
+
+  @override
+  String get settingsKnownHostsEmpty => 'Még nincs elfogadott szerverkulcs.';
+
+  @override
+  String get settingsKnownHostsHint =>
+      'Az első kapcsolódáskor elfogadott azonosító kulcsok. Ha egy szerver kulcsa megváltozik, a ServerDeck nem kapcsolódik, amíg itt el nem felejted a régit.';
+
+  @override
+  String get settingsAbout => 'Névjegy';
+
+  @override
+  String get settingsAboutText =>
+      'SSH-szerverkezelő. Nyílt forrású, MIT-licenc. Adatot nem gyűjt, minden a telefonon marad.';
 }

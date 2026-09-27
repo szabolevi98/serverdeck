@@ -353,5 +353,18 @@
   },
   "tabTerminal": "Terminál",
   "terminalClosed": "[a shell bezárult]",
-  "terminalReopen": "Új shell"
+  "terminalReopen": "Új shell",
+  "lockReason": "ServerDeck feloldása",
+  "lockTitle": "A ServerDeck zárolva van",
+  "lockUnlock": "Feloldás",
+  "settingsTitle": "Beállítások",
+  "settingsSecurity": "Biztonság",
+  "settingsLock": "Alkalmazászár",
+  "settingsLockHint": "Ujjlenyomat, arc vagy a telefon PIN-kódja kell indításkor és 1 perc háttérben töltött idő után.",
+  "settingsLockUnsupported": "Ehhez be kell állítani a telefonon képernyőzárat.",
+  "settingsKnownHosts": "Ismert szerverkulcsok",
+  "settingsKnownHostsEmpty": "Még nincs elfogadott szerverkulcs.",
+  "settingsKnownHostsHint": "Az első kapcsolódáskor elfogadott azonosító kulcsok. Ha egy szerver kulcsa megváltozik, a ServerDeck nem kapcsolódik, amíg itt el nem felejted a régit.",
+  "settingsAbout": "Névjegy",
+  "settingsAboutText": "SSH-szerverkezelő. Nyílt forrású, MIT-licenc. Adatot nem gyűjt, minden a telefonon marad."
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'l10n/generated/app_localizations.dart';
+import 'ui/app_lock.dart';
 import 'ui/servers_screen.dart';
 import 'ui/theme.dart';
 
@@ -16,6 +17,7 @@ class ServerDeckApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       theme: buildTheme(Brightness.light),
       darkTheme: buildTheme(Brightness.dark),
+      builder: (context, child) => AppLockGate(child: child!),
       home: const ServersScreen(),
     );
   }

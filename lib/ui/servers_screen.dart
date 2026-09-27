@@ -7,6 +7,7 @@ import '../ssh/reach.dart';
 import 'keys_screen.dart';
 import 'server_edit_screen.dart';
 import 'server_screen.dart';
+import 'settings_screen.dart';
 import 'theme.dart';
 import 'widgets.dart';
 
@@ -47,6 +48,14 @@ class ServersScreen extends ConsumerWidget {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (_) => const KeysScreen()),
+                  ),
+                ),
+                IconButton(
+                  tooltip: context.l.settingsTitle,
+                  icon: const Icon(Icons.settings_rounded),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const SettingsScreen()),
                   ),
                 ),
                 const SizedBox(width: 8),

@@ -181,5 +181,18 @@
   "tplPorts": "Listening ports",
   "tabTerminal": "Terminal",
   "terminalClosed": "[shell closed]",
-  "terminalReopen": "New shell"
+  "terminalReopen": "New shell",
+  "lockReason": "Unlock ServerDeck",
+  "lockTitle": "ServerDeck is locked",
+  "lockUnlock": "Unlock",
+  "settingsTitle": "Settings",
+  "settingsSecurity": "Security",
+  "settingsLock": "App lock",
+  "settingsLockHint": "Fingerprint, face or the phone's PIN at start and after a minute in the background.",
+  "settingsLockUnsupported": "Set up a screen lock on the phone first.",
+  "settingsKnownHosts": "Known server keys",
+  "settingsKnownHostsEmpty": "No server keys accepted yet.",
+  "settingsKnownHostsHint": "Identity keys accepted on first contact. When a server's key changes, ServerDeck won't connect until you forget the old one here.",
+  "settingsAbout": "About",
+  "settingsAboutText": "SSH server manager. Open source, MIT license. Collects nothing; everything stays on the phone."
 }

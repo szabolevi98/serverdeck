@@ -1189,6 +1189,84 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Új shell'**
   String get terminalReopen;
+
+  /// No description provided for @lockReason.
+  ///
+  /// In hu, this message translates to:
+  /// **'ServerDeck feloldása'**
+  String get lockReason;
+
+  /// No description provided for @lockTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'A ServerDeck zárolva van'**
+  String get lockTitle;
+
+  /// No description provided for @lockUnlock.
+  ///
+  /// In hu, this message translates to:
+  /// **'Feloldás'**
+  String get lockUnlock;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Beállítások'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsSecurity.
+  ///
+  /// In hu, this message translates to:
+  /// **'Biztonság'**
+  String get settingsSecurity;
+
+  /// No description provided for @settingsLock.
+  ///
+  /// In hu, this message translates to:
+  /// **'Alkalmazászár'**
+  String get settingsLock;
+
+  /// No description provided for @settingsLockHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ujjlenyomat, arc vagy a telefon PIN-kódja kell indításkor és 1 perc háttérben töltött idő után.'**
+  String get settingsLockHint;
+
+  /// No description provided for @settingsLockUnsupported.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ehhez be kell állítani a telefonon képernyőzárat.'**
+  String get settingsLockUnsupported;
+
+  /// No description provided for @settingsKnownHosts.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ismert szerverkulcsok'**
+  String get settingsKnownHosts;
+
+  /// No description provided for @settingsKnownHostsEmpty.
+  ///
+  /// In hu, this message translates to:
+  /// **'Még nincs elfogadott szerverkulcs.'**
+  String get settingsKnownHostsEmpty;
+
+  /// No description provided for @settingsKnownHostsHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az első kapcsolódáskor elfogadott azonosító kulcsok. Ha egy szerver kulcsa megváltozik, a ServerDeck nem kapcsolódik, amíg itt el nem felejted a régit.'**
+  String get settingsKnownHostsHint;
+
+  /// No description provided for @settingsAbout.
+  ///
+  /// In hu, this message translates to:
+  /// **'Névjegy'**
+  String get settingsAbout;
+
+  /// No description provided for @settingsAboutText.
+  ///
+  /// In hu, this message translates to:
+  /// **'SSH-szerverkezelő. Nyílt forrású, MIT-licenc. Adatot nem gyűjt, minden a telefonon marad.'**
+  String get settingsAboutText;
 }
 
 class _AppLocalizationsDelegate

@@ -638,4 +638,47 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get terminalReopen => 'New shell';
+
+  @override
+  String get lockReason => 'Unlock ServerDeck';
+
+  @override
+  String get lockTitle => 'ServerDeck is locked';
+
+  @override
+  String get lockUnlock => 'Unlock';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsSecurity => 'Security';
+
+  @override
+  String get settingsLock => 'App lock';
+
+  @override
+  String get settingsLockHint =>
+      'Fingerprint, face or the phone\'s PIN at start and after a minute in the background.';
+
+  @override
+  String get settingsLockUnsupported =>
+      'Set up a screen lock on the phone first.';
+
+  @override
+  String get settingsKnownHosts => 'Known server keys';
+
+  @override
+  String get settingsKnownHostsEmpty => 'No server keys accepted yet.';
+
+  @override
+  String get settingsKnownHostsHint =>
+      'Identity keys accepted on first contact. When a server\'s key changes, ServerDeck won\'t connect until you forget the old one here.';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get settingsAboutText =>
+      'SSH server manager. Open source, MIT license. Collects nothing; everything stays on the phone.';
 }
