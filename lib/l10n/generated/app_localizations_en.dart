@@ -374,4 +374,106 @@ class AppLocalizationsEn extends AppLocalizations {
   String uptimeHours(int hours, int minutes) {
     return '$hours h $minutes min';
   }
+
+  @override
+  String get tabOverview => 'Overview';
+
+  @override
+  String get tabServices => 'Services';
+
+  @override
+  String get servicesFailedTitle => 'Couldn\'t list services';
+
+  @override
+  String get servicesSearch => 'Search by name or description';
+
+  @override
+  String servicesRunning(int count) {
+    return 'Running · $count';
+  }
+
+  @override
+  String servicesFailed(int count) {
+    return 'Failed · $count';
+  }
+
+  @override
+  String servicesAll(int count) {
+    return 'All · $count';
+  }
+
+  @override
+  String get servicesNone => 'Nothing matches.';
+
+  @override
+  String get servicesNoneFailed => 'No failed services.';
+
+  @override
+  String get containersNone => 'No containers.';
+
+  @override
+  String get stateRunning => 'running';
+
+  @override
+  String get stateExited => 'exited';
+
+  @override
+  String get stateFailed => 'failed';
+
+  @override
+  String get stateActivating => 'starting';
+
+  @override
+  String get stateInactive => 'stopped';
+
+  @override
+  String get stateUnhealthy => 'unhealthy';
+
+  @override
+  String get statePaused => 'paused';
+
+  @override
+  String get stateRestarting => 'restarting';
+
+  @override
+  String get stateExitedContainer => 'exited';
+
+  @override
+  String get stateCreated => 'created';
+
+  @override
+  String get actionRestart => 'Restart';
+
+  @override
+  String get actionReload => 'Reload';
+
+  @override
+  String get actionStop => 'Stop';
+
+  @override
+  String get actionStart => 'Start';
+
+  @override
+  String actionConfirmTitle(String action, String subject) {
+    return '$action $subject?';
+  }
+
+  @override
+  String actionConfirmMessage(String command) {
+    return 'This runs on the server:\n$command';
+  }
+
+  @override
+  String actionDone(String action, String subject) {
+    return '$action done: $subject';
+  }
+
+  @override
+  String actionFailed(int code, String reason) {
+    return 'It didn\'t work (exit code $code). $reason';
+  }
+
+  @override
+  String get actionNeedsSudo =>
+      'This needs admin rights. Sign in as root, or allow sudo without a password for this command.';
 }

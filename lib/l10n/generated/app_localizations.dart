@@ -727,6 +727,180 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'{hours} óra {minutes} perc'**
   String uptimeHours(int hours, int minutes);
+
+  /// No description provided for @tabOverview.
+  ///
+  /// In hu, this message translates to:
+  /// **'Áttekintés'**
+  String get tabOverview;
+
+  /// No description provided for @tabServices.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szolgáltatások'**
+  String get tabServices;
+
+  /// No description provided for @servicesFailedTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem sikerült listázni'**
+  String get servicesFailedTitle;
+
+  /// No description provided for @servicesSearch.
+  ///
+  /// In hu, this message translates to:
+  /// **'Keresés név vagy leírás alapján'**
+  String get servicesSearch;
+
+  /// No description provided for @servicesRunning.
+  ///
+  /// In hu, this message translates to:
+  /// **'Futó · {count}'**
+  String servicesRunning(int count);
+
+  /// No description provided for @servicesFailed.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hibás · {count}'**
+  String servicesFailed(int count);
+
+  /// No description provided for @servicesAll.
+  ///
+  /// In hu, this message translates to:
+  /// **'Mind · {count}'**
+  String servicesAll(int count);
+
+  /// No description provided for @servicesNone.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs találat.'**
+  String get servicesNone;
+
+  /// No description provided for @servicesNoneFailed.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs hibás szolgáltatás.'**
+  String get servicesNoneFailed;
+
+  /// No description provided for @containersNone.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs konténer.'**
+  String get containersNone;
+
+  /// No description provided for @stateRunning.
+  ///
+  /// In hu, this message translates to:
+  /// **'fut'**
+  String get stateRunning;
+
+  /// No description provided for @stateExited.
+  ///
+  /// In hu, this message translates to:
+  /// **'lefutott'**
+  String get stateExited;
+
+  /// No description provided for @stateFailed.
+  ///
+  /// In hu, this message translates to:
+  /// **'hibás'**
+  String get stateFailed;
+
+  /// No description provided for @stateActivating.
+  ///
+  /// In hu, this message translates to:
+  /// **'indul'**
+  String get stateActivating;
+
+  /// No description provided for @stateInactive.
+  ///
+  /// In hu, this message translates to:
+  /// **'áll'**
+  String get stateInactive;
+
+  /// No description provided for @stateUnhealthy.
+  ///
+  /// In hu, this message translates to:
+  /// **'beteg'**
+  String get stateUnhealthy;
+
+  /// No description provided for @statePaused.
+  ///
+  /// In hu, this message translates to:
+  /// **'szünetel'**
+  String get statePaused;
+
+  /// No description provided for @stateRestarting.
+  ///
+  /// In hu, this message translates to:
+  /// **'újraindul'**
+  String get stateRestarting;
+
+  /// No description provided for @stateExitedContainer.
+  ///
+  /// In hu, this message translates to:
+  /// **'leállt'**
+  String get stateExitedContainer;
+
+  /// No description provided for @stateCreated.
+  ///
+  /// In hu, this message translates to:
+  /// **'létrehozva'**
+  String get stateCreated;
+
+  /// No description provided for @actionRestart.
+  ///
+  /// In hu, this message translates to:
+  /// **'Újraindítás'**
+  String get actionRestart;
+
+  /// No description provided for @actionReload.
+  ///
+  /// In hu, this message translates to:
+  /// **'Újratöltés'**
+  String get actionReload;
+
+  /// No description provided for @actionStop.
+  ///
+  /// In hu, this message translates to:
+  /// **'Leállítás'**
+  String get actionStop;
+
+  /// No description provided for @actionStart.
+  ///
+  /// In hu, this message translates to:
+  /// **'Indítás'**
+  String get actionStart;
+
+  /// No description provided for @actionConfirmTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'{action}: {subject}?'**
+  String actionConfirmTitle(String action, String subject);
+
+  /// No description provided for @actionConfirmMessage.
+  ///
+  /// In hu, this message translates to:
+  /// **'A szerveren ez fut le:\n{command}'**
+  String actionConfirmMessage(String command);
+
+  /// No description provided for @actionDone.
+  ///
+  /// In hu, this message translates to:
+  /// **'{action} kész: {subject}'**
+  String actionDone(String action, String subject);
+
+  /// No description provided for @actionFailed.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem sikerült (kilépési kód: {code}). {reason}'**
+  String actionFailed(int code, String reason);
+
+  /// No description provided for @actionNeedsSudo.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ehhez rendszergazdai jog kell. Lépj be rootként, vagy engedélyezd a sudo-t jelszó nélkül erre a parancsra.'**
+  String get actionNeedsSudo;
 }
 
 class _AppLocalizationsDelegate

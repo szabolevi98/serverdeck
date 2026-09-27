@@ -362,4 +362,106 @@ class AppLocalizationsHu extends AppLocalizations {
   String uptimeHours(int hours, int minutes) {
     return '$hours óra $minutes perc';
   }
+
+  @override
+  String get tabOverview => 'Áttekintés';
+
+  @override
+  String get tabServices => 'Szolgáltatások';
+
+  @override
+  String get servicesFailedTitle => 'Nem sikerült listázni';
+
+  @override
+  String get servicesSearch => 'Keresés név vagy leírás alapján';
+
+  @override
+  String servicesRunning(int count) {
+    return 'Futó · $count';
+  }
+
+  @override
+  String servicesFailed(int count) {
+    return 'Hibás · $count';
+  }
+
+  @override
+  String servicesAll(int count) {
+    return 'Mind · $count';
+  }
+
+  @override
+  String get servicesNone => 'Nincs találat.';
+
+  @override
+  String get servicesNoneFailed => 'Nincs hibás szolgáltatás.';
+
+  @override
+  String get containersNone => 'Nincs konténer.';
+
+  @override
+  String get stateRunning => 'fut';
+
+  @override
+  String get stateExited => 'lefutott';
+
+  @override
+  String get stateFailed => 'hibás';
+
+  @override
+  String get stateActivating => 'indul';
+
+  @override
+  String get stateInactive => 'áll';
+
+  @override
+  String get stateUnhealthy => 'beteg';
+
+  @override
+  String get statePaused => 'szünetel';
+
+  @override
+  String get stateRestarting => 'újraindul';
+
+  @override
+  String get stateExitedContainer => 'leállt';
+
+  @override
+  String get stateCreated => 'létrehozva';
+
+  @override
+  String get actionRestart => 'Újraindítás';
+
+  @override
+  String get actionReload => 'Újratöltés';
+
+  @override
+  String get actionStop => 'Leállítás';
+
+  @override
+  String get actionStart => 'Indítás';
+
+  @override
+  String actionConfirmTitle(String action, String subject) {
+    return '$action: $subject?';
+  }
+
+  @override
+  String actionConfirmMessage(String command) {
+    return 'A szerveren ez fut le:\n$command';
+  }
+
+  @override
+  String actionDone(String action, String subject) {
+    return '$action kész: $subject';
+  }
+
+  @override
+  String actionFailed(int code, String reason) {
+    return 'Nem sikerült (kilépési kód: $code). $reason';
+  }
+
+  @override
+  String get actionNeedsSudo =>
+      'Ehhez rendszergazdai jog kell. Lépj be rootként, vagy engedélyezd a sudo-t jelszó nélkül erre a parancsra.';
 }

@@ -183,5 +183,92 @@
         "type": "int"
       }
     }
+  },
+  "tabOverview": "Áttekintés",
+  "tabServices": "Szolgáltatások",
+  "servicesFailedTitle": "Nem sikerült listázni",
+  "servicesSearch": "Keresés név vagy leírás alapján",
+  "servicesRunning": "Futó · {count}",
+  "servicesFailed": "Hibás · {count}",
+  "servicesAll": "Mind · {count}",
+  "servicesNone": "Nincs találat.",
+  "servicesNoneFailed": "Nincs hibás szolgáltatás.",
+  "containersNone": "Nincs konténer.",
+  "stateRunning": "fut",
+  "stateExited": "lefutott",
+  "stateFailed": "hibás",
+  "stateActivating": "indul",
+  "stateInactive": "áll",
+  "stateUnhealthy": "beteg",
+  "statePaused": "szünetel",
+  "stateRestarting": "újraindul",
+  "stateExitedContainer": "leállt",
+  "stateCreated": "létrehozva",
+  "actionRestart": "Újraindítás",
+  "actionReload": "Újratöltés",
+  "actionStop": "Leállítás",
+  "actionStart": "Indítás",
+  "actionConfirmTitle": "{action}: {subject}?",
+  "actionConfirmMessage": "A szerveren ez fut le:\n{command}",
+  "actionDone": "{action} kész: {subject}",
+  "actionFailed": "Nem sikerült (kilépési kód: {code}). {reason}",
+  "actionNeedsSudo": "Ehhez rendszergazdai jog kell. Lépj be rootként, vagy engedélyezd a sudo-t jelszó nélkül erre a parancsra.",
+  "@servicesRunning": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@servicesFailed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@servicesAll": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@actionConfirmTitle": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      },
+      "subject": {
+        "type": "String"
+      }
+    }
+  },
+  "@actionConfirmMessage": {
+    "placeholders": {
+      "command": {
+        "type": "String"
+      }
+    }
+  },
+  "@actionDone": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      },
+      "subject": {
+        "type": "String"
+      }
+    }
+  },
+  "@actionFailed": {
+    "placeholders": {
+      "code": {
+        "type": "int"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
   }
 }

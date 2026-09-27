@@ -7,6 +7,7 @@ import '../ssh/connection.dart';
 import '../ssh/session.dart';
 import 'overview_tab.dart';
 import 'server_edit_screen.dart';
+import 'services_tab.dart';
 import 'theme.dart';
 import 'widgets.dart';
 
@@ -20,6 +21,10 @@ class ServerScreen extends ConsumerStatefulWidget {
 }
 
 class _ServerScreenState extends ConsumerState<ServerScreen> {
+  int _tab = 0;
+
+  /// Tabs opened once stay built, so coming back does not reload them.
+  final _visited = <int>{0};
   @override
   void initState() {
     super.initState();
@@ -124,13 +129,41 @@ class _ServerScreenState extends ConsumerState<ServerScreen> {
               _connect();
             },
           ),
-          SessionReady() => OverviewTab(
-            key: const ValueKey('overview'),
-            serverId: widget.serverId,
-            active: true,
+          SessionReady() => IndexedStack(
+            key: const ValueKey('ready'),
+            index: _tab,
+            children: [
+              OverviewTab(serverId: widget.serverId, active: _tab == 0),
+              _tab == 1 || _visited.contains(1)
+                  ? ServicesTab(serverId: widget.serverId)
+                  : const SizedBox(),
+            ],
           ),
         },
       ),
+      bottomNavigationBar: session is SessionReady
+          ? NavigationBar(
+              selectedIndex: _tab,
+              onDestinationSelected: (i) => setState(() {
+                _tab = i;
+                _visited.add(i);
+              }),
+              destinations: [
+                NavigationDestination(
+                  icon: const Icon(Icons.speed_outlined),
+                  selectedIcon: const Icon(Icons.speed_rounded),
+                  label: context.l.tabOverview,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.miscellaneous_services_outlined),
+                  selectedIcon: const Icon(
+                    Icons.miscellaneous_services_rounded,
+                  ),
+                  label: context.l.tabServices,
+                ),
+              ],
+            )
+          : null,
     );
   }
 }

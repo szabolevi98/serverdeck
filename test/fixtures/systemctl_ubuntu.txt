@@ -1,0 +1,24 @@
+apache2.service                                loaded    active   running The Apache HTTP Server
+apt-daily.service                              loaded    inactive dead    Daily apt download activities
+auditd.service                                 not-found inactive dead    auditd.service
+cloud-init.service                             loaded    failed   failed  Cloud-init: Network Stage
+cron.service                                   loaded    active   running Regular background program processing daemon
+dbus.service                                   loaded    active   running D-Bus System Message Bus
+fail2ban.service                               loaded    active   running Fail2Ban Service
+mariadb.service                                loaded    active   running MariaDB 10.11.14 database server
+ssh.service                                    loaded    active   running OpenBSD Secure Shell server
+systemd-journald.service                       loaded    active   running Journal Service
+ufw.service                                    loaded    active   exited  Uncomplicated firewall
+user@0.service                                 loaded    active   running User Manager for UID 0
+@@SD@@
+apache2.service                              enabled         enabled
+apt-daily.service                            static          -
+cloud-init.service                           enabled         enabled
+cron.service                                 enabled         enabled
+dbus.service                                 static          -
+fail2ban.service                             enabled         enabled
+mariadb.service                              enabled         enabled
+ssh.service                                  disabled        enabled
+systemd-journald.service                     static          -
+ufw.service                                  enabled         enabled
+user@.service                                static          -
