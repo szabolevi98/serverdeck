@@ -93,13 +93,23 @@ bool isDue(ServerProfile server, MonitorLog log, DateTime now) {
       Duration(minutes: server.monitor.minutes) - slack;
 }
 
+/// Failures the phone's own network can cause. A refused key or a changed
+/// host key came from the server, so the phone was online.
+const _networkProblems = {'unreachable', 'timeout', 'disconnected', 'other'};
+
 /// Checks every monitored server that is due, once more after [retryAfter]
 /// when a check fails (a blip is not an outage), records the results, and
 /// says what changed.
+///
+/// A failure that could be the phone's rather than the server's is kept
+/// only when [online] says the phone can reach the internet: a phone out of
+/// Wi-Fi and data, or asleep with its network cut, finds every server
+/// unreachable, and must not log that as an outage.
 Future<(MonitorLog, List<MonitorEvent>)> runChecks({
   required List<ServerProfile> servers,
   required MonitorLog log,
   required Future<CheckOutcome> Function(ServerProfile) check,
+  Future<bool> Function()? online,
   DateTime Function() now = DateTime.now,
   Duration retryAfter = const Duration(seconds: 30),
   bool force = false,
@@ -109,7 +119,7 @@ Future<(MonitorLog, List<MonitorEvent>)> runChecks({
       if (s.monitor.enabled && (force || isDue(s, log, now()))) s,
   ];
   // All at once: a slow server must not hold the others back.
-  final outcomes = await Future.wait(
+  final checked = await Future.wait(
     due.map((s) async {
       var outcome = await check(s);
       if (!outcome.up && outcome.problem != 'hostKeyChanged') {
@@ -119,6 +129,20 @@ Future<(MonitorLog, List<MonitorEvent>)> runChecks({
       return (s, outcome, now());
     }),
   );
+
+  // Asked once per run, and only when something failed the network's way.
+  bool? phoneOnline;
+  final outcomes = <(ServerProfile, CheckOutcome, DateTime)>[];
+  for (final c in checked) {
+    final (_, outcome, _) = c;
+    if (!outcome.up &&
+        _networkProblems.contains(outcome.problem) &&
+        online != null) {
+      phoneOnline ??= await online();
+      if (!phoneOnline) continue;
+    }
+    outcomes.add(c);
+  }
 
   var next = log;
   final events = <MonitorEvent>[];

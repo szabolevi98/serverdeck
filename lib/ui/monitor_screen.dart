@@ -42,6 +42,12 @@ class _MonitorScreenState extends ConsumerState<MonitorScreen> {
   Future<void> _checkNow() async {
     setState(() => _checking = true);
     try {
+      if (!await ref.read(internetProbeProvider)()) {
+        if (mounted) {
+          showMessage(context, context.l.monitorPhoneOffline, error: true);
+        }
+        return;
+      }
       await ref.read(monitorRunnerProvider)(force: true);
       if (mounted) showMessage(context, context.l.monitorChecked);
     } catch (e) {
@@ -62,6 +68,20 @@ class _MonitorScreenState extends ConsumerState<MonitorScreen> {
     );
     if (!ok) return;
     await ref.read(monitorLogFileProvider).save(const MonitorLog());
+    ref.invalidate(monitorLogProvider);
+  }
+
+  Future<void> _deleteIncident(Incident incident) async {
+    final ok = await confirm(
+      context,
+      title: context.l.monitorForgetTitle,
+      message: context.l.monitorForgetMessage,
+      action: context.l.delete,
+      destructive: true,
+    );
+    if (!ok) return;
+    final file = ref.read(monitorLogFileProvider);
+    await file.save((await file.load()).withoutIncident(incident));
     ref.invalidate(monitorLogProvider);
   }
 
@@ -142,11 +162,23 @@ class _MonitorScreenState extends ConsumerState<MonitorScreen> {
                                 (s) => s.id == inc.serverId,
                               ),
                               now: now,
+                              onDelete: inc.open
+                                  ? null
+                                  : () => _deleteIncident(inc),
                             ),
                           ],
                         ],
                       ),
                     ),
+                  if (incidents.any((i) => !i.open)) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      l.monitorIncidentsHint,
+                      style: context.text.bodySmall?.copyWith(
+                        color: context.colors.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 16),
                   Text(
                     l.monitorTimingHint,
@@ -449,11 +481,15 @@ class _IncidentRow extends StatelessWidget {
     required this.incident,
     required this.server,
     required this.now,
+    this.onDelete,
   });
 
   final Incident incident;
   final ServerProfile server;
   final DateTime now;
+
+  /// Long press: forget an outage that was not one.
+  final VoidCallback? onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -463,55 +499,58 @@ class _IncidentRow extends StatelessWidget {
     final when = DateFormat.MMMd(
       Localizations.localeOf(context).toLanguageTag(),
     ).add_Hm().format(incident.start);
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 5),
-            child: Container(
-              width: 9,
-              height: 9,
-              decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+    return InkWell(
+      onLongPress: onDelete,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: Container(
+                width: 9,
+                height: 9,
+                decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+              ),
             ),
-          ),
-          const SizedBox(width: 18),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        server.name,
-                        style: mono(size: 13.5, weight: FontWeight.w600),
+            const SizedBox(width: 18),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          server.name,
+                          style: mono(size: 13.5, weight: FontWeight.w600),
+                        ),
                       ),
-                    ),
-                    Text(
-                      open
-                          ? l.monitorOngoing
-                          : describeDuration(l, incident.lengthUntil(now)),
-                      style: mono(
-                        size: 12,
-                        weight: FontWeight.w600,
-                        color: open ? context.status.bad : null,
+                      Text(
+                        open
+                            ? l.monitorOngoing
+                            : describeDuration(l, incident.lengthUntil(now)),
+                        style: mono(
+                          size: 12,
+                          weight: FontWeight.w600,
+                          color: open ? context.status.bad : null,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  '$when · ${describeProblem(l, incident.problem)}',
-                  style: context.text.bodySmall?.copyWith(
-                    color: context.colors.onSurfaceVariant,
+                    ],
                   ),
-                ),
-              ],
+                  const SizedBox(height: 2),
+                  Text(
+                    '$when · ${describeProblem(l, incident.problem)}',
+                    style: context.text.bodySmall?.copyWith(
+                      color: context.colors.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

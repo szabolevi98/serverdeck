@@ -62,3 +62,30 @@ String? describeBanner(String? banner) {
   final distro = RegExp(r'^[A-Za-z]+').firstMatch(comment)?.group(0);
   return distro == null ? software : '$software $distro';
 }
+
+/// Addresses that are up whenever the internet is: Cloudflare, Google and
+/// Quad9 DNS, by address so that no DNS lookup is needed first.
+const _landmarks = [('1.1.1.1', 443), ('8.8.8.8', 443), ('9.9.9.9', 443)];
+
+/// Whether the phone can reach the internet at all: opens a TCP connection
+/// to any of three public resolvers and closes it, sending nothing.
+Future<bool> internetReachable({
+  Duration timeout = const Duration(seconds: 5),
+}) async {
+  final attempts = [
+    for (final (host, port) in _landmarks)
+      Socket.connect(host, port, timeout: timeout).then((socket) {
+        socket.destroy();
+        return true;
+      }, onError: (_) => false),
+  ];
+  final done = Completer<bool>();
+  var left = attempts.length;
+  for (final a in attempts) {
+    a.then((ok) {
+      if (ok && !done.isCompleted) done.complete(true);
+      if (--left == 0 && !done.isCompleted) done.complete(false);
+    });
+  }
+  return done.future;
+}

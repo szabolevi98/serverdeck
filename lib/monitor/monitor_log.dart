@@ -146,6 +146,30 @@ class MonitorLog {
     );
   }
 
+  /// The log without [incident] and the failed checks inside it, for an
+  /// outage that was not one (the phone was offline, say). Only a closed one:
+  /// an ongoing outage is still being watched.
+  MonitorLog withoutIncident(Incident incident) {
+    final end = incident.end;
+    if (end == null) return this;
+    bool inside(CheckRecord c) =>
+        !c.up && !c.at.isBefore(incident.start) && c.at.isBefore(end);
+    return MonitorLog(
+      checks: {
+        ...checks,
+        incident.serverId: (checks[incident.serverId] ?? const [])
+            .where((c) => !inside(c))
+            .toList(),
+      },
+      incidents: incidents
+          .where(
+            (i) =>
+                !(i.serverId == incident.serverId && i.start == incident.start),
+          )
+          .toList(),
+    );
+  }
+
   /// The log without [serverId], after the server was deleted.
   MonitorLog without(String serverId) => MonitorLog(
     checks: {...checks}..remove(serverId),

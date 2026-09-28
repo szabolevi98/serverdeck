@@ -52,6 +52,7 @@ Future<(MonitorLog, List<MonitorEvent>)> runMonitorOnce({
     servers: data.servers,
     log: log,
     force: force,
+    online: internetReachable,
     check: (s) async {
       final keyId = s.keyId;
       return checkServer(

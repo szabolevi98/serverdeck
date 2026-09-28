@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/models.dart';
+import '../ssh/reach.dart';
 import 'background.dart';
 import 'checker.dart';
 import 'monitor_log.dart';
@@ -29,4 +30,9 @@ final monitorLogFileProvider = Provider<MonitorLogFile>(
 /// app comes back to the front.
 final monitorLogProvider = FutureProvider.autoDispose<MonitorLog>(
   (ref) => ref.read(monitorLogFileProvider).load(),
+);
+
+/// Whether the phone is on the internet at all; the demo says always.
+final internetProbeProvider = Provider<Future<bool> Function()>(
+  (ref) => internetReachable,
 );

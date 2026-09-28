@@ -138,6 +138,7 @@ List<Override> demoOverrides() {
     dataFileProvider.overrideWithValue(MemoryDataFile(data)),
     monitorLogFileProvider.overrideWithValue(monitorFile),
     monitorSchedulerProvider.overrideWithValue((_) async {}),
+    internetProbeProvider.overrideWithValue(() async => true),
     monitorRunnerProvider.overrideWithValue(({bool force = false}) async {
       final (log, events) = await runChecks(
         servers: data.servers,

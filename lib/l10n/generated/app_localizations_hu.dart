@@ -928,4 +928,19 @@ class AppLocalizationsHu extends AppLocalizations {
   String everyNHours(int n) {
     return '$n óránként';
   }
+
+  @override
+  String get monitorPhoneOffline =>
+      'A telefon nincs interneten, így most nem lehet ellenőrizni.';
+
+  @override
+  String get monitorForgetTitle => 'Törlöd ezt a leállást?';
+
+  @override
+  String get monitorForgetMessage =>
+      'Ha valójában nem volt leállás (például a telefon volt offline), a bejegyzés és a hozzá tartozó sikertelen ellenőrzések törlődnek, a rendelkezésre állás pedig újraszámolódik.';
+
+  @override
+  String get monitorIncidentsHint =>
+      'Egy lezárt leállás hosszan nyomva törölhető.';
 }

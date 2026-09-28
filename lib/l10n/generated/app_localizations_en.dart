@@ -986,4 +986,18 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get monitorPhoneOffline =>
+      'The phone isn\'t on the internet, so nothing can be checked now.';
+
+  @override
+  String get monitorForgetTitle => 'Delete this outage?';
+
+  @override
+  String get monitorForgetMessage =>
+      'If it wasn\'t really an outage (the phone was offline, say), the entry and its failed checks go, and uptime is worked out again.';
+
+  @override
+  String get monitorIncidentsHint => 'Long-press a closed outage to delete it.';
 }

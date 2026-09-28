@@ -264,5 +264,9 @@
   "shortDays": "{n} d",
   "monitorOngoing": "ongoing",
   "everyNMinutes": "every {n} min",
-  "everyNHours": "{n, plural, =1{hourly} other{every {n} h}}"
+  "everyNHours": "{n, plural, =1{hourly} other{every {n} h}}",
+  "monitorPhoneOffline": "The phone isn't on the internet, so nothing can be checked now.",
+  "monitorForgetTitle": "Delete this outage?",
+  "monitorForgetMessage": "If it wasn't really an outage (the phone was offline, say), the entry and its failed checks go, and uptime is worked out again.",
+  "monitorIncidentsHint": "Long-press a closed outage to delete it."
 }

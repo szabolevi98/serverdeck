@@ -1687,6 +1687,30 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'{n} óránként'**
   String everyNHours(int n);
+
+  /// No description provided for @monitorPhoneOffline.
+  ///
+  /// In hu, this message translates to:
+  /// **'A telefon nincs interneten, így most nem lehet ellenőrizni.'**
+  String get monitorPhoneOffline;
+
+  /// No description provided for @monitorForgetTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd ezt a leállást?'**
+  String get monitorForgetTitle;
+
+  /// No description provided for @monitorForgetMessage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ha valójában nem volt leállás (például a telefon volt offline), a bejegyzés és a hozzá tartozó sikertelen ellenőrzések törlődnek, a rendelkezésre állás pedig újraszámolódik.'**
+  String get monitorForgetMessage;
+
+  /// No description provided for @monitorIncidentsHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Egy lezárt leállás hosszan nyomva törölhető.'**
+  String get monitorIncidentsHint;
 }
 
 class _AppLocalizationsDelegate

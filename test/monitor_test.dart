@@ -110,6 +110,48 @@ void main() {
       expect(back.without('web').incidents, isEmpty);
     });
 
+    test('a false outage can be forgotten with its failed checks', () {
+      var log = const MonitorLog();
+      for (var i = 0; i < 5; i++) {
+        log = log.record(
+          'web',
+          CheckRecord(
+            at: t0.add(Duration(hours: i)),
+            up: i < 1 || i > 2,
+          ),
+        );
+      }
+      final outage = log.incidents.single;
+      expect(
+        log.uptime(
+          'web',
+          const Duration(days: 1),
+          t0.add(const Duration(hours: 4)),
+        ),
+        0.5,
+      );
+      final back = log.withoutIncident(outage);
+      expect(back.incidents, isEmpty);
+      expect(back.checks['web']!.every((c) => c.up), isTrue);
+      expect(
+        back.uptime(
+          'web',
+          const Duration(days: 1),
+          t0.add(const Duration(hours: 4)),
+        ),
+        1.0,
+      );
+      // An ongoing one stays.
+      final open = const MonitorLog().record(
+        'web',
+        CheckRecord(at: t0, up: false),
+      );
+      expect(
+        open.withoutIncident(open.incidents.single).incidents,
+        hasLength(1),
+      );
+    });
+
     test('the file is written and read back', () async {
       final dir = await Directory.systemTemp.createTemp('sd-mon');
       try {
@@ -185,6 +227,56 @@ void main() {
       (log, events) = await run(log);
       expect(events.single.kind, MonitorEventKind.recovered);
       expect(events.single.downFor, const Duration(minutes: 65));
+    });
+
+    test('a phone without internet logs no outage', () async {
+      var asked = 0;
+      final (log, events) = await runChecks(
+        servers: const [web],
+        log: const MonitorLog().record('web', CheckRecord(at: t0, up: true)),
+        now: () => t0.add(const Duration(minutes: 30)),
+        retryAfter: Duration.zero,
+        online: () async {
+          asked++;
+          return false;
+        },
+        check: (_) async => const CheckOutcome.down('unreachable'),
+      );
+      expect(asked, 1);
+      expect(events, isEmpty);
+      expect(log.incidents, isEmpty);
+      // Nothing recorded, so the server is still due next time.
+      expect(log.checks['web'], hasLength(1));
+    });
+
+    test('with internet, the same failure is an outage', () async {
+      final (log, events) = await runChecks(
+        servers: const [web],
+        log: const MonitorLog(),
+        now: () => t0,
+        retryAfter: Duration.zero,
+        online: () async => true,
+        check: (_) async => const CheckOutcome.down('timeout'),
+      );
+      expect(events.single.kind, MonitorEventKind.down);
+      expect(log.incidents, hasLength(1));
+    });
+
+    test('an answer from the server proves the phone was online', () async {
+      var asked = 0;
+      final (_, events) = await runChecks(
+        servers: const [web],
+        log: const MonitorLog(),
+        now: () => t0,
+        retryAfter: Duration.zero,
+        online: () async {
+          asked++;
+          return false;
+        },
+        check: (_) async => const CheckOutcome.down('authFailed'),
+      );
+      expect(asked, 0);
+      expect(events.single.problem, 'authFailed');
     });
 
     test('a changed host key is not retried and has its own alarm', () async {
