@@ -92,15 +92,24 @@ class MonitorLog {
   List<Incident> incidentsOf(String serverId) =>
       incidents.where((i) => i.serverId == serverId).toList();
 
-  /// Share of checks that found the server up within [window] before [now],
-  /// or null without any.
+  /// Share of the time within [window] before [now] that the server was up,
+  /// counting from its first check when that is later; null before any.
+  /// Down time is the outages', from the first failed check to the first
+  /// good one after it.
   double? uptime(String serverId, Duration window, DateTime now) {
-    final since = now.subtract(window);
-    final inWindow = (checks[serverId] ?? const <CheckRecord>[])
-        .where((c) => c.at.isAfter(since))
-        .toList();
-    if (inWindow.isEmpty) return null;
-    return inWindow.where((c) => c.up).length / inWindow.length;
+    final first = checks[serverId]?.firstOrNull?.at;
+    if (first == null) return null;
+    final windowStart = now.subtract(window);
+    final from = first.isAfter(windowStart) ? first : windowStart;
+    final observed = now.difference(from);
+    if (observed <= Duration.zero) return null;
+    var down = Duration.zero;
+    for (final i in incidentsOf(serverId)) {
+      final start = i.start.isAfter(from) ? i.start : from;
+      final end = i.end ?? now;
+      if (end.isAfter(start)) down += end.difference(start);
+    }
+    return (1 - down.inMilliseconds / observed.inMilliseconds).clamp(0.0, 1.0);
   }
 
   /// Adds [record] for [serverId], opening or closing an incident when the

@@ -53,7 +53,7 @@ void main() {
       expect(log.incidents.single.lengthUntil(t0), const Duration(minutes: 60));
     });
 
-    test('uptime counts the checks in the window', () {
+    test('uptime is the share of time up, from the outages', () {
       var log = const MonitorLog();
       for (var i = 0; i < 10; i++) {
         log = log.record(
@@ -64,10 +64,30 @@ void main() {
           ),
         );
       }
-      final now = t0.add(const Duration(hours: 9, minutes: 1));
-      expect(log.uptime('web', const Duration(days: 1), now), 0.9);
+      // Down from the check at 3 h to the one at 4 h: one hour out of nine.
+      final now = t0.add(const Duration(hours: 9));
+      expect(
+        log.uptime('web', const Duration(days: 1), now),
+        closeTo(8 / 9, 1e-9),
+      );
       expect(log.uptime('web', const Duration(hours: 5), now), 1.0);
+      // Half of the last six hours' window is before the outage ended.
+      expect(
+        log.uptime('web', const Duration(hours: 5, minutes: 30), now),
+        closeTo(1 - 0.5 / 5.5, 1e-9),
+      );
       expect(log.uptime('nope', const Duration(days: 1), now), isNull);
+    });
+
+    test('an ongoing outage counts up to now', () {
+      final log = const MonitorLog()
+          .record('web', CheckRecord(at: t0, up: true))
+          .record(
+            'web',
+            CheckRecord(at: t0.add(const Duration(hours: 3)), up: false),
+          );
+      final now = t0.add(const Duration(hours: 4));
+      expect(log.uptime('web', const Duration(days: 1), now), 0.75);
     });
 
     test('checks older than 30 days are dropped, and it survives JSON', () {

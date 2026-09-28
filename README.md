@@ -11,8 +11,9 @@ the way `ssh` from a laptop would, runs ordinary commands (`cat /proc/…`,
 
 ![ServerDeck: the server list, a server's overview, a failed service, the terminal](docs/cover.png)
 
-Written in Flutter, in a graphite and mint theme of its own, dark and light,
-with JetBrains Mono for anything a server prints. Built and tested on Android;
+Written in Flutter, in a graphite and mint theme of its own, light, dark or
+following the phone, switched from the server list, with JetBrains Mono for
+anything a server prints. Built and tested on Android;
 the same code compiles for iOS, and CI builds it on every push.
 
 ## What it does
@@ -88,6 +89,32 @@ the server's screen is. Above the keyboard is the row of keys a phone does not
 have: esc, tab, a sticky ctrl (ctrl, then c, is ^C), the arrows, home, end,
 page up and down, `|`, `/`, `-`, `~`, the font size and paste.
 
+### Monitoring
+
+Any server can be watched in the background, and ServerDeck says when it goes
+down and when it is back:
+
+- **Every 15 minutes to 6 hours**, per server. Android runs background work at
+  most every 15 minutes, and ServerDeck asks for it only with a network, so a
+  phone in a tunnel does not report every server down.
+- **By signing in** over SSH and running `true`, which also shows the key still
+  works and is never counted by fail2ban; or **by the port only**, for a server
+  with nothing to sign in with.
+- **No alarm for a blip**: a failed check is tried again after 30 seconds
+  before it counts.
+- **A notification when the state changes**, not at every check: down and why,
+  back up and how long it was down (replacing the first), and a separate alarm
+  when a server shows a different host key.
+- **The monitoring page** sums it up and checks everything on request; per
+  server it shows the state, the last check and its latency, the last 40
+  checks as a strip, and uptime over 24 hours, 7 days and 30 days, worked out
+  from the time spent down; then the outages, with when, how long and why.
+  Thirty days of checks and the last 500 outages are kept.
+
+A background check cannot ask about a host key, so a server has to be opened
+once in the app, and its key accepted, before signing in can be monitored.
+On iOS the system decides when background work runs, and it may be rare.
+
 ### Keys and security
 
 - **Keys** are Ed25519, made on the phone, or pasted in: OpenSSH, RSA (PKCS#1)
@@ -124,9 +151,9 @@ app's language can be set on its own in the system settings.
 |---|---|---|
 | ![A failed service](docs/screenshots/service.png) | ![Logs](docs/screenshots/logs.png) | ![Commands](docs/screenshots/commands.png) |
 
-| A command running | Terminal |
-|---|---|
-| ![A command running](docs/screenshots/run.png) | ![Terminal](docs/screenshots/terminal.png) |
+| A command running | Terminal | Monitoring |
+|---|---|---|
+| ![A command running](docs/screenshots/run.png) | ![Terminal](docs/screenshots/terminal.png) | ![Monitoring](docs/screenshots/monitoring.png) |
 
 The pictures are of the demo build (below): the servers, addresses and output
 are invented.
@@ -183,11 +210,12 @@ flutter run --dart-define=SERVERDECK_DEMO=true
 | State | Riverpod 3 |
 | Storage | flutter_secure_storage (Keystore, Keychain) and a JSON file |
 | Charts | fl_chart |
+| Background | workmanager (WorkManager, BGTaskScheduler), flutter_local_notifications |
 
 ```
 flutter pub get
 flutter run                  # on a phone or emulator
-flutter test                 # parsers, keys, storage, the app lock, the sh wrapper
+flutter test                 # parsers, keys, storage, monitoring, the app lock, the sh wrapper
 flutter analyze
 flutter build apk --release  # signed when android/key.properties exists
 ```
@@ -215,6 +243,7 @@ lib/
              sources; the JSON file and the secure store
   ssh/       the connection, keys, host key checks, the session, the port knock
   probes/    the commands behind each screen and the parsers of their output
+  monitor/   background checks, the outage log, notifications, the schedule
   ui/        the screens, the theme and shared widgets
   demo/      the invented servers of the demo build
   l10n/      Hungarian and English
