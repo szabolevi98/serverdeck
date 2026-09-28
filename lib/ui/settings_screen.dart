@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../data/app_data.dart';
 import '../data/models.dart';
@@ -8,6 +9,11 @@ import 'app_lock.dart';
 import 'theme_toggle.dart';
 import 'theme.dart';
 import 'widgets.dart';
+
+/// The installed version, as the build says, never typed by hand.
+final appVersionProvider = FutureProvider<String>(
+  (ref) async => (await PackageInfo.fromPlatform()).version,
+);
 
 final _deviceLockProvider = FutureProvider.autoDispose<bool>(
   (ref) => ref.read(localAuthProvider).isDeviceSupported(),
@@ -107,7 +113,10 @@ class SettingsScreen extends ConsumerWidget {
           Card(
             child: ListTile(
               leading: const TintedIcon(Icons.dns_rounded, size: 40),
-              title: const Text('ServerDeck 1.0.0'),
+              title: Text(
+                'ServerDeck ${ref.watch(appVersionProvider).value ?? ''}'
+                    .trim(),
+              ),
               subtitle: Text(l.settingsAboutText),
             ),
           ),
