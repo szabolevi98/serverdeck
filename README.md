@@ -102,6 +102,10 @@ down and when it is back:
   with nothing to sign in with.
 - **No alarm for a blip**: a failed check is tried again after 30 seconds
   before it counts.
+- **No alarm for the phone's own network**: when a check still cannot reach a
+  server, ServerDeck opens (and at once closes, sending nothing) a connection
+  to 1.1.1.1, 8.8.8.8 or 9.9.9.9. If none of them answers either, the phone is
+  the one offline, and the check is skipped rather than logged as an outage.
 - **A notification when the state changes**, not at every check: down and why,
   back up and how long it was down (replacing the first), and a separate alarm
   when a server shows a different host key.
@@ -109,7 +113,8 @@ down and when it is back:
   server it shows the state, the last check and its latency, the last 40
   checks as a strip, and uptime over 24 hours, 7 days and 30 days, worked out
   from the time spent down; then the outages, with when, how long and why.
-  Thirty days of checks and the last 500 outages are kept.
+  An outage that was not one can be deleted with a long press. Thirty days of
+  checks and the last 500 outages are kept.
 
 A background check cannot ask about a host key, so a server has to be opened
 once in the app, and its key accepted, before signing in can be monitored.
