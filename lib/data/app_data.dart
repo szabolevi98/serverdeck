@@ -132,17 +132,7 @@ class AppDataNotifier extends AsyncNotifier<AppData> {
       data.copyWith(
         keys: data.keys.where((k) => k.id != id).toList(),
         servers: [
-          for (final s in data.servers)
-            s.keyId == id
-                ? ServerProfile(
-                    id: s.id,
-                    name: s.name,
-                    host: s.host,
-                    port: s.port,
-                    username: s.username,
-                    auth: s.auth,
-                  )
-                : s,
+          for (final s in data.servers) s.keyId == id ? s.withoutKey() : s,
         ],
       ),
     );

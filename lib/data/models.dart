@@ -15,6 +15,7 @@ class ServerProfile {
     required this.username,
     this.auth = AuthMethod.key,
     this.keyId,
+    this.monitor = const MonitorConfig(),
   });
 
   final String id;
@@ -26,6 +27,9 @@ class ServerProfile {
 
   /// The [SshKey] to sign in with when [auth] is [AuthMethod.key].
   final String? keyId;
+
+  /// Whether, how and how often it is checked in the background.
+  final MonitorConfig monitor;
 
   /// `user@host` or `user@host:port`, the way ssh would be told to connect.
   String get address =>
@@ -41,6 +45,7 @@ class ServerProfile {
     String? username,
     AuthMethod? auth,
     String? keyId,
+    MonitorConfig? monitor,
   }) => ServerProfile(
     id: id,
     name: name ?? this.name,
@@ -49,6 +54,18 @@ class ServerProfile {
     username: username ?? this.username,
     auth: auth ?? this.auth,
     keyId: keyId ?? this.keyId,
+    monitor: monitor ?? this.monitor,
+  );
+
+  /// The same server with no key, after its key was deleted.
+  ServerProfile withoutKey() => ServerProfile(
+    id: id,
+    name: name,
+    host: host,
+    port: port,
+    username: username,
+    auth: auth,
+    monitor: monitor,
   );
 
   Map<String, Object?> toJson() => {
@@ -59,6 +76,7 @@ class ServerProfile {
     'username': username,
     'auth': auth.name,
     'keyId': keyId,
+    'monitor': monitor.toJson(),
   };
 
   factory ServerProfile.fromJson(Map<String, Object?> json) => ServerProfile(
@@ -69,6 +87,49 @@ class ServerProfile {
     username: json['username'] as String,
     auth: AuthMethod.values.byName(json['auth'] as String? ?? 'key'),
     keyId: json['keyId'] as String?,
+    monitor: MonitorConfig.fromJson(
+      json['monitor'] as Map<String, Object?>? ?? const {},
+    ),
+  );
+}
+
+/// How a server is checked in the background: signing in over SSH (the
+/// default, and what fail2ban never counts against you), or only opening
+/// its port.
+enum MonitorMode { ssh, port }
+
+class MonitorConfig {
+  const MonitorConfig({
+    this.enabled = false,
+    this.minutes = 30,
+    this.mode = MonitorMode.ssh,
+  });
+
+  final bool enabled;
+
+  /// Minutes between checks. Android runs background work at most every 15.
+  final int minutes;
+  final MonitorMode mode;
+
+  static const choices = [15, 30, 60, 180, 360];
+
+  MonitorConfig copyWith({bool? enabled, int? minutes, MonitorMode? mode}) =>
+      MonitorConfig(
+        enabled: enabled ?? this.enabled,
+        minutes: minutes ?? this.minutes,
+        mode: mode ?? this.mode,
+      );
+
+  Map<String, Object?> toJson() => {
+    'enabled': enabled,
+    'minutes': minutes,
+    'mode': mode.name,
+  };
+
+  factory MonitorConfig.fromJson(Map<String, Object?> json) => MonitorConfig(
+    enabled: json['enabled'] as bool? ?? false,
+    minutes: json['minutes'] as int? ?? 30,
+    mode: MonitorMode.values.asNameMap()[json['mode']] ?? MonitorMode.ssh,
   );
 }
 
