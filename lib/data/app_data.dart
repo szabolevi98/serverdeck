@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../monitor/monitor_providers.dart';
 import '../ssh/keys.dart';
 import 'models.dart';
 import 'storage.dart';
@@ -30,13 +31,33 @@ class AppDataNotifier extends AsyncNotifier<AppData> {
   SecretStore get _secrets => ref.read(secretStoreProvider);
 
   @override
-  Future<AppData> build() => _file.load();
+  Future<AppData> build() async {
+    final data = await _file.load();
+    // Registered again at every start, so an update or a restore of the app
+    // cannot leave the monitor unscheduled.
+    _schedule(data);
+    return data;
+  }
+
+  /// What decides the background schedule, to tell when it changed.
+  static String _monitoring(AppData d) => [
+    for (final s in d.servers)
+      if (s.monitor.enabled) '${s.id}:${s.monitor.minutes}',
+  ].join(',');
+
+  void _schedule(AppData data) {
+    ref.read(monitorSchedulerProvider)(data.servers).catchError((_) {});
+  }
 
   Future<AppData> get _current async => state.value ?? await future;
 
   Future<void> _save(AppData next) async {
+    final before = state.value;
     await _file.save(next);
     state = AsyncData(next);
+    if (before == null || _monitoring(before) != _monitoring(next)) {
+      _schedule(next);
+    }
   }
 
   // Servers

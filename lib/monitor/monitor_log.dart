@@ -168,6 +168,18 @@ class MonitorLog {
   );
 }
 
+/// For tests and the demo: a log that lives in memory.
+class MemoryMonitorLogFile extends MonitorLogFile {
+  MemoryMonitorLogFile([this.log = const MonitorLog()]);
+  MonitorLog log;
+
+  @override
+  Future<MonitorLog> load() async => log;
+
+  @override
+  Future<void> save(MonitorLog log) async => this.log = log;
+}
+
 /// monitor.json next to the app's data file. The background task writes it;
 /// the app reads it, and writes it only to clear it or drop a server.
 class MonitorLogFile {

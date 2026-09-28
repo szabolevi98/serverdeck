@@ -382,5 +382,85 @@
   "themeTitle": "Megjelenés",
   "themeSystem": "Rendszer",
   "themeLight": "Világos",
-  "themeDark": "Sötét"
+  "themeDark": "Sötét",
+  "monitorDownTitle": "{name} nem elérhető",
+  "monitorUpTitle": "{name} újra elérhető",
+  "monitorUpBody": "Az ellenőrzés újra sikerült.",
+  "monitorUpBodyFor": "{duration} volt elérhetetlen.",
+  "monitorHostKeyTitle": "{name}: megváltozott a szerver kulcsa",
+  "monitorHostKeyBody": "A ServerDeck nem jelentkezett be. Nézd meg a szervert, mielőtt elfogadod az új kulcsot.",
+  "monitorProblemUnreachable": "Nem sikerült kapcsolatot nyitni.",
+  "monitorProblemTimeout": "Nem válaszolt időben.",
+  "monitorProblemAuth": "Válaszol, de nem fogadta el a bejelentkezést.",
+  "monitorProblemDisconnected": "Bejelentkezés előtt bontotta a kapcsolatot.",
+  "monitorProblemHostKeyChanged": "Megváltozott a kulcsa.",
+  "monitorProblemHostKeyUnknown": "A kulcsát még nem fogadtad el: nyisd meg egyszer az appban.",
+  "monitorProblemMissing": "Nincs hozzá kulcs vagy jelszó.",
+  "monitorProblemOther": "Az ellenőrzés nem sikerült.",
+  "durationSeconds": "{n} másodpercig",
+  "durationMinutes": "{n} percig",
+  "durationHours": "{h} óra {m} percig",
+  "durationDays": "{d} nap {h} óráig",
+  "@monitorDownTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@monitorUpTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@monitorUpBodyFor": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "@monitorHostKeyTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@durationSeconds": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@durationMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@durationHours": {
+    "placeholders": {
+      "h": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "@durationDays": {
+    "placeholders": {
+      "d": {
+        "type": "int"
+      },
+      "h": {
+        "type": "int"
+      }
+    }
+  }
 }

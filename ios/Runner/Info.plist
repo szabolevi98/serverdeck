@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>net.levente.serverdeck.monitor</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+	</array>
 		<key>NSFaceIDUsageDescription</key>
 		<string>ServerDeck uses Face ID to unlock the app when the app lock is on.</string>
 		<key>CADisableMinimumFrameDurationOnPhone</key>

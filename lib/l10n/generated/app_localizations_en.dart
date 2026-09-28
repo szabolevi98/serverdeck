@@ -710,4 +710,95 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get themeDark => 'Dark';
+
+  @override
+  String monitorDownTitle(String name) {
+    return '$name is down';
+  }
+
+  @override
+  String monitorUpTitle(String name) {
+    return '$name is back up';
+  }
+
+  @override
+  String get monitorUpBody => 'The check works again.';
+
+  @override
+  String monitorUpBodyFor(String duration) {
+    return 'It was down for $duration.';
+  }
+
+  @override
+  String monitorHostKeyTitle(String name) {
+    return '$name: the server\'s key changed';
+  }
+
+  @override
+  String get monitorHostKeyBody =>
+      'ServerDeck didn\'t sign in. Look at the server before you accept the new key.';
+
+  @override
+  String get monitorProblemUnreachable => 'Couldn\'t open a connection.';
+
+  @override
+  String get monitorProblemTimeout => 'No answer in time.';
+
+  @override
+  String get monitorProblemAuth =>
+      'It answers, but didn\'t accept the sign-in.';
+
+  @override
+  String get monitorProblemDisconnected => 'It hung up before the sign-in.';
+
+  @override
+  String get monitorProblemHostKeyChanged => 'Its key changed.';
+
+  @override
+  String get monitorProblemHostKeyUnknown =>
+      'Its key isn\'t accepted yet: open it once in the app.';
+
+  @override
+  String get monitorProblemMissing => 'It has no key or password.';
+
+  @override
+  String get monitorProblemOther => 'The check failed.';
+
+  @override
+  String durationSeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n seconds',
+      one: '1 second',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String durationMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n minutes',
+      one: '1 minute',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String durationHours(int h, int m) {
+    return '$h h $m min';
+  }
+
+  @override
+  String durationDays(int d, int h) {
+    String _temp0 = intl.Intl.pluralLogic(
+      d,
+      locale: localeName,
+      other: '$d days',
+      one: '1 day',
+    );
+    return '$_temp0 $h h';
+  }
 }

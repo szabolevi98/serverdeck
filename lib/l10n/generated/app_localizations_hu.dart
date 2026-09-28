@@ -693,4 +693,78 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get themeDark => 'Sötét';
+
+  @override
+  String monitorDownTitle(String name) {
+    return '$name nem elérhető';
+  }
+
+  @override
+  String monitorUpTitle(String name) {
+    return '$name újra elérhető';
+  }
+
+  @override
+  String get monitorUpBody => 'Az ellenőrzés újra sikerült.';
+
+  @override
+  String monitorUpBodyFor(String duration) {
+    return '$duration volt elérhetetlen.';
+  }
+
+  @override
+  String monitorHostKeyTitle(String name) {
+    return '$name: megváltozott a szerver kulcsa';
+  }
+
+  @override
+  String get monitorHostKeyBody =>
+      'A ServerDeck nem jelentkezett be. Nézd meg a szervert, mielőtt elfogadod az új kulcsot.';
+
+  @override
+  String get monitorProblemUnreachable => 'Nem sikerült kapcsolatot nyitni.';
+
+  @override
+  String get monitorProblemTimeout => 'Nem válaszolt időben.';
+
+  @override
+  String get monitorProblemAuth =>
+      'Válaszol, de nem fogadta el a bejelentkezést.';
+
+  @override
+  String get monitorProblemDisconnected =>
+      'Bejelentkezés előtt bontotta a kapcsolatot.';
+
+  @override
+  String get monitorProblemHostKeyChanged => 'Megváltozott a kulcsa.';
+
+  @override
+  String get monitorProblemHostKeyUnknown =>
+      'A kulcsát még nem fogadtad el: nyisd meg egyszer az appban.';
+
+  @override
+  String get monitorProblemMissing => 'Nincs hozzá kulcs vagy jelszó.';
+
+  @override
+  String get monitorProblemOther => 'Az ellenőrzés nem sikerült.';
+
+  @override
+  String durationSeconds(int n) {
+    return '$n másodpercig';
+  }
+
+  @override
+  String durationMinutes(int n) {
+    return '$n percig';
+  }
+
+  @override
+  String durationHours(int h, int m) {
+    return '$h óra $m percig';
+  }
+
+  @override
+  String durationDays(int d, int h) {
+    return '$d nap $h óráig';
+  }
 }

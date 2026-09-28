@@ -1321,6 +1321,114 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Sötét'**
   String get themeDark;
+
+  /// No description provided for @monitorDownTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'{name} nem elérhető'**
+  String monitorDownTitle(String name);
+
+  /// No description provided for @monitorUpTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'{name} újra elérhető'**
+  String monitorUpTitle(String name);
+
+  /// No description provided for @monitorUpBody.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az ellenőrzés újra sikerült.'**
+  String get monitorUpBody;
+
+  /// No description provided for @monitorUpBodyFor.
+  ///
+  /// In hu, this message translates to:
+  /// **'{duration} volt elérhetetlen.'**
+  String monitorUpBodyFor(String duration);
+
+  /// No description provided for @monitorHostKeyTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'{name}: megváltozott a szerver kulcsa'**
+  String monitorHostKeyTitle(String name);
+
+  /// No description provided for @monitorHostKeyBody.
+  ///
+  /// In hu, this message translates to:
+  /// **'A ServerDeck nem jelentkezett be. Nézd meg a szervert, mielőtt elfogadod az új kulcsot.'**
+  String get monitorHostKeyBody;
+
+  /// No description provided for @monitorProblemUnreachable.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem sikerült kapcsolatot nyitni.'**
+  String get monitorProblemUnreachable;
+
+  /// No description provided for @monitorProblemTimeout.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nem válaszolt időben.'**
+  String get monitorProblemTimeout;
+
+  /// No description provided for @monitorProblemAuth.
+  ///
+  /// In hu, this message translates to:
+  /// **'Válaszol, de nem fogadta el a bejelentkezést.'**
+  String get monitorProblemAuth;
+
+  /// No description provided for @monitorProblemDisconnected.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bejelentkezés előtt bontotta a kapcsolatot.'**
+  String get monitorProblemDisconnected;
+
+  /// No description provided for @monitorProblemHostKeyChanged.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megváltozott a kulcsa.'**
+  String get monitorProblemHostKeyChanged;
+
+  /// No description provided for @monitorProblemHostKeyUnknown.
+  ///
+  /// In hu, this message translates to:
+  /// **'A kulcsát még nem fogadtad el: nyisd meg egyszer az appban.'**
+  String get monitorProblemHostKeyUnknown;
+
+  /// No description provided for @monitorProblemMissing.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs hozzá kulcs vagy jelszó.'**
+  String get monitorProblemMissing;
+
+  /// No description provided for @monitorProblemOther.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az ellenőrzés nem sikerült.'**
+  String get monitorProblemOther;
+
+  /// No description provided for @durationSeconds.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} másodpercig'**
+  String durationSeconds(int n);
+
+  /// No description provided for @durationMinutes.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} percig'**
+  String durationMinutes(int n);
+
+  /// No description provided for @durationHours.
+  ///
+  /// In hu, this message translates to:
+  /// **'{h} óra {m} percig'**
+  String durationHours(int h, int m);
+
+  /// No description provided for @durationDays.
+  ///
+  /// In hu, this message translates to:
+  /// **'{d} nap {h} óráig'**
+  String durationDays(int d, int h);
 }
 
 class _AppLocalizationsDelegate
