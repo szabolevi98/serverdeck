@@ -1429,6 +1429,264 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'{d} nap {h} óráig'**
   String durationDays(int d, int h);
+
+  /// No description provided for @monitorSection.
+  ///
+  /// In hu, this message translates to:
+  /// **'Háttérfigyelés'**
+  String get monitorSection;
+
+  /// No description provided for @monitorEnable.
+  ///
+  /// In hu, this message translates to:
+  /// **'Figyelés a háttérben'**
+  String get monitorEnable;
+
+  /// No description provided for @monitorEnableHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Értesítés, ha nem érhető el, és ha újra elérhető.'**
+  String get monitorEnableHint;
+
+  /// No description provided for @monitorEvery.
+  ///
+  /// In hu, this message translates to:
+  /// **'Milyen gyakran'**
+  String get monitorEvery;
+
+  /// No description provided for @monitorHow.
+  ///
+  /// In hu, this message translates to:
+  /// **'Hogyan'**
+  String get monitorHow;
+
+  /// No description provided for @monitorModeSsh.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bejelentkezés'**
+  String get monitorModeSsh;
+
+  /// No description provided for @monitorModePort.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csak port'**
+  String get monitorModePort;
+
+  /// No description provided for @monitorModeSshHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Bejelentkezik SSH-n és lefuttat egy üres parancsot. Ez azt is ellenőrzi, hogy a kulcs még működik, és a fail2ban sem veszi támadásnak.'**
+  String get monitorModeSshHint;
+
+  /// No description provided for @monitorModePortHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Csak megnyitja és bezárja a portot. Gyorsabb, de a szigorú fail2ban-beállítás bejelentkezés nélküli kapcsolatnak veheti.'**
+  String get monitorModePortHint;
+
+  /// No description provided for @everyMinutes.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} perc'**
+  String everyMinutes(int n);
+
+  /// No description provided for @everyHours.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} óra'**
+  String everyHours(int n);
+
+  /// No description provided for @monitorTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Figyelés'**
+  String get monitorTitle;
+
+  /// No description provided for @monitorClear.
+  ///
+  /// In hu, this message translates to:
+  /// **'Napló törlése'**
+  String get monitorClear;
+
+  /// No description provided for @monitorClearTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Törlöd a figyelési naplót?'**
+  String get monitorClearTitle;
+
+  /// No description provided for @monitorClearMessage.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az ellenőrzések és a leállások törlődnek. A figyelés tovább fut.'**
+  String get monitorClearMessage;
+
+  /// No description provided for @monitorEmptyTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Nincs figyelt szerver'**
+  String get monitorEmptyTitle;
+
+  /// No description provided for @monitorEmpty.
+  ///
+  /// In hu, this message translates to:
+  /// **'Egy szerver szerkesztésénél kapcsold be a Háttérfigyelést. A ServerDeck a háttérben ellenőrzi, és szól, ha nem érhető el.'**
+  String get monitorEmpty;
+
+  /// No description provided for @monitorServers.
+  ///
+  /// In hu, this message translates to:
+  /// **'Szerverek'**
+  String get monitorServers;
+
+  /// No description provided for @monitorIncidents.
+  ///
+  /// In hu, this message translates to:
+  /// **'Leállások'**
+  String get monitorIncidents;
+
+  /// No description provided for @monitorNoIncidents.
+  ///
+  /// In hu, this message translates to:
+  /// **'Még nem volt leállás.'**
+  String get monitorNoIncidents;
+
+  /// No description provided for @monitorTimingHint.
+  ///
+  /// In hu, this message translates to:
+  /// **'Az Android legfeljebb 15 percenként futtat háttérfeladatot, csak hálózat mellett. Energiatakarékos módban vagy alvás közben késhet. Ha elmarad egy ellenőrzés, érdemes kivenni a ServerDecket az akkumulátor-optimalizálás alól.'**
+  String get monitorTimingHint;
+
+  /// No description provided for @agoNow.
+  ///
+  /// In hu, this message translates to:
+  /// **'épp most'**
+  String get agoNow;
+
+  /// No description provided for @agoMinutes.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} perce'**
+  String agoMinutes(int n);
+
+  /// No description provided for @agoHours.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} órája'**
+  String agoHours(int n);
+
+  /// No description provided for @monitorWaiting.
+  ///
+  /// In hu, this message translates to:
+  /// **'Még nem volt ellenőrzés'**
+  String get monitorWaiting;
+
+  /// No description provided for @monitorSomeDown.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} szerver nem elérhető'**
+  String monitorSomeDown(int n);
+
+  /// No description provided for @monitorAllUp.
+  ///
+  /// In hu, this message translates to:
+  /// **'Minden szerver elérhető'**
+  String get monitorAllUp;
+
+  /// No description provided for @monitorCount.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} figyelt szerver'**
+  String monitorCount(int n);
+
+  /// No description provided for @monitorLast.
+  ///
+  /// In hu, this message translates to:
+  /// **'utoljára {when}'**
+  String monitorLast(String when);
+
+  /// No description provided for @monitorChecking.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ellenőrzés…'**
+  String get monitorChecking;
+
+  /// No description provided for @monitorCheckNow.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ellenőrzés most'**
+  String get monitorCheckNow;
+
+  /// No description provided for @monitorChecked.
+  ///
+  /// In hu, this message translates to:
+  /// **'Ellenőrzés kész'**
+  String get monitorChecked;
+
+  /// No description provided for @monitorStateUnknown.
+  ///
+  /// In hu, this message translates to:
+  /// **'még nincs adat'**
+  String get monitorStateUnknown;
+
+  /// No description provided for @monitorDownFor.
+  ///
+  /// In hu, this message translates to:
+  /// **'lent · {d}'**
+  String monitorDownFor(String d);
+
+  /// No description provided for @window24h.
+  ///
+  /// In hu, this message translates to:
+  /// **'24 óra'**
+  String get window24h;
+
+  /// No description provided for @window7d.
+  ///
+  /// In hu, this message translates to:
+  /// **'7 nap'**
+  String get window7d;
+
+  /// No description provided for @window30d.
+  ///
+  /// In hu, this message translates to:
+  /// **'30 nap'**
+  String get window30d;
+
+  /// No description provided for @shortMinutes.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} p'**
+  String shortMinutes(int n);
+
+  /// No description provided for @shortHours.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} ó'**
+  String shortHours(int n);
+
+  /// No description provided for @shortDays.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} n'**
+  String shortDays(int n);
+
+  /// No description provided for @monitorOngoing.
+  ///
+  /// In hu, this message translates to:
+  /// **'tart'**
+  String get monitorOngoing;
+
+  /// No description provided for @everyNMinutes.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} percenként'**
+  String everyNMinutes(int n);
+
+  /// No description provided for @everyNHours.
+  ///
+  /// In hu, this message translates to:
+  /// **'{n} óránként'**
+  String everyNHours(int n);
 }
 
 class _AppLocalizationsDelegate

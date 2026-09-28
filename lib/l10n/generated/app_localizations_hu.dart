@@ -767,4 +767,165 @@ class AppLocalizationsHu extends AppLocalizations {
   String durationDays(int d, int h) {
     return '$d nap $h óráig';
   }
+
+  @override
+  String get monitorSection => 'Háttérfigyelés';
+
+  @override
+  String get monitorEnable => 'Figyelés a háttérben';
+
+  @override
+  String get monitorEnableHint =>
+      'Értesítés, ha nem érhető el, és ha újra elérhető.';
+
+  @override
+  String get monitorEvery => 'Milyen gyakran';
+
+  @override
+  String get monitorHow => 'Hogyan';
+
+  @override
+  String get monitorModeSsh => 'Bejelentkezés';
+
+  @override
+  String get monitorModePort => 'Csak port';
+
+  @override
+  String get monitorModeSshHint =>
+      'Bejelentkezik SSH-n és lefuttat egy üres parancsot. Ez azt is ellenőrzi, hogy a kulcs még működik, és a fail2ban sem veszi támadásnak.';
+
+  @override
+  String get monitorModePortHint =>
+      'Csak megnyitja és bezárja a portot. Gyorsabb, de a szigorú fail2ban-beállítás bejelentkezés nélküli kapcsolatnak veheti.';
+
+  @override
+  String everyMinutes(int n) {
+    return '$n perc';
+  }
+
+  @override
+  String everyHours(int n) {
+    return '$n óra';
+  }
+
+  @override
+  String get monitorTitle => 'Figyelés';
+
+  @override
+  String get monitorClear => 'Napló törlése';
+
+  @override
+  String get monitorClearTitle => 'Törlöd a figyelési naplót?';
+
+  @override
+  String get monitorClearMessage =>
+      'Az ellenőrzések és a leállások törlődnek. A figyelés tovább fut.';
+
+  @override
+  String get monitorEmptyTitle => 'Nincs figyelt szerver';
+
+  @override
+  String get monitorEmpty =>
+      'Egy szerver szerkesztésénél kapcsold be a Háttérfigyelést. A ServerDeck a háttérben ellenőrzi, és szól, ha nem érhető el.';
+
+  @override
+  String get monitorServers => 'Szerverek';
+
+  @override
+  String get monitorIncidents => 'Leállások';
+
+  @override
+  String get monitorNoIncidents => 'Még nem volt leállás.';
+
+  @override
+  String get monitorTimingHint =>
+      'Az Android legfeljebb 15 percenként futtat háttérfeladatot, csak hálózat mellett. Energiatakarékos módban vagy alvás közben késhet. Ha elmarad egy ellenőrzés, érdemes kivenni a ServerDecket az akkumulátor-optimalizálás alól.';
+
+  @override
+  String get agoNow => 'épp most';
+
+  @override
+  String agoMinutes(int n) {
+    return '$n perce';
+  }
+
+  @override
+  String agoHours(int n) {
+    return '$n órája';
+  }
+
+  @override
+  String get monitorWaiting => 'Még nem volt ellenőrzés';
+
+  @override
+  String monitorSomeDown(int n) {
+    return '$n szerver nem elérhető';
+  }
+
+  @override
+  String get monitorAllUp => 'Minden szerver elérhető';
+
+  @override
+  String monitorCount(int n) {
+    return '$n figyelt szerver';
+  }
+
+  @override
+  String monitorLast(String when) {
+    return 'utoljára $when';
+  }
+
+  @override
+  String get monitorChecking => 'Ellenőrzés…';
+
+  @override
+  String get monitorCheckNow => 'Ellenőrzés most';
+
+  @override
+  String get monitorChecked => 'Ellenőrzés kész';
+
+  @override
+  String get monitorStateUnknown => 'még nincs adat';
+
+  @override
+  String monitorDownFor(String d) {
+    return 'lent · $d';
+  }
+
+  @override
+  String get window24h => '24 óra';
+
+  @override
+  String get window7d => '7 nap';
+
+  @override
+  String get window30d => '30 nap';
+
+  @override
+  String shortMinutes(int n) {
+    return '$n p';
+  }
+
+  @override
+  String shortHours(int n) {
+    return '$n ó';
+  }
+
+  @override
+  String shortDays(int n) {
+    return '$n n';
+  }
+
+  @override
+  String get monitorOngoing => 'tart';
+
+  @override
+  String everyNMinutes(int n) {
+    return '$n percenként';
+  }
+
+  @override
+  String everyNHours(int n) {
+    return '$n óránként';
+  }
 }

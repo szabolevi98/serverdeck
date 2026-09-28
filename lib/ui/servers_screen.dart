@@ -5,6 +5,7 @@ import '../data/app_data.dart';
 import '../data/models.dart';
 import '../ssh/reach.dart';
 import 'keys_screen.dart';
+import 'monitor_screen.dart';
 import 'server_edit_screen.dart';
 import 'server_screen.dart';
 import 'settings_screen.dart';
@@ -49,6 +50,14 @@ class ServersScreen extends ConsumerWidget {
               title: Text(context.l.serversTitle),
               actions: [
                 const ThemeModeButton(),
+                IconButton(
+                  tooltip: context.l.monitorTitle,
+                  icon: const Icon(Icons.monitor_heart_rounded),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const MonitorScreen()),
+                  ),
+                ),
                 IconButton(
                   tooltip: context.l.keysTitle,
                   icon: const Icon(Icons.key_rounded),
@@ -182,11 +191,28 @@ class _ServerCard extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      server.name,
-                      style: context.text.titleMedium,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            server.name,
+                            style: context.text.titleMedium,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        if (server.monitor.enabled) ...[
+                          const SizedBox(width: 6),
+                          Tooltip(
+                            message: context.l.monitorEnable,
+                            child: Icon(
+                              Icons.monitor_heart_rounded,
+                              size: 15,
+                              color: context.colors.primary,
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                     const SizedBox(height: 3),
                     Text(

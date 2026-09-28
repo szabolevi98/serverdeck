@@ -801,4 +801,189 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$_temp0 $h h';
   }
+
+  @override
+  String get monitorSection => 'Background monitoring';
+
+  @override
+  String get monitorEnable => 'Monitor in the background';
+
+  @override
+  String get monitorEnableHint =>
+      'Get notified when it goes down and when it\'s back.';
+
+  @override
+  String get monitorEvery => 'How often';
+
+  @override
+  String get monitorHow => 'How';
+
+  @override
+  String get monitorModeSsh => 'Sign in';
+
+  @override
+  String get monitorModePort => 'Port only';
+
+  @override
+  String get monitorModeSshHint =>
+      'Signs in over SSH and runs an empty command. That also checks the key still works, and fail2ban never counts it as an attack.';
+
+  @override
+  String get monitorModePortHint =>
+      'Only opens and closes the port. Faster, but a strict fail2ban may count a connection without a sign-in.';
+
+  @override
+  String everyMinutes(int n) {
+    return '$n min';
+  }
+
+  @override
+  String everyHours(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n hours',
+      one: '1 hour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get monitorTitle => 'Monitoring';
+
+  @override
+  String get monitorClear => 'Clear the log';
+
+  @override
+  String get monitorClearTitle => 'Clear the monitoring log?';
+
+  @override
+  String get monitorClearMessage =>
+      'The checks and outages go. Monitoring carries on.';
+
+  @override
+  String get monitorEmptyTitle => 'No servers monitored';
+
+  @override
+  String get monitorEmpty =>
+      'Turn on Background monitoring when you edit a server. ServerDeck checks it in the background and tells you when it\'s down.';
+
+  @override
+  String get monitorServers => 'Servers';
+
+  @override
+  String get monitorIncidents => 'Outages';
+
+  @override
+  String get monitorNoIncidents => 'No outages yet.';
+
+  @override
+  String get monitorTimingHint =>
+      'Android runs background work at most every 15 minutes, and only with a network. Battery saver or deep sleep can delay it; if checks go missing, take ServerDeck out of battery optimisation.';
+
+  @override
+  String get agoNow => 'just now';
+
+  @override
+  String agoMinutes(int n) {
+    return '$n min ago';
+  }
+
+  @override
+  String agoHours(int n) {
+    return '$n h ago';
+  }
+
+  @override
+  String get monitorWaiting => 'No check yet';
+
+  @override
+  String monitorSomeDown(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n servers are down',
+      one: '1 server is down',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get monitorAllUp => 'All servers are up';
+
+  @override
+  String monitorCount(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n servers monitored',
+      one: '1 server monitored',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String monitorLast(String when) {
+    return 'last $when';
+  }
+
+  @override
+  String get monitorChecking => 'Checking…';
+
+  @override
+  String get monitorCheckNow => 'Check now';
+
+  @override
+  String get monitorChecked => 'Checked';
+
+  @override
+  String get monitorStateUnknown => 'no data yet';
+
+  @override
+  String monitorDownFor(String d) {
+    return 'down · $d';
+  }
+
+  @override
+  String get window24h => '24 hours';
+
+  @override
+  String get window7d => '7 days';
+
+  @override
+  String get window30d => '30 days';
+
+  @override
+  String shortMinutes(int n) {
+    return '$n m';
+  }
+
+  @override
+  String shortHours(int n) {
+    return '$n h';
+  }
+
+  @override
+  String shortDays(int n) {
+    return '$n d';
+  }
+
+  @override
+  String get monitorOngoing => 'ongoing';
+
+  @override
+  String everyNMinutes(int n) {
+    return 'every $n min';
+  }
+
+  @override
+  String everyNHours(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'every $n h',
+      one: 'hourly',
+    );
+    return '$_temp0';
+  }
 }

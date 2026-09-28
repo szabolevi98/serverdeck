@@ -462,5 +462,139 @@
         "type": "int"
       }
     }
+  },
+  "monitorSection": "Háttérfigyelés",
+  "monitorEnable": "Figyelés a háttérben",
+  "monitorEnableHint": "Értesítés, ha nem érhető el, és ha újra elérhető.",
+  "monitorEvery": "Milyen gyakran",
+  "monitorHow": "Hogyan",
+  "monitorModeSsh": "Bejelentkezés",
+  "monitorModePort": "Csak port",
+  "monitorModeSshHint": "Bejelentkezik SSH-n és lefuttat egy üres parancsot. Ez azt is ellenőrzi, hogy a kulcs még működik, és a fail2ban sem veszi támadásnak.",
+  "monitorModePortHint": "Csak megnyitja és bezárja a portot. Gyorsabb, de a szigorú fail2ban-beállítás bejelentkezés nélküli kapcsolatnak veheti.",
+  "everyMinutes": "{n} perc",
+  "everyHours": "{n} óra",
+  "@everyMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@everyHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "monitorTitle": "Figyelés",
+  "monitorClear": "Napló törlése",
+  "monitorClearTitle": "Törlöd a figyelési naplót?",
+  "monitorClearMessage": "Az ellenőrzések és a leállások törlődnek. A figyelés tovább fut.",
+  "monitorEmptyTitle": "Nincs figyelt szerver",
+  "monitorEmpty": "Egy szerver szerkesztésénél kapcsold be a Háttérfigyelést. A ServerDeck a háttérben ellenőrzi, és szól, ha nem érhető el.",
+  "monitorServers": "Szerverek",
+  "monitorIncidents": "Leállások",
+  "monitorNoIncidents": "Még nem volt leállás.",
+  "monitorTimingHint": "Az Android legfeljebb 15 percenként futtat háttérfeladatot, csak hálózat mellett. Energiatakarékos módban vagy alvás közben késhet. Ha elmarad egy ellenőrzés, érdemes kivenni a ServerDecket az akkumulátor-optimalizálás alól.",
+  "agoNow": "épp most",
+  "agoMinutes": "{n} perce",
+  "agoHours": "{n} órája",
+  "monitorWaiting": "Még nem volt ellenőrzés",
+  "monitorSomeDown": "{n} szerver nem elérhető",
+  "monitorAllUp": "Minden szerver elérhető",
+  "monitorCount": "{n} figyelt szerver",
+  "monitorLast": "utoljára {when}",
+  "monitorChecking": "Ellenőrzés…",
+  "monitorCheckNow": "Ellenőrzés most",
+  "monitorChecked": "Ellenőrzés kész",
+  "monitorStateUnknown": "még nincs adat",
+  "monitorDownFor": "lent · {d}",
+  "window24h": "24 óra",
+  "window7d": "7 nap",
+  "window30d": "30 nap",
+  "shortMinutes": "{n} p",
+  "shortHours": "{n} ó",
+  "shortDays": "{n} n",
+  "monitorOngoing": "tart",
+  "@agoMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@agoHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@monitorSomeDown": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@monitorCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@monitorLast": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "@monitorDownFor": {
+    "placeholders": {
+      "d": {
+        "type": "String"
+      }
+    }
+  },
+  "@shortMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@shortHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@shortDays": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "everyNMinutes": "{n} percenként",
+  "everyNHours": "{n} óránként",
+  "@everyNMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@everyNHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
   }
 }

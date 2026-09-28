@@ -15,6 +15,9 @@ import 'package:flutter_riverpod/misc.dart' show Override;
 import '../data/app_data.dart';
 import '../data/models.dart';
 import '../data/storage.dart';
+import '../monitor/checker.dart';
+import '../monitor/monitor_log.dart';
+import '../monitor/monitor_providers.dart';
 import '../probes/services.dart';
 import '../probes/stats.dart';
 import '../ssh/connection.dart';
@@ -46,6 +49,7 @@ List<Override> demoOverrides() {
         host: '203.0.113.10',
         username: 'deploy',
         keyId: 'k1',
+        monitor: MonitorConfig(enabled: true, minutes: 30),
       ),
       ServerProfile(
         id: 'db-1',
@@ -53,6 +57,7 @@ List<Override> demoOverrides() {
         host: '203.0.113.21',
         username: 'root',
         keyId: 'k1',
+        monitor: MonitorConfig(enabled: true, minutes: 15),
       ),
       ServerProfile(
         id: 'staging',
@@ -68,6 +73,11 @@ List<Override> demoOverrides() {
         host: '192.0.2.44',
         username: 'root',
         keyId: 'k1',
+        monitor: MonitorConfig(
+          enabled: true,
+          minutes: 60,
+          mode: MonitorMode.port,
+        ),
       ),
     ],
     keys: [
@@ -123,12 +133,67 @@ List<Override> demoOverrides() {
     ],
   );
 
+  final monitorFile = MemoryMonitorLogFile(_demoHistory(DateTime.now()));
   return [
     dataFileProvider.overrideWithValue(MemoryDataFile(data)),
+    monitorLogFileProvider.overrideWithValue(monitorFile),
+    monitorSchedulerProvider.overrideWithValue((_) async {}),
+    monitorRunnerProvider.overrideWithValue(({bool force = false}) async {
+      final (log, events) = await runChecks(
+        servers: data.servers,
+        log: await monitorFile.load(),
+        force: force,
+        retryAfter: Duration.zero,
+        check: (s) async {
+          await Future<void>.delayed(const Duration(milliseconds: 600));
+          return s.id == 'backup'
+              ? const CheckOutcome.down('timeout')
+              : CheckOutcome.up(
+                  Duration(milliseconds: s.id == 'db-1' ? 212 : 184),
+                );
+        },
+      );
+      await monitorFile.save(log);
+      return (log, events);
+    }),
     secretStoreProvider.overrideWithValue(secrets),
     knockProvider.overrideWithValue(_knock),
     connectorProvider.overrideWithValue(_connect),
   ];
+}
+
+/// Thirty days of checks: web-1 with one 45-minute outage three days ago,
+/// db-1 with a short blip, backup down for the last two hours.
+MonitorLog _demoHistory(DateTime now) {
+  var log = const MonitorLog();
+  for (final (id, every) in [('web-1', 30), ('db-1', 15), ('backup', 60)]) {
+    for (
+      var t = now.subtract(const Duration(days: 30));
+      t.isBefore(now);
+      t = t.add(Duration(minutes: every))
+    ) {
+      final ago = now.difference(t);
+      final down = switch (id) {
+        'web-1' =>
+          ago > const Duration(days: 3) &&
+              ago < const Duration(days: 3, minutes: 45),
+        'db-1' =>
+          ago > const Duration(days: 9) &&
+              ago < const Duration(days: 9, minutes: 16),
+        _ => ago < const Duration(hours: 2),
+      };
+      log = log.record(
+        id,
+        CheckRecord(
+          at: t,
+          up: !down,
+          latencyMs: down ? null : 150 + (t.minute * 7) % 90,
+          problem: down ? (id == 'db-1' ? 'unreachable' : 'timeout') : null,
+        ),
+      );
+    }
+  }
+  return log;
 }
 
 Future<Reachability> _knock(String host, int port) async {

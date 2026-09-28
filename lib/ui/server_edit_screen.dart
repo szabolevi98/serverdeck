@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/app_data.dart';
 import '../data/models.dart';
+import '../monitor/notify.dart';
 import '../ssh/keys.dart';
 import 'theme.dart';
 import 'widgets.dart';
@@ -33,6 +34,7 @@ class _ServerEditScreenState extends ConsumerState<ServerEditScreen> {
   bool _hasPassword = false;
   bool _showPassword = false;
   bool _saving = false;
+  late MonitorConfig _monitor = widget.server?.monitor ?? const MonitorConfig();
 
   bool get _editing => widget.server != null;
 
@@ -154,6 +156,8 @@ class _ServerEditScreenState extends ConsumerState<ServerEditScreen> {
                   ? _keyPicker(keys, selectedKey)
                   : _passwordField(),
             ),
+            SectionLabel(l.monitorSection),
+            _monitorCard(),
             const SizedBox(height: 28),
             FilledButton(
               onPressed: _saving ? null : _save,
@@ -214,6 +218,103 @@ class _ServerEditScreenState extends ConsumerState<ServerEditScreen> {
     );
   }
 
+  Widget _monitorCard() {
+    final l = context.l;
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(4, 4, 4, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SwitchListTile(
+              secondary: const TintedIcon(
+                Icons.monitor_heart_rounded,
+                size: 40,
+              ),
+              title: Text(l.monitorEnable),
+              subtitle: Text(l.monitorEnableHint),
+              value: _monitor.enabled,
+              onChanged: (on) async {
+                setState(() => _monitor = _monitor.copyWith(enabled: on));
+                if (on) {
+                  try {
+                    await requestNotificationPermission();
+                  } catch (_) {
+                    // No plugin in tests; the switch still counts.
+                  }
+                }
+              },
+            ),
+            AnimatedSize(
+              duration: const Duration(milliseconds: 220),
+              alignment: Alignment.topCenter,
+              child: !_monitor.enabled
+                  ? const SizedBox(width: double.infinity)
+                  : Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 4, 12, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(l.monitorEvery, style: context.text.labelLarge),
+                          const SizedBox(height: 8),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: [
+                              for (final m in MonitorConfig.choices)
+                                ChoiceChip(
+                                  label: Text(minutesLabel(context, m)),
+                                  selected: _monitor.minutes == m,
+                                  showCheckmark: false,
+                                  onSelected: (_) => setState(
+                                    () => _monitor = _monitor.copyWith(
+                                      minutes: m,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Text(l.monitorHow, style: context.text.labelLarge),
+                          const SizedBox(height: 8),
+                          SegmentedButton<MonitorMode>(
+                            segments: [
+                              ButtonSegment(
+                                value: MonitorMode.ssh,
+                                icon: const Icon(Icons.login_rounded),
+                                label: Text(l.monitorModeSsh),
+                              ),
+                              ButtonSegment(
+                                value: MonitorMode.port,
+                                icon: const Icon(Icons.lan_rounded),
+                                label: Text(l.monitorModePort),
+                              ),
+                            ],
+                            selected: {_monitor.mode},
+                            onSelectionChanged: (s) => setState(
+                              () => _monitor = _monitor.copyWith(mode: s.first),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            _monitor.mode == MonitorMode.ssh
+                                ? l.monitorModeSshHint
+                                : l.monitorModePortHint,
+                            style: context.text.bodySmall?.copyWith(
+                              color: context.colors.onSurfaceVariant,
+                              height: 1.4,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _passwordField() => TextFormField(
     key: const ValueKey('password'),
     controller: _password,
@@ -262,6 +363,7 @@ class _ServerEditScreenState extends ConsumerState<ServerEditScreen> {
       username: _user.text.trim(),
       auth: _auth,
       keyId: _auth == AuthMethod.key ? _keyId : widget.server?.keyId,
+      monitor: _monitor,
     );
     final password = _password.text;
     await ref
@@ -326,3 +428,8 @@ class PublicKeyBox extends StatelessWidget {
     ),
   );
 }
+
+/// 15 → "15 perc", 60 → "1 óra", in the app's language.
+String minutesLabel(BuildContext context, int minutes) => minutes < 60
+    ? context.l.everyMinutes(minutes)
+    : context.l.everyHours(minutes ~/ 60);
