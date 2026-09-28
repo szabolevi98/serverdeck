@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../data/app_data.dart';
 import '../data/models.dart';
 import 'app_lock.dart';
+import 'theme_toggle.dart';
 import 'theme.dart';
 import 'widgets.dart';
 
@@ -27,6 +28,25 @@ class SettingsScreen extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
         children: [
+          SectionLabel(l.themeTitle),
+          SegmentedButton<ThemeMode>(
+            segments: [
+              for (final mode in [
+                ThemeMode.system,
+                ThemeMode.light,
+                ThemeMode.dark,
+              ])
+                ButtonSegment(
+                  value: mode,
+                  icon: Icon(ThemeModeButton.iconFor(mode)),
+                  label: Text(ThemeModeButton.labelFor(context, mode)),
+                ),
+            ],
+            selected: {data.settings.themeMode},
+            onSelectionChanged: (s) => ref
+                .read(appDataProvider.notifier)
+                .updateSettings(data.settings.copyWith(themeMode: s.first)),
+          ),
           SectionLabel(l.settingsSecurity),
           Card(
             child: SwitchListTile(

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart' show ThemeMode;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:serverdeck/data/app_data.dart';
@@ -114,12 +115,16 @@ void main() {
   test('the data survives a round trip through JSON', () async {
     await notifier().saveServer(web.copyWith(port: 2222));
     await notifier().addKey('k', generateEd25519('t'));
-    await notifier().updateSettings(const Settings(appLock: true));
+    await notifier().updateSettings(
+      const Settings(appLock: true, themeMode: ThemeMode.dark),
+    );
     final back = AppData.fromJson(file.data.toJson());
     expect(back.servers.single.port, 2222);
     expect(back.servers.single.hostKeyId, '[example.com]:2222');
     expect(back.servers.single.address, 'root@example.com:2222');
     expect(back.keys.single.name, 'k');
     expect(back.settings.appLock, isTrue);
+    expect(back.settings.themeMode, ThemeMode.dark);
+    expect(Settings.fromJson(const {}).themeMode, ThemeMode.system);
   });
 }

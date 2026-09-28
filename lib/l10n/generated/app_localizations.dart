@@ -1297,6 +1297,30 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'hiba'**
   String get sessionError;
+
+  /// No description provided for @themeTitle.
+  ///
+  /// In hu, this message translates to:
+  /// **'Megjelenés'**
+  String get themeTitle;
+
+  /// No description provided for @themeSystem.
+  ///
+  /// In hu, this message translates to:
+  /// **'Rendszer'**
+  String get themeSystem;
+
+  /// No description provided for @themeLight.
+  ///
+  /// In hu, this message translates to:
+  /// **'Világos'**
+  String get themeLight;
+
+  /// No description provided for @themeDark.
+  ///
+  /// In hu, this message translates to:
+  /// **'Sötét'**
+  String get themeDark;
 }
 
 class _AppLocalizationsDelegate

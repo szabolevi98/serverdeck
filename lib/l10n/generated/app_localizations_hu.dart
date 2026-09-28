@@ -681,4 +681,16 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get sessionError => 'hiba';
+
+  @override
+  String get themeTitle => 'Megjelenés';
+
+  @override
+  String get themeSystem => 'Rendszer';
+
+  @override
+  String get themeLight => 'Világos';
+
+  @override
+  String get themeDark => 'Sötét';
 }

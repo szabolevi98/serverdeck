@@ -8,6 +8,7 @@ import 'keys_screen.dart';
 import 'server_edit_screen.dart';
 import 'server_screen.dart';
 import 'settings_screen.dart';
+import 'theme_toggle.dart';
 import 'theme.dart';
 import 'widgets.dart';
 
@@ -47,6 +48,7 @@ class ServersScreen extends ConsumerWidget {
             SliverAppBar.large(
               title: Text(context.l.serversTitle),
               actions: [
+                const ThemeModeButton(),
                 IconButton(
                   tooltip: context.l.keysTitle,
                   icon: const Icon(Icons.key_rounded),

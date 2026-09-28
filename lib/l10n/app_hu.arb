@@ -378,5 +378,9 @@
       }
     }
   },
-  "sessionError": "hiba"
+  "sessionError": "hiba",
+  "themeTitle": "Megjelenés",
+  "themeSystem": "Rendszer",
+  "themeLight": "Világos",
+  "themeDark": "Sötét"
 }

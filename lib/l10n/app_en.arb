@@ -199,5 +199,9 @@
   "installKeyAction": "Install",
   "installKeyHint": "ServerDeck signs in once with the password of {user} and adds the key's public half to ~/.ssh/authorized_keys. The password isn't kept.",
   "installKeyDone": "The key is on the server. Connecting with it…",
-  "sessionError": "error"
+  "sessionError": "error",
+  "themeTitle": "Appearance",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark"
 }

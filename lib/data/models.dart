@@ -2,6 +2,8 @@
 /// here: they live in the platform's secure storage, keyed by these ids.
 library;
 
+import 'package:flutter/material.dart' show ThemeMode;
+
 enum AuthMethod { key, password }
 
 class ServerProfile {
@@ -230,18 +232,29 @@ class LogSource {
 enum LogKind { journal, unit, file }
 
 class Settings {
-  const Settings({this.appLock = false});
+  const Settings({this.appLock = false, this.themeMode = ThemeMode.system});
 
   /// Ask for a fingerprint, face or the device PIN on start and on return.
   final bool appLock;
 
-  Settings copyWith({bool? appLock}) =>
-      Settings(appLock: appLock ?? this.appLock);
+  /// Light, dark, or whatever the phone is set to.
+  final ThemeMode themeMode;
 
-  Map<String, Object?> toJson() => {'appLock': appLock};
+  Settings copyWith({bool? appLock, ThemeMode? themeMode}) => Settings(
+    appLock: appLock ?? this.appLock,
+    themeMode: themeMode ?? this.themeMode,
+  );
 
-  factory Settings.fromJson(Map<String, Object?> json) =>
-      Settings(appLock: json['appLock'] as bool? ?? false);
+  Map<String, Object?> toJson() => {
+    'appLock': appLock,
+    'themeMode': themeMode.name,
+  };
+
+  factory Settings.fromJson(Map<String, Object?> json) => Settings(
+    appLock: json['appLock'] as bool? ?? false,
+    themeMode:
+        ThemeMode.values.asNameMap()[json['themeMode']] ?? ThemeMode.system,
+  );
 }
 
 /// Everything in the data file, as one immutable value.

@@ -698,4 +698,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sessionError => 'error';
+
+  @override
+  String get themeTitle => 'Appearance';
+
+  @override
+  String get themeSystem => 'System';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
 }
