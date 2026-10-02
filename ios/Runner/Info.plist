@@ -21,6 +21,9 @@
 		<array>
 			<string>hu</string>
 			<string>en</string>
+			<string>de</string>
+			<string>es</string>
+			<string>fr</string>
 		</array>
 		<key>CFBundleDisplayName</key>
 		<string>ServerDeck</string>

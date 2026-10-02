@@ -143,8 +143,9 @@ On iOS the system decides when background work runs, and it may be rare.
 
 ### Languages
 
-Hungarian and English, following the phone's language; from Android 13 the
-app's language can be set on its own in the system settings.
+Hungarian, English, German, Spanish and French. The app follows the phone's
+language, or the one picked under Settings → Language; background
+notifications come in the same language.
 
 ## Screens
 
@@ -251,7 +252,7 @@ lib/
   monitor/   background checks, the outage log, notifications, the schedule
   ui/        the screens, the theme and shared widgets
   demo/      the invented servers of the demo build
-  l10n/      Hungarian and English
+  l10n/      Hungarian, English, German, Spanish and French
 test/        unit and widget tests; fixtures from a real server and ssh-keygen
 assets/      the icon and JetBrains Mono (OFL)
 docs/        the cover and the screenshots

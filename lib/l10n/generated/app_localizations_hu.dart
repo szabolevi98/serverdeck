@@ -695,6 +695,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get themeDark => 'Sötét';
 
   @override
+  String get languageTitle => 'Nyelv';
+
+  @override
+  String get languageSystem => 'A telefon nyelve';
+
+  @override
   String monitorDownTitle(String name) {
     return '$name nem elérhető';
   }

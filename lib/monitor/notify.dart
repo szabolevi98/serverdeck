@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../l10n/generated/app_localizations.dart';
+import '../l10n/languages.dart';
 import 'checker.dart';
 
 final _plugin = FlutterLocalNotificationsPlugin();
@@ -57,14 +58,13 @@ Future<bool> requestNotificationPermission() async {
   return false;
 }
 
-/// The phone's language, or English: the background has no widget tree to
-/// ask.
-AppLocalizations _strings() {
+/// The language chosen in the app, else the phone's, else English: the
+/// background has no widget tree to ask.
+AppLocalizations _strings(String? language) {
   final code = Platform.localeName.split(RegExp('[_-]')).first;
-  final supported = AppLocalizations.supportedLocales.map(
-    (l) => l.languageCode,
+  return lookupAppLocalizations(
+    chosenLocale(language) ?? chosenLocale(code) ?? const Locale('en'),
   );
-  return lookupAppLocalizations(Locale(supported.contains(code) ? code : 'en'));
 }
 
 String describeProblem(AppLocalizations l, String? problem) =>
@@ -89,10 +89,11 @@ String describeDuration(AppLocalizations l, Duration d) {
 /// One notification per server, so "back up" replaces "down".
 int _idFor(String serverId) => serverId.hashCode & 0x7fffffff;
 
-Future<void> notifyEvents(List<MonitorEvent> events) async {
+/// [language] is the one chosen in the app's settings, if any.
+Future<void> notifyEvents(List<MonitorEvent> events, {String? language}) async {
   if (events.isEmpty) return;
   await initNotifications();
-  final l = _strings();
+  final l = _strings(language);
   for (final e in events) {
     final name = e.server.name;
     final (title, body) = switch (e.kind) {

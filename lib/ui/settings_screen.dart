@@ -5,6 +5,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../data/app_data.dart';
 import '../data/models.dart';
+import '../l10n/languages.dart';
 import 'app_lock.dart';
 import 'theme_toggle.dart';
 import 'theme.dart';
@@ -52,6 +53,22 @@ class SettingsScreen extends ConsumerWidget {
             onSelectionChanged: (s) => ref
                 .read(appDataProvider.notifier)
                 .updateSettings(data.settings.copyWith(themeMode: s.first)),
+          ),
+          SectionLabel(l.languageTitle),
+          DropdownButtonFormField<String?>(
+            initialValue: chosenLocale(data.settings.language)?.languageCode,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.translate_rounded),
+            ),
+            items: [
+              DropdownMenuItem(value: null, child: Text(l.languageSystem)),
+              for (final MapEntry(key: code, value: name)
+                  in languageNames.entries)
+                DropdownMenuItem(value: code, child: Text(name)),
+            ],
+            onChanged: (code) => ref
+                .read(appDataProvider.notifier)
+                .updateSettings(data.settings.copyWith(language: () => code)),
           ),
           SectionLabel(l.settingsSecurity),
           Card(

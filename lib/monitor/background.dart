@@ -70,7 +70,7 @@ Future<(MonitorLog, List<MonitorEvent>)> runMonitorOnce({
     },
   );
   await file.save(next);
-  await notifyEvents(events);
+  await notifyEvents(events, language: data.settings.language);
   return (next, events);
 }
 

@@ -116,7 +116,7 @@ void main() {
     await notifier().saveServer(web.copyWith(port: 2222));
     await notifier().addKey('k', generateEd25519('t'));
     await notifier().updateSettings(
-      const Settings(appLock: true, themeMode: ThemeMode.dark),
+      const Settings(appLock: true, themeMode: ThemeMode.dark, language: 'de'),
     );
     final back = AppData.fromJson(file.data.toJson());
     expect(back.servers.single.port, 2222);
@@ -125,6 +125,9 @@ void main() {
     expect(back.keys.single.name, 'k');
     expect(back.settings.appLock, isTrue);
     expect(back.settings.themeMode, ThemeMode.dark);
+    expect(back.settings.language, 'de');
     expect(Settings.fromJson(const {}).themeMode, ThemeMode.system);
+    expect(Settings.fromJson(const {}).language, isNull);
+    expect(back.settings.copyWith(language: () => null).language, isNull);
   });
 }

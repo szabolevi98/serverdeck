@@ -712,6 +712,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get themeDark => 'Dark';
 
   @override
+  String get languageTitle => 'Language';
+
+  @override
+  String get languageSystem => 'The phone\'s language';
+
+  @override
   String monitorDownTitle(String name) {
     return '$name is down';
   }

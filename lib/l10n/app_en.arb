@@ -204,6 +204,8 @@
   "themeSystem": "System",
   "themeLight": "Light",
   "themeDark": "Dark",
+  "languageTitle": "Language",
+  "languageSystem": "The phone's language",
   "monitorDownTitle": "{name} is down",
   "monitorUpTitle": "{name} is back up",
   "monitorUpBody": "The check works again.",
