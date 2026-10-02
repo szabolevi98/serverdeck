@@ -383,6 +383,8 @@
   "themeSystem": "Rendszer",
   "themeLight": "Világos",
   "themeDark": "Sötét",
+  "languageTitle": "Nyelv",
+  "languageSystem": "A telefon nyelve",
   "monitorDownTitle": "{name} nem elérhető",
   "monitorUpTitle": "{name} újra elérhető",
   "monitorUpBody": "Az ellenőrzés újra sikerült.",

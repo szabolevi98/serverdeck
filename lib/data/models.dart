@@ -293,7 +293,11 @@ class LogSource {
 enum LogKind { journal, unit, file }
 
 class Settings {
-  const Settings({this.appLock = false, this.themeMode = ThemeMode.system});
+  const Settings({
+    this.appLock = false,
+    this.themeMode = ThemeMode.system,
+    this.language,
+  });
 
   /// Ask for a fingerprint, face or the device PIN on start and on return.
   final bool appLock;
@@ -301,20 +305,31 @@ class Settings {
   /// Light, dark, or whatever the phone is set to.
   final ThemeMode themeMode;
 
-  Settings copyWith({bool? appLock, ThemeMode? themeMode}) => Settings(
+  /// A language code the app is translated to, or null for the phone's
+  /// language.
+  final String? language;
+
+  Settings copyWith({
+    bool? appLock,
+    ThemeMode? themeMode,
+    String? Function()? language,
+  }) => Settings(
     appLock: appLock ?? this.appLock,
     themeMode: themeMode ?? this.themeMode,
+    language: language != null ? language() : this.language,
   );
 
   Map<String, Object?> toJson() => {
     'appLock': appLock,
     'themeMode': themeMode.name,
+    'language': language,
   };
 
   factory Settings.fromJson(Map<String, Object?> json) => Settings(
     appLock: json['appLock'] as bool? ?? false,
     themeMode:
         ThemeMode.values.asNameMap()[json['themeMode']] ?? ThemeMode.system,
+    language: json['language'] as String?,
   );
 }
 
