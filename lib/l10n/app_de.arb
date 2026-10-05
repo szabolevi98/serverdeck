@@ -194,7 +194,7 @@
   "settingsKnownHostsEmpty": "Noch keine Serverschlüssel akzeptiert.",
   "settingsKnownHostsHint": "Beim ersten Kontakt akzeptierte Identitätsschlüssel. Ändert sich der Schlüssel eines Servers, verbindet sich ServerDeck erst wieder, wenn du den alten hier vergisst.",
   "settingsAbout": "Über",
-  "settingsAboutText": "SSH-Serververwaltung. Open Source, MIT-Lizenz. Sammelt nichts; alles bleibt auf dem Telefon.",
+  "settingsAboutText": "SSH-Serververwaltung. Open Source, AGPL-3.0-Lizenz. Sammelt nichts; alles bleibt auf dem Telefon.",
   "installKey": "Schlüssel mit Passwort installieren",
   "installKeyAction": "Installieren",
   "installKeyHint": "ServerDeck meldet sich einmal mit dem Passwort von {user} an und fügt den öffentlichen Teil des Schlüssels zu ~/.ssh/authorized_keys hinzu. Das Passwort wird nicht gespeichert.",

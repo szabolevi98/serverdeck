@@ -683,7 +683,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsAboutText =>
-      'SSH-Serververwaltung. Open Source, MIT-Lizenz. Sammelt nichts; alles bleibt auf dem Telefon.';
+      'SSH-Serververwaltung. Open Source, AGPL-3.0-Lizenz. Sammelt nichts; alles bleibt auf dem Telefon.';
 
   @override
   String get installKey => 'Schlüssel mit Passwort installieren';

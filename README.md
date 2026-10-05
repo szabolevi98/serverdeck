@@ -260,6 +260,6 @@ docs/        the cover and the screenshots
 
 ## License
 
-[MIT](LICENSE). JetBrains Mono is under the SIL Open Font License, in
+[GNU AGPL-3.0](LICENSE). JetBrains Mono is under the SIL Open Font License, in
 [assets/fonts](assets/fonts/JetBrainsMono-OFL.txt).
 © 2026 [szabolevi98](https://github.com/szabolevi98)

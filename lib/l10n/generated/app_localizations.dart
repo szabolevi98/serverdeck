@@ -1271,7 +1271,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsAboutText.
   ///
   /// In hu, this message translates to:
-  /// **'SSH-szerverkezelő. Nyílt forrású, MIT-licenc. Adatot nem gyűjt, minden a telefonon marad.'**
+  /// **'SSH-szerverkezelő. Nyílt forrású, AGPL-3.0-licenc. Adatot nem gyűjt, minden a telefonon marad.'**
   String get settingsAboutText;
 
   /// No description provided for @installKey.

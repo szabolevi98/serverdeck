@@ -662,7 +662,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get settingsAboutText =>
-      'SSH-szerverkezelő. Nyílt forrású, MIT-licenc. Adatot nem gyűjt, minden a telefonon marad.';
+      'SSH-szerverkezelő. Nyílt forrású, AGPL-3.0-licenc. Adatot nem gyűjt, minden a telefonon marad.';
 
   @override
   String get installKey => 'Kulcs telepítése jelszóval';

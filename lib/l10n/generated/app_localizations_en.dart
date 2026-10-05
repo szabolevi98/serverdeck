@@ -680,7 +680,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsAboutText =>
-      'SSH server manager. Open source, MIT license. Collects nothing; everything stays on the phone.';
+      'SSH server manager. Open source, AGPL-3.0 license. Collects nothing; everything stays on the phone.';
 
   @override
   String get installKey => 'Install the key with a password';

@@ -681,7 +681,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsAboutText =>
-      'Gestor de servidores SSH. Código abierto, licencia MIT. No recopila nada; todo se queda en el teléfono.';
+      'Gestor de servidores SSH. Código abierto, licencia AGPL-3.0. No recopila nada; todo se queda en el teléfono.';
 
   @override
   String get installKey => 'Instalar la clave con una contraseña';

@@ -194,7 +194,7 @@
   "settingsKnownHostsEmpty": "Aún no se ha aceptado ninguna clave de servidor.",
   "settingsKnownHostsHint": "Claves de identidad aceptadas en el primer contacto. Si la clave de un servidor cambia, ServerDeck no se conectará hasta que olvides aquí la antigua.",
   "settingsAbout": "Acerca de",
-  "settingsAboutText": "Gestor de servidores SSH. Código abierto, licencia MIT. No recopila nada; todo se queda en el teléfono.",
+  "settingsAboutText": "Gestor de servidores SSH. Código abierto, licencia AGPL-3.0. No recopila nada; todo se queda en el teléfono.",
   "installKey": "Instalar la clave con una contraseña",
   "installKeyAction": "Instalar",
   "installKeyHint": "ServerDeck inicia sesión una vez con la contraseña de {user} y añade la parte pública de la clave a ~/.ssh/authorized_keys. La contraseña no se guarda.",
