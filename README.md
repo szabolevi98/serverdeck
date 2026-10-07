@@ -139,7 +139,8 @@ On iOS the system decides when background work runs, and it may be rare.
   settings.
 - **App lock**: optionally, the phone's fingerprint, face or PIN at start and
   after a minute in the background.
-- ServerDeck **collects nothing** and talks to nothing but your servers.
+- ServerDeck **collects nothing** and talks to nothing but your servers; the
+  [privacy policy](PRIVACY.md) says so in full.
 
 ### Languages
 
@@ -180,6 +181,11 @@ are invented.
 It needs **Android 7.0 (API 24)** or later. Updates install over the old
 version; stay with the same kind of APK, arm64 or universal.
 
+From 1.3.0 the APKs are signed with a new key, since the old one was lost.
+Android installs an update only with the same key, so going from 1.2.1 or
+earlier to 1.3.0 takes uninstalling the old version first, and its servers
+and keys go with it. Later updates install over 1.3.0 as before.
+
 ### iOS
 
 Each release also has `serverdeck-*-ios-unsigned.ipa`, built by GitHub Actions
@@ -198,9 +204,12 @@ logs need `journalctl` or `tail`.
 
 ## Trying it without a server
 
-The demo build has four invented servers, on the addresses RFC 5737 keeps for
-documentation, whose stats, services, containers, logs, commands and shell
-answer like real ones, with no network at all:
+**Try the demo**, on the empty server list, opens four invented servers, on
+the addresses RFC 5737 keeps for documentation, whose stats, services,
+containers, logs, commands and shell answer like real ones, with no network
+at all. Nothing in it is saved, and Exit goes back to the empty list.
+
+The demo build starts in it, with no way out; the screenshots are of it:
 
 ```
 flutter run --dart-define=SERVERDECK_DEMO=true
