@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ServerDeck privacy policy</title>
+<meta name="description" content="How the ServerDeck SSH app handles your data: it collects nothing.">
+<style>
+  :root { --bg: #f6f8fa; --fg: #1b2129; --muted: #5b6673; --accent: #0f9d63; --card: #ffffff; --line: #dde3ea; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151b23; --fg: #e8edf2; --muted: #96a2b0; --accent: #3ddc97; --card: #1d2530; --line: #2c3644; }
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 1.9rem; line-height: 1.25; margin: 0 0 4px; }
+  h2 { font-size: 1.2rem; margin: 2em 0 .4em; padding-top: 1em; border-top: 1px solid var(--line); }
+  a { color: var(--accent); }
+  ul { padding-left: 1.3em; }
+  li { margin: .3em 0; }
+  p:first-of-type { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<h1>ServerDeck privacy policy</h1>
+<p>Last updated: 7 October 2026</p>
+<p>ServerDeck is an SSH client for managing your own Linux servers from a phone.
+It is made by szabolevi98 (<a href="mailto:info@levente.net">info@levente.net</a>) and is open source under the
+GNU AGPL-3.0: <a href="https://github.com/szabolevi98/serverdeck">https://github.com/szabolevi98/serverdeck</a></p>
+<h2>In short</h2>
+<p>ServerDeck collects nothing. It has no account, no analytics, no advertising,
+no crash reporting and no server of its own. Everything you enter stays on your
+phone, and the app talks to nothing but the servers you add.</p>
+<h2>What is stored, and where</h2>
+<p>Everything below is stored only on your device, in the app's private storage:</p>
+<ul>
+<li><strong>Server details</strong> you enter: name, address, port and user name.</li>
+<li><strong>Private keys and passwords</strong>, kept in the Android Keystore (on iOS, the
+  Keychain). A key's passphrase is used once to unlock it and is not kept. A
+  password used to install a key is not kept either.</li>
+<li><strong>Host keys</strong> of servers you have accepted, to recognise them later.</li>
+<li><strong>Saved commands and log sources</strong> you create.</li>
+<li><strong>Monitoring results</strong>: the checks of the last 30 days and the last 500
+  outages of the servers you choose to monitor.</li>
+<li><strong>Settings</strong>, such as the theme, the language and the app lock.</li>
+</ul>
+<p>App backups are turned off, so this data is not copied to Google Drive or any
+other backup. Uninstalling the app deletes all of it.</p>
+<h2>Network connections</h2>
+<p>ServerDeck connects only to:</p>
+<ul>
+<li><strong>The servers you add</strong>, over SSH, to show their status, services, logs, a
+  terminal and the commands you run. What is sent to a server is what you ask
+  for; what comes back is shown to you and not sent anywhere else.</li>
+<li><strong>1.1.1.1, 8.8.8.8 or 9.9.9.9</strong>, only when background monitoring cannot reach
+  a server, to tell whether the phone itself is offline. The app opens a TCP
+  connection and closes it at once without sending any data.</li>
+</ul>
+<p>No data is shared with the developer or with any third party.</p>
+<h2>Permissions</h2>
+<ul>
+<li><strong>Internet and network state</strong>: to connect to your servers.</li>
+<li><strong>Biometrics</strong>: for the optional app lock. Fingerprints and faces are
+  checked by the phone's system; the app never receives them.</li>
+<li><strong>Notifications</strong>: to tell you when a monitored server goes down or comes
+  back.</li>
+<li><strong>Run in the background and at startup</strong>: for the monitoring checks you turn
+  on, which Android schedules at most every 15 minutes.</li>
+</ul>
+<h2>Children</h2>
+<p>ServerDeck is a tool for system administrators and is not directed at
+children.</p>
+<h2>Changes</h2>
+<p>Changes to this policy are published at this address, with a new date at the
+top. Its history is in the project's Git repository.</p>
+<h2>Contact</h2>
+<p>Questions about this policy: <a href="mailto:info@levente.net">info@levente.net</a></p>
+</main>
+</body>
+</html>

@@ -18,7 +18,7 @@ final appVersionProvider = FutureProvider<String>(
 );
 
 final privacyPolicy = Uri.parse(
-  'https://github.com/szabolevi98/serverdeck/blob/main/PRIVACY.md',
+  'https://szabolevi98.github.io/serverdeck/privacy/',
 );
 
 final _deviceLockProvider = FutureProvider.autoDispose<bool>(
