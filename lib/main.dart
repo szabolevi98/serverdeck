@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app.dart';
 import 'demo/demo.dart';
@@ -14,10 +13,5 @@ Future<void> main() async {
       // The app works without the monitor; it only cannot run in the back.
     }
   }
-  runApp(
-    ProviderScope(
-      overrides: demoMode ? demoOverrides() : const [],
-      child: const ServerDeckApp(),
-    ),
-  );
+  runApp(const ServerDeckRoot());
 }

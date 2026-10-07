@@ -1009,4 +1009,17 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get monitorIncidentsHint =>
       'Mantén pulsada una caída cerrada para eliminarla.';
+
+  @override
+  String get demoTry => 'Probar la demo';
+
+  @override
+  String get demoNotice =>
+      'Una demo con servidores inventados. Aquí no se guarda nada.';
+
+  @override
+  String get demoExit => 'Salir';
+
+  @override
+  String get settingsPrivacy => 'Política de privacidad';
 }

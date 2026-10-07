@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../data/app_data.dart';
 import '../data/models.dart';
@@ -14,6 +15,10 @@ import 'widgets.dart';
 /// The installed version, as the build says, never typed by hand.
 final appVersionProvider = FutureProvider<String>(
   (ref) async => (await PackageInfo.fromPlatform()).version,
+);
+
+final privacyPolicy = Uri.parse(
+  'https://github.com/szabolevi98/serverdeck/blob/main/PRIVACY.md',
 );
 
 final _deviceLockProvider = FutureProvider.autoDispose<bool>(
@@ -128,13 +133,27 @@ class SettingsScreen extends ConsumerWidget {
           ),
           SectionLabel(l.settingsAbout),
           Card(
-            child: ListTile(
-              leading: const TintedIcon(Icons.dns_rounded, size: 40),
-              title: Text(
-                'ServerDeck ${ref.watch(appVersionProvider).value ?? ''}'
-                    .trim(),
-              ),
-              subtitle: Text(l.settingsAboutText),
+            child: Column(
+              children: [
+                ListTile(
+                  leading: const TintedIcon(Icons.dns_rounded, size: 40),
+                  title: Text(
+                    'ServerDeck ${ref.watch(appVersionProvider).value ?? ''}'
+                        .trim(),
+                  ),
+                  subtitle: Text(l.settingsAboutText),
+                ),
+                const Divider(indent: 16, endIndent: 16),
+                ListTile(
+                  leading: const Icon(Icons.privacy_tip_outlined),
+                  title: Text(l.settingsPrivacy),
+                  trailing: const Icon(Icons.open_in_new_rounded, size: 18),
+                  onTap: () => launchUrl(
+                    privacyPolicy,
+                    mode: LaunchMode.externalApplication,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

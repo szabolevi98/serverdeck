@@ -1,6 +1,7 @@
-/// The demo build: invented servers that answer like real ones, for
-/// screenshots and for trying the app without a server. Built with
-/// `--dart-define=SERVERDECK_DEMO=true`; nothing here touches the network.
+/// The demo: invented servers that answer like real ones, for screenshots and
+/// for trying the app without a server. Opened from the empty server list, or
+/// built in with `--dart-define=SERVERDECK_DEMO=true`; nothing here touches
+/// the network or the saved data.
 ///
 /// Every address is from the ranges RFC 5737 sets aside for documentation.
 library;
@@ -10,6 +11,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart' show ValueNotifier;
 import 'package:flutter_riverpod/misc.dart' show Override;
 
 import '../data/app_data.dart';
@@ -28,7 +30,18 @@ import '../ui/servers_screen.dart';
 
 const demoMode = bool.fromEnvironment('SERVERDECK_DEMO');
 
-List<Override> demoOverrides() {
+/// The settings carried into a demo opened from the app, or null outside one.
+/// The app runs on the demo's providers while it is set, and on the saved data
+/// again once it is cleared.
+final demoTour = ValueNotifier<Settings?>(null);
+
+/// Opens the demo with the theme and language of [settings].
+void startDemo(Settings settings) => demoTour.value = settings;
+
+void stopDemo() => demoTour.value = null;
+
+/// The app lock is left out: the demo holds nothing to protect.
+List<Override> demoOverrides({Settings settings = const Settings()}) {
   final key = generateEd25519('pixel-9');
   final secrets = MemorySecretStore()
     ..values[Secrets.privateKey('k1')] = key.privatePem;
@@ -42,6 +55,7 @@ List<Override> demoOverrides() {
   );
 
   final data = AppData(
+    settings: settings.copyWith(appLock: false),
     servers: const [
       ServerProfile(
         id: 'web-1',

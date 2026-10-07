@@ -1013,4 +1013,17 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get monitorIncidentsHint =>
       'Lange auf einen beendeten Ausfall drücken, um ihn zu löschen.';
+
+  @override
+  String get demoTry => 'Demo ausprobieren';
+
+  @override
+  String get demoNotice =>
+      'Eine Demo mit erfundenen Servern. Hier wird nichts gespeichert.';
+
+  @override
+  String get demoExit => 'Beenden';
+
+  @override
+  String get settingsPrivacy => 'Datenschutzerklärung';
 }

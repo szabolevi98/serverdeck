@@ -1006,4 +1006,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get monitorIncidentsHint => 'Long-press a closed outage to delete it.';
+
+  @override
+  String get demoTry => 'Try the demo';
+
+  @override
+  String get demoNotice =>
+      'A demo with invented servers. Nothing here is saved.';
+
+  @override
+  String get demoExit => 'Exit';
+
+  @override
+  String get settingsPrivacy => 'Privacy policy';
 }

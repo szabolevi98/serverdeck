@@ -270,5 +270,9 @@
   "monitorPhoneOffline": "The phone isn't on the internet, so nothing can be checked now.",
   "monitorForgetTitle": "Delete this outage?",
   "monitorForgetMessage": "If it wasn't really an outage (the phone was offline, say), the entry and its failed checks go, and uptime is worked out again.",
-  "monitorIncidentsHint": "Long-press a closed outage to delete it."
+  "monitorIncidentsHint": "Long-press a closed outage to delete it.",
+  "demoTry": "Try the demo",
+  "demoNotice": "A demo with invented servers. Nothing here is saved.",
+  "demoExit": "Exit",
+  "settingsPrivacy": "Privacy policy"
 }

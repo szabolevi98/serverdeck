@@ -270,5 +270,9 @@
   "monitorPhoneOffline": "Le téléphone n’est pas connecté à internet, rien ne peut donc être vérifié maintenant.",
   "monitorForgetTitle": "Supprimer cette panne ?",
   "monitorForgetMessage": "Si ce n’était pas une vraie panne (le téléphone était hors ligne, par exemple), l’entrée et ses vérifications échouées sont supprimées, et la disponibilité est recalculée.",
-  "monitorIncidentsHint": "Appuyez longuement sur une panne terminée pour la supprimer."
+  "monitorIncidentsHint": "Appuyez longuement sur une panne terminée pour la supprimer.",
+  "demoTry": "Essayer la démo",
+  "demoNotice": "Une démo avec des serveurs inventés. Rien n’est enregistré ici.",
+  "demoExit": "Quitter",
+  "settingsPrivacy": "Politique de confidentialité"
 }

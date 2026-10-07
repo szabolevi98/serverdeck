@@ -602,5 +602,9 @@
   "monitorPhoneOffline": "A telefon nincs interneten, így most nem lehet ellenőrizni.",
   "monitorForgetTitle": "Törlöd ezt a leállást?",
   "monitorForgetMessage": "Ha valójában nem volt leállás (például a telefon volt offline), a bejegyzés és a hozzá tartozó sikertelen ellenőrzések törlődnek, a rendelkezésre állás pedig újraszámolódik.",
-  "monitorIncidentsHint": "Egy lezárt leállás hosszan nyomva törölhető."
+  "monitorIncidentsHint": "Egy lezárt leállás hosszan nyomva törölhető.",
+  "demoTry": "Demó kipróbálása",
+  "demoNotice": "Demó kitalált szerverekkel. Itt semmi nem mentődik.",
+  "demoExit": "Kilépés",
+  "settingsPrivacy": "Adatvédelmi irányelvek"
 }

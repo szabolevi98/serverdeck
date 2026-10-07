@@ -270,5 +270,9 @@
   "monitorPhoneOffline": "Das Telefon ist nicht mit dem Internet verbunden, deshalb kann gerade nichts geprüft werden.",
   "monitorForgetTitle": "Diesen Ausfall löschen?",
   "monitorForgetMessage": "Wenn es kein echter Ausfall war (das Telefon war zum Beispiel offline), werden der Eintrag und seine fehlgeschlagenen Prüfungen gelöscht und die Verfügbarkeit neu berechnet.",
-  "monitorIncidentsHint": "Lange auf einen beendeten Ausfall drücken, um ihn zu löschen."
+  "monitorIncidentsHint": "Lange auf einen beendeten Ausfall drücken, um ihn zu löschen.",
+  "demoTry": "Demo ausprobieren",
+  "demoNotice": "Eine Demo mit erfundenen Servern. Hier wird nichts gespeichert.",
+  "demoExit": "Beenden",
+  "settingsPrivacy": "Datenschutzerklärung"
 }

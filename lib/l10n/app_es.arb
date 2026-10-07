@@ -270,5 +270,9 @@
   "monitorPhoneOffline": "El teléfono no tiene conexión a internet, así que ahora no se puede comprobar nada.",
   "monitorForgetTitle": "¿Eliminar esta caída?",
   "monitorForgetMessage": "Si no fue una caída real (por ejemplo, el teléfono estaba sin conexión), se eliminan la entrada y sus comprobaciones fallidas, y se vuelve a calcular la disponibilidad.",
-  "monitorIncidentsHint": "Mantén pulsada una caída cerrada para eliminarla."
+  "monitorIncidentsHint": "Mantén pulsada una caída cerrada para eliminarla.",
+  "demoTry": "Probar la demo",
+  "demoNotice": "Una demo con servidores inventados. Aquí no se guarda nada.",
+  "demoExit": "Salir",
+  "settingsPrivacy": "Política de privacidad"
 }

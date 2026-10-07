@@ -2,12 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'data/app_data.dart';
+import 'demo/demo.dart';
 
 import 'l10n/generated/app_localizations.dart';
 import 'l10n/languages.dart';
 import 'ui/app_lock.dart';
 import 'ui/servers_screen.dart';
 import 'ui/theme.dart';
+
+/// The app on the saved data, or on the demo's while one is open: a new scope
+/// for the demo and another after it, so neither sees the other's providers.
+class ServerDeckRoot extends StatelessWidget {
+  const ServerDeckRoot({super.key});
+
+  @override
+  Widget build(BuildContext context) => ValueListenableBuilder(
+    valueListenable: demoTour,
+    builder: (context, tour, _) => ProviderScope(
+      key: ValueKey(tour != null),
+      overrides: demoMode
+          ? demoOverrides()
+          : tour != null
+          ? demoOverrides(settings: tour)
+          : const [],
+      child: const ServerDeckApp(),
+    ),
+  );
+}
 
 class ServerDeckApp extends ConsumerWidget {
   const ServerDeckApp({super.key});

@@ -949,4 +949,17 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get monitorIncidentsHint =>
       'Egy lezárt leállás hosszan nyomva törölhető.';
+
+  @override
+  String get demoTry => 'Demó kipróbálása';
+
+  @override
+  String get demoNotice =>
+      'Demó kitalált szerverekkel. Itt semmi nem mentődik.';
+
+  @override
+  String get demoExit => 'Kilépés';
+
+  @override
+  String get settingsPrivacy => 'Adatvédelmi irányelvek';
 }

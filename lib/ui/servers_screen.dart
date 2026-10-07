@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/app_data.dart';
 import '../data/models.dart';
+import '../demo/demo.dart';
 import '../ssh/reach.dart';
 import 'keys_screen.dart';
 import 'monitor_screen.dart';
@@ -88,14 +89,33 @@ class ServersScreen extends ConsumerWidget {
                   icon: Icons.dns_rounded,
                   title: context.l.serversEmptyTitle,
                   message: context.l.serversEmpty,
-                  action: FilledButton.icon(
-                    onPressed: () => _edit(context, null),
-                    icon: const Icon(Icons.add_rounded),
-                    label: Text(context.l.serverAdd),
+                  action: Column(
+                    children: [
+                      FilledButton.icon(
+                        onPressed: () => _edit(context, null),
+                        icon: const Icon(Icons.add_rounded),
+                        label: Text(context.l.serverAdd),
+                      ),
+                      if (!demoMode) ...[
+                        const SizedBox(height: 8),
+                        TextButton.icon(
+                          onPressed: () => startDemo(
+                            data.value?.settings ?? const Settings(),
+                          ),
+                          icon: const Icon(Icons.play_circle_outline_rounded),
+                          label: Text(context.l.demoTry),
+                        ),
+                      ],
+                    ],
                   ),
                 ),
               )
-            else
+            else ...[
+              if (demoTour.value != null)
+                const SliverPadding(
+                  padding: EdgeInsets.fromLTRB(16, 4, 16, 8),
+                  sliver: SliverToBoxAdapter(child: _DemoNotice()),
+                ),
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(16, 4, 16, 110),
                 sliver: SliverList.separated(
@@ -114,6 +134,7 @@ class ServersScreen extends ConsumerWidget {
                   ),
                 ),
               ),
+            ],
           ],
         ),
       ),
@@ -146,6 +167,37 @@ class ServersScreen extends ConsumerWidget {
     );
     if (ok) await ref.read(appDataProvider.notifier).deleteServer(server.id);
   }
+}
+
+/// Says the servers are made up, with the way back to the real ones.
+class _DemoNotice extends StatelessWidget {
+  const _DemoNotice();
+
+  @override
+  Widget build(BuildContext context) => Card(
+    color: context.colors.primaryContainer,
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+      child: Row(
+        children: [
+          Icon(
+            Icons.play_circle_outline_rounded,
+            color: context.colors.onPrimaryContainer,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              context.l.demoNotice,
+              style: context.text.bodyMedium?.copyWith(
+                color: context.colors.onPrimaryContainer,
+              ),
+            ),
+          ),
+          TextButton(onPressed: stopDemo, child: Text(context.l.demoExit)),
+        ],
+      ),
+    ),
+  );
 }
 
 class _ServerCard extends ConsumerWidget {

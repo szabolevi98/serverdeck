@@ -1729,6 +1729,30 @@ abstract class AppLocalizations {
   /// In hu, this message translates to:
   /// **'Egy lezárt leállás hosszan nyomva törölhető.'**
   String get monitorIncidentsHint;
+
+  /// No description provided for @demoTry.
+  ///
+  /// In hu, this message translates to:
+  /// **'Demó kipróbálása'**
+  String get demoTry;
+
+  /// No description provided for @demoNotice.
+  ///
+  /// In hu, this message translates to:
+  /// **'Demó kitalált szerverekkel. Itt semmi nem mentődik.'**
+  String get demoNotice;
+
+  /// No description provided for @demoExit.
+  ///
+  /// In hu, this message translates to:
+  /// **'Kilépés'**
+  String get demoExit;
+
+  /// No description provided for @settingsPrivacy.
+  ///
+  /// In hu, this message translates to:
+  /// **'Adatvédelmi irányelvek'**
+  String get settingsPrivacy;
 }
 
 class _AppLocalizationsDelegate

@@ -1009,4 +1009,17 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get monitorIncidentsHint =>
       'Appuyez longuement sur une panne terminée pour la supprimer.';
+
+  @override
+  String get demoTry => 'Essayer la démo';
+
+  @override
+  String get demoNotice =>
+      'Une démo avec des serveurs inventés. Rien n’est enregistré ici.';
+
+  @override
+  String get demoExit => 'Quitter';
+
+  @override
+  String get settingsPrivacy => 'Politique de confidentialité';
 }
