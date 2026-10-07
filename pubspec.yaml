@@ -2,7 +2,7 @@ name: serverdeck
 description: "Manage your Linux servers from your phone over SSH."
 publish_to: 'none'
 
-version: 1.2.1+6
+version: 1.3.0+7
 
 environment:
   sdk: ^3.13.4
